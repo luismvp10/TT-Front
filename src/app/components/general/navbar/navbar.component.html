@@ -1,6 +1,8 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">
-        <img src="./assets/imgs/sicat-logo.png" width="100" height="100" class="img-fluid" alt="Responsive image" alt=""> SICAT
+<nav class="navbar navbar-expand-lg navbar-light bg-light size-nav">
+    <a class="navbar-brand text-nav" routerLink="/home">
+        <img src="./assets/imgs/sicat-logo.png" width="150" height="150" class="img-fluid" alt="Responsive image" alt=""> SICAT
+
+        <span class="system-title">"Sistema de Información Comercial para el Análisis de Transacciones"</span>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -9,15 +11,15 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <!--   <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <!--<a class="nav-link" href="#">Link</a>-->
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <!--      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Dropdown
-        </a>
+        </a>-->
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="#">Action</a>
                     <a class="dropdown-item" href="#">Another action</a>
@@ -26,11 +28,11 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
+                <!--  <a class="nav-link disabled" href="#">Disabled</a>-->
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
-            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Iniciar Sesión</button>
+            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" routerLink='/login'>Iniciar Sesión</button>
         </form>
     </div>
 </nav>

@@ -1,20 +1,19 @@
-<div id="estadisticas" name="estadisticas" class="container">
-    <br>
+<div id="estadisticas" name="estadisticas" class="container-fluid mt-5 estadisticas">
+
 
     <div class="row">
         <div class="col-3">
 
         </div>
-        <div class="col-6">
+        <div class="col-6 ">
 
             <div class=" form-group">
                 <label for="exampleFormControlSelect2">Seleccione un Capítulo:</label>
                 <select multiple class="form-control" id="exampleFormControlSelect2">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+                <option>72 - Fundicion, hierro y acero</option>
+                <option>74 - Cobre y manufacturas de cobre</option>
+                <option>76 -  Aluminio y manufacturas de aluminio</option>
+
               </select>
             </div>
 
@@ -26,12 +25,45 @@
 
 
     </div>
+
+
+
     <div class="row">
+        <div class="col-5 col-md-5"></div>
+
+        <div class="col-3 col-md-3 ">
+            <div class="form-group ml-3">
+                <button type="button" class="btn btn-dark">Aranceles y
+              normatividad</button>
+            </div>
+        </div>
+
+        <div class="col-3 col-md-3 ">
+            <div class="form-group row mr-5">
+                <label class="col-form-label">Año:</label>
+                <div class="col-md-9">
+                    <select class="form-control custom-select" id="exampleFormControlSelect1">
+              <option selected>Seleccione un Año</option>
+              <option>2018</option>
+              <option>2017</option>
+              <option>2016</option>
+            </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-1 col-md-1"></div>
+
+
+    </div>
+
+
+    <div class="row ml-5">
         <div class="col-3 col-md-3">
 
-            <div class="form-group">
-
-                <select class="form-control custom-select" id="exampleFormControlSelect1">
+            <div class="form-group row ">
+                <label class="col-sm-2 col-form-label col-form-label-sm">Partida: </label>
+                <div class="col-md-10">
+                    <select class="form-control custom-select" id="exampleFormControlSelect1">
                   <option selected>Seleccione una Partida</option>
                   <option>0101</option>
                   <option>0102</option>
@@ -39,17 +71,19 @@
                   <option>0104</option>
                   <option>0105</option>
                 </select>
-            </div>
+                </div>
 
+            </div>
         </div>
 
 
 
-        <div class="col-3 col-md-3">
+        <div class="col-4 col-md-4">
 
-            <div class="form-group">
-
-                <select class="form-control custom-select" id="exampleFormControlSelect1">
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label col-form-label-sm">SubPartida: </label>
+                <div class="col-md-10">
+                    <select class="form-control custom-select" id="exampleFormControlSelect1">
                   <option selected>Seleccione una SubPartida</option>
                   <option>0101</option>
                   <option>0102</option>
@@ -57,6 +91,7 @@
                   <option>0104</option>
                   <option>0105</option>
                 </select>
+                </div>
             </div>
 
         </div>
@@ -66,9 +101,10 @@
 
         <div class="col-3 col-md-3">
 
-            <div class="form-group">
-
-                <select class="form-control custom-select" id="exampleFormControlSelect1">
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label col-form-label-sm">Fracción :  </label>
+                <div class="col-md-10">
+                    <select class="form-control custom-select" id="exampleFormControlSelect1">
                   <option selected>Seleccione una Fracción</option>
                   <option>0101</option>
                   <option>0102</option>
@@ -76,6 +112,7 @@
                   <option>0104</option>
                   <option>0105</option>
                 </select>
+                </div>
             </div>
 
 
@@ -84,12 +121,250 @@
 
 
 
-        <div class="col-3 col-md-3">
+        <div class="col-1 col-md-1">
             <div class="form-group">
                 <button type="button" class="btn btn-primary">Buscar</button>
             </div>
 
         </div>
+
+
+
+
+
+        <div class="container">
+            <br><br>
+            <h3>Valor en dólares</h3>
+            <br>
+            <div class="row">
+
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Exportaciones</th>
+                            <th scope="col">Enero</th>
+                            <th scope="col">Febrero</th>
+                            <th scope="col">Marzo</th>
+                            <th scope="col">Abril</th>
+                            <th scope="col">Mayo</th>
+                            <th scope="col">Junio</th>
+                            <th scope="col">Agosto</th>
+                            <th scope="col">Septiembre</th>
+                            <th scope="col"> Octubre</th>
+                            <th scope="col"> Noviembre</th>
+                            <th scope="col">Diciembre</th>
+
+
+
+
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Total</th>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+
+        <div class="container">
+            <br><br>
+            <h3>Volumén</h3>
+            <br>
+            <div class="row">
+
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Exportaciones</th>
+                            <th scope="col">Enero</th>
+                            <th scope="col">Febrero</th>
+                            <th scope="col">Marzo</th>
+                            <th scope="col">Abril</th>
+                            <th scope="col">Mayo</th>
+                            <th scope="col">Junio</th>
+                            <th scope="col">Agosto</th>
+                            <th scope="col">Septiembre</th>
+                            <th scope="col"> Octubre</th>
+                            <th scope="col"> Noviembre</th>
+                            <th scope="col">Diciembre</th>
+
+
+
+
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Total</th>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="container">
+            <br><br>
+            <h3>Valor en dólares</h3>
+            <br>
+            <div class="row">
+
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Importaciones</th>
+                            <th scope="col">Enero</th>
+                            <th scope="col">Febrero</th>
+                            <th scope="col">Marzo</th>
+                            <th scope="col">Abril</th>
+                            <th scope="col">Mayo</th>
+                            <th scope="col">Junio</th>
+                            <th scope="col">Agosto</th>
+                            <th scope="col">Septiembre</th>
+                            <th scope="col"> Octubre</th>
+                            <th scope="col"> Noviembre</th>
+                            <th scope="col">Diciembre</th>
+
+
+
+
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Total</th>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+
+        <div class="container">
+            <br><br>
+            <h3>Volumén</h3>
+            <br>
+            <div class="row">
+
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Importaciones</th>
+                            <th scope="col">Enero</th>
+                            <th scope="col">Febrero</th>
+                            <th scope="col">Marzo</th>
+                            <th scope="col">Abril</th>
+                            <th scope="col">Mayo</th>
+                            <th scope="col">Junio</th>
+                            <th scope="col">Agosto</th>
+                            <th scope="col">Septiembre</th>
+                            <th scope="col"> Octubre</th>
+                            <th scope="col"> Noviembre</th>
+                            <th scope="col">Diciembre</th>
+
+
+
+
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Total</th>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+
 
 
     </div>

@@ -1,0 +1,26 @@
+* {
+    font-family: Brandon Regular;
+}
+
+html,
+body {
+    overflow-x: hidden;
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-y: hidden;
+}
+
+.login-back {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: #069;
+    overflow: hidden;
+}
+
+.login {
+    background-color: #FFF;
+    border-radius: 48px 48px 48px 48px;
+}

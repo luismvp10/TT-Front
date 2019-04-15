@@ -1,0 +1,16 @@
+    html,
+    body {
+        overflow-x: hidden;
+        height: 100%;
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
+        overflow-y: hidden;
+    }
+
+    .footer-back {
+        background-color: #e7e7e7;
+        width: 100%;
+        padding-bottom: 2%;
+        margin-bottom: -4%;
+    }

@@ -1,7 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+//Routes
 import { AppRoutingModule } from './app-routing.module';
+
+
+///Services
+
+
+
+
+//Components
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { NavbarComponent } from './components/general/navbar/navbar.component';
@@ -10,6 +18,7 @@ import { EstadisticasComponent } from './components/general/estadisticas/estadis
 import { BuscarProductosComponent } from './components/general/buscar-productos/buscar-productos.component';
 import { ContenedorComponent } from './components/general/contenedor/contenedor.component';
 import { LoginComponent } from './components/admon/login/login.component';
+import { PageNotFoundComponent } from './components/shared/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +29,8 @@ import { LoginComponent } from './components/admon/login/login.component';
     EstadisticasComponent,
     BuscarProductosComponent,
     ContenedorComponent,
-    LoginComponent
+    LoginComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
