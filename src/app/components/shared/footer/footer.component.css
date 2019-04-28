@@ -1,4 +1,4 @@
-    html,
+  /*  html,
     body {
         overflow-x: hidden;
         height: 100%;
@@ -13,4 +13,256 @@
         width: 100%;
         padding-bottom: 2%;
         margin-bottom: -4%;
-    }
+    }*/
+
+  p {
+      font-size: 1rem;
+  }
+
+  .container {
+      margin: 0;
+  }
+
+  hr {
+      margin-top: -3%;
+      height: 1px;
+      width: 15%;
+      background-color: #3c92ca;
+      margin-left: 42%;
+  }
+
+  .footer {
+      background-color: #eaedf1;
+      margin: 0;
+      margin-right: 0;
+      margin-bottom: -10%;
+  }
+
+  .title {
+      margin-top: 15%;
+      margin-bottom: 8%;
+  }
+
+  .redes {
+      margin-right: 3%;
+      margin-left: 3%;
+      width: 35px;
+  }
+  /*Media Queries*/
+
+  @media only screen and (max-width: 479px) and (min-width: 320px) {
+      p {
+          font-size: 0.4rem;
+      }
+      .title {
+          font-size: 0.6rem;
+      }
+      .redes {
+          margin-top: -10%;
+          width: 16px;
+          max-width: 18px;
+      }
+      hr {
+          margin-top: -9%;
+          width: 20%;
+      }
+      .dir-mex {
+          margin-top: -30%;
+      }
+      .rights {
+          margin-top: 2%;
+      }
+  }
+
+  @media only screen and (max-width: 567px) and (min-width: 480px) {
+      p {
+          font-size: 0.4rem;
+      }
+      .title {
+          font-size: 0.6rem;
+      }
+      .redes {
+          margin-top: -10%;
+          width: 16px;
+          max-width: 18px;
+      }
+      hr {
+          margin-top: -9%;
+          width: 20%;
+      }
+      .dir-mex {
+          margin-top: -22%;
+      }
+      .rights {
+          margin-top: 2%;
+      }
+  }
+
+  @media only screen and (max-width: 599px) and (min-width: 568px) {
+      .title {
+          font-size: 0.6rem;
+      }
+      p {
+          font-size: 0.5rem;
+      }
+      .redes {
+          margin-top: -6%;
+          width: 16px;
+          max-width: 18px;
+      }
+      hr {
+          margin-top: -9%;
+          width: 20%;
+      }
+      .rights {
+          margin-top: 2%;
+      }
+      .dir-mex {
+          margin-top: -15%;
+      }
+  }
+
+  @media only screen and (max-width: 767px) and (min-width: 600px) {
+      .container {
+          max-width: 100%;
+      }
+      hr {
+          margin-top: -8%;
+          width: 35%;
+          height: 3px;
+          margin-left: 35%;
+      }
+      .title {
+          font-size: 1.2rem;
+      }
+      p {
+          font-size: 0.80rem;
+      }
+      .redes {
+          width: 28px;
+          max-width: 28px;
+      }
+      .rights {
+          margin-top: 2%;
+      }
+  }
+
+  @media only screen and (max-width: 799px) and (min-width: 768px) {
+      .container {
+          max-width: 100%;
+      }
+      .title {
+          font-size: 1rem;
+      }
+      hr {
+          margin-top: -8%;
+          width: 35%;
+          height: 2px;
+          margin-left: 33%;
+      }
+      p {
+          font-size: 0.7rem;
+      }
+      .rights {
+          margin-top: 2%;
+      }
+  }
+
+  @media only screen and (max-width: 991px) and (min-width: 800px) {
+      .container {
+          max-width: 100%;
+      }
+      .title {
+          font-size: 1rem;
+      }
+      hr {
+          margin-top: -8%;
+          width: 35%;
+          height: 2px;
+          margin-left: 33%;
+      }
+      p {
+          font-size: 0.7rem;
+      }
+      .rights {
+          margin-top: 2%;
+      }
+  }
+
+  @media only screen and (min-width: 992px) {
+      .container {
+          max-width: 100%;
+      }
+      p {
+          font-size: 0.85rem;
+      }
+      .title {
+          font-size: 1.4rem;
+      }
+      hr {
+          margin-top: -8%;
+          margin-left: 29%;
+          width: 43%;
+      }
+      .redes {
+          width: 32px;
+          max-width: 32px;
+      }
+  }
+
+  @media only screen and (min-width: 1200px) {
+      p {
+          font-size: 1.02rem;
+      }
+      .title {
+          font-size: 1.6rem;
+      }
+      hr {
+          margin-top: -8%;
+          height: 3px;
+          width: 18%;
+          background-color: #3c92ca;
+          margin-left: 42%;
+      }
+      .redes {
+          width: 35px;
+          max-width: 35px;
+      }
+      .rights {
+          margin-top: 4%;
+      }
+  }
+
+  @media only screen and (min-width: 1366px) {}
+
+  @media only screen and (min-width: 1440px) {}
+
+  @media only screen and (min-width: 1540px) {}
+
+  @media only screen and (min-width: 1680px) {
+      p {
+          font-size: 1.07rem;
+      }
+  }
+
+  @media only screen and (min-width: 1920px) {
+      .title {
+          font-size: 1.8rem;
+      }
+      p {
+          font-size: 1.1rem;
+      }
+      .redes {
+          width: 52px;
+          max-width: 52px;
+      }
+  }
+
+  @media only screen and (min-width: 2520px) {
+      p {
+          font-size: 1.27rem;
+      }
+      .title {
+          font-size: 1.9rem;
+      }
+  }

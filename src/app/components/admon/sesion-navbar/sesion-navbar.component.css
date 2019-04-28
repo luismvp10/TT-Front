@@ -1,0 +1,35 @@
+.navbar-nav {
+    margin-left: 65%;
+}
+
+* {
+    font-family: Brandon Regular;
+}
+
+.text-nav {
+    color: #8a0b0b !important;
+    font-size: 1.8rem;
+    font-family: NexaBold;
+}
+
+.size-nav {
+    height: 80px;
+    background-color: #ebebeb;
+}
+
+.bg-light {
+    background-color: #e7e7e7 !important;
+}
+
+.system-title {
+    color: #8a0b0b;
+    font-size: 1.2rem;
+    margin-left: 8%;
+    font-weight: bolder;
+}
+
+.text-nav {
+    color: #8a0b0b;
+    font-size: 1.8rem;
+    font-family: NexaBold;
+}

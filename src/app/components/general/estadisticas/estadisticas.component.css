@@ -1,7 +1,17 @@
 label {
     font-size: 1rem;
+    padding-right: 0px;
+    padding-left: 0px;
 }
 
 .estadisticas {
     margin-bottom: 10%;
+}
+
+.title {
+    color: #3c92ca;
+}
+
+.mr-x {
+    margin-left: -2.5rem !important;
 }

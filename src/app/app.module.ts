@@ -19,6 +19,12 @@ import { BuscarProductosComponent } from './components/general/buscar-productos/
 import { ContenedorComponent } from './components/general/contenedor/contenedor.component';
 import { LoginComponent } from './components/admon/login/login.component';
 import { PageNotFoundComponent } from './components/shared/page-not-found/page-not-found.component';
+import { ContenedorAdminComponent } from './components/admon/administrador/contenedor-administrador/contenedor-administrador.component';
+import { ContenedorEspecialistaComponent } from './components/admon/especialista/contenedor-especialista/contenedor-especialista.component';
+import { EstadisticasEspecialistaComponent } from './components/admon/especialista/estadisticas-especialista/estadisticas-especialista.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { UploadDataComponent } from './components/admon/administrador/upload-data/upload-data.component';
+import { UsersControlComponent } from './components/admon/administrador/users-control/users-control.component';
 
 @NgModule({
   declarations: [
@@ -30,11 +36,17 @@ import { PageNotFoundComponent } from './components/shared/page-not-found/page-n
     BuscarProductosComponent,
     ContenedorComponent,
     LoginComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ContenedorAdminComponent,
+    ContenedorEspecialistaComponent,
+    EstadisticasEspecialistaComponent,
+    UploadDataComponent,
+    UsersControlComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
