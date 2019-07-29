@@ -1,12 +1,11 @@
+import { from } from 'rxjs';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule, Router } from '@angular/router';
+
+import { HttpClientModule } from '@angular/common/http';
 //Routes
 import { AppRoutingModule } from './app-routing.module';
-
-
-///Services
-
-
 
 
 //Components
@@ -25,6 +24,10 @@ import { EstadisticasEspecialistaComponent } from './components/admon/especialis
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { UploadDataComponent } from './components/admon/administrador/upload-data/upload-data.component';
 import { UsersControlComponent } from './components/admon/administrador/users-control/users-control.component';
+import { SelectCountrieComponent } from './components/shared/countrie/select-countrie/select-countrie.component';
+///Services
+import { CountrieService } from './services/countrie/countrie.service';
+import { SelectChapterComponent } from './components/shared/chapter/select-chapter/select-chapter.component';
 
 @NgModule({
   declarations: [
@@ -41,14 +44,20 @@ import { UsersControlComponent } from './components/admon/administrador/users-co
     ContenedorEspecialistaComponent,
     EstadisticasEspecialistaComponent,
     UploadDataComponent,
-    UsersControlComponent
+    UsersControlComponent,
+    SelectCountrieComponent,
+    SelectChapterComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     AngularFontAwesomeModule,
+     //RouterModule.forRoot( ROUTES, {useHash:true }),
   ],
-  providers: [],
+  providers: [
+    CountrieService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
