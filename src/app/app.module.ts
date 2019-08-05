@@ -28,6 +28,11 @@ import { SelectCountrieComponent } from './components/shared/countrie/select-cou
 ///Services
 import { CountrieService } from './services/countrie/countrie.service';
 import { SelectChapterComponent } from './components/shared/chapter/select-chapter/select-chapter.component';
+import { ChapterService } from './services/chapter/chapter.service';
+import { YearService } from './services/year/year.service';
+import { MonthService } from './services/month/month.service';
+import { SelectYearComponent } from './components/shared/year/select-year/select-year.component';
+import { SelectMonthComponent } from './components/shared/month/select-month/select-month.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +51,9 @@ import { SelectChapterComponent } from './components/shared/chapter/select-chapt
     UploadDataComponent,
     UsersControlComponent,
     SelectCountrieComponent,
-    SelectChapterComponent
+    SelectChapterComponent,
+    SelectYearComponent,
+    SelectMonthComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,7 +63,10 @@ import { SelectChapterComponent } from './components/shared/chapter/select-chapt
      //RouterModule.forRoot( ROUTES, {useHash:true }),
   ],
   providers: [
-    CountrieService
+    CountrieService,
+    ChapterService,
+    YearService,
+    MonthService,
   ],
   bootstrap: [AppComponent]
 })

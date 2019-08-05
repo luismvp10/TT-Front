@@ -6,17 +6,7 @@
 
         </div>
         <div class="col-6 ">
-
-            <div class=" form-group">
-                <label for="exampleFormControlSelect2">Seleccione un Capítulo:</label>
-                <select multiple class="form-control" id="exampleFormControlSelect2">
-              <option>72 - Fundicion, hierro y acero</option>
-              <option>74 - Cobre y manufacturas de cobre</option>
-              <option>76 -  Aluminio y manufacturas de aluminio</option>
-
-            </select>
-            </div>
-
+            <app-select-chapter></app-select-chapter>
         </div>
         <div class="col-1 ">
             <div class="form-group mt-5">
@@ -56,34 +46,13 @@
 
 
         <div class="col-4">
-            <div class="form-group row ml-5 ">
-                <label class="col-form-label">Mes:</label>
-                <div class="col-md-8">
-                    <select class="form-control custom-select" id="exampleFormControlSelect1">
-<option selected>Seleccione un Mes</option>
-<option>Todos</option>
-<option>Enero</option>
-<option>Febrero</option>
-<option>Marzo</option>
-</select>
-                </div>
-            </div>
+            <app-select-month></app-select-month>
 
         </div>
 
 
         <div class="col-4">
-            <div class="form-group row ml-5 ">
-                <label class="col-form-label">Año:</label>
-                <div class="col-10">
-                    <select class="form-control custom-select" id="exampleFormControlSelect1">
-            <option selected>Seleccione un Año</option>
-            <option>2018</option>
-            <option>2017</option>
-            <option>2016</option>
-          </select>
-                </div>
-            </div>
+            <app-select-year></app-select-year>
         </div>
 
 

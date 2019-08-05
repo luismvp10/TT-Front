@@ -9,14 +9,13 @@ import { CountrieService } from '../../../../services/countrie/countrie.service'
   styleUrls: ['./select-countrie.component.css']
 })
 export class SelectCountrieComponent implements OnInit {
-  paises: any[] = [];
+  countries: any[] = [];
 
   constructor( private countrie: CountrieService) {
-    console.log('Constructor hecho desde servicio');
+
     this.countrie.getCountries()
         .subscribe( (data: any) => {
-          //console.log(data);
-          this.paises = data;
+          this.countries = data;
         });
 
   }

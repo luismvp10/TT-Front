@@ -1,22 +1,33 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChapterService {
-  env = environment;
 
-  paises: any[] = [];
+  constructor(private http: HttpClient) { }
+
+  env = environment;
 
   httpHeaders = new HttpHeaders({
     'Content-type': 'application/json',
   });
-  constructor() { }
 
-  getChapters(){
-
+  getChapters() {
+    return this.http.get(this.env.URI + '/chapters/chapters',
+      { headers: this.httpHeaders});
 
   }
 }
+
+
+
+
+
+
+
+
+
+
