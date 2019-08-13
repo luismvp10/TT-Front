@@ -34,6 +34,7 @@ import { MonthService } from './services/month/month.service';
 import { SelectYearComponent } from './components/shared/year/select-year/select-year.component';
 import { SelectMonthComponent } from './components/shared/month/select-month/select-month.component';
 import { LoadingComponent } from './components/shared/loading/loading.component';
+import { SelectShipmentComponent } from './components/shared/shipment/select-shipment/select-shipment.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { LoadingComponent } from './components/shared/loading/loading.component'
     SelectYearComponent,
     SelectMonthComponent,
     LoadingComponent,
+    SelectShipmentComponent,
   ],
   imports: [
     BrowserModule,
