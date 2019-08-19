@@ -11,15 +11,14 @@ export class CountrieService {
 
   env = environment;
 
-  paises: any[] = [];
-
   httpHeaders = new HttpHeaders({
     'Content-type': 'application/json',
   });
 
 
   getCountries() {
-   return this.http.get(this.env.URI + '/countries/countries', { headers: this.httpHeaders });
+   return this.http.get(this.env.URI + '/countries/countries',
+    { headers: this.httpHeaders });
 
   }
 }

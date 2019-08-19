@@ -1,3 +1,6 @@
-<p>
-  select-chapter works!
-</p>
+<div class=" form-group">
+    <label for="exampleFormControlSelect2">Seleccione un Capítulo:</label>
+    <select multiple class="form-control" id="exampleFormControlSelect2" [(value)]="SelectedChapter">
+<option  [value]= "chapter.id_chapter" *ngFor="let chapter of chapters">{{chapter.id_chapter}} - {{chapter.name}}</option>
+</select>
+</div>

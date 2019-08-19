@@ -6,17 +6,7 @@
 
         </div>
         <div class="col-6 ">
-
-            <div class=" form-group">
-                <label for="exampleFormControlSelect2">Seleccione un Capítulo:</label>
-                <select multiple class="form-control" id="exampleFormControlSelect2">
-              <option>72 - Fundicion, hierro y acero</option>
-              <option>74 - Cobre y manufacturas de cobre</option>
-              <option>76 -  Aluminio y manufacturas de aluminio</option>
-
-            </select>
-            </div>
-
+            <app-select-chapter (change)="changeChapter($event.target.value)"></app-select-chapter>
         </div>
         <div class="col-1 ">
             <div class="form-group mt-5">
@@ -25,6 +15,7 @@
             </div>
         </div>
         <div class="col-2"></div>
+
 
 
 
@@ -56,34 +47,13 @@
 
 
         <div class="col-4">
-            <div class="form-group row ml-5 ">
-                <label class="col-form-label">Mes:</label>
-                <div class="col-md-8">
-                    <select class="form-control custom-select" id="exampleFormControlSelect1">
-<option selected>Seleccione un Mes</option>
-<option>Todos</option>
-<option>Enero</option>
-<option>Febrero</option>
-<option>Marzo</option>
-</select>
-                </div>
-            </div>
+            <app-select-month></app-select-month>
 
         </div>
 
 
         <div class="col-4">
-            <div class="form-group row ml-5 ">
-                <label class="col-form-label">Año:</label>
-                <div class="col-10">
-                    <select class="form-control custom-select" id="exampleFormControlSelect1">
-            <option selected>Seleccione un Año</option>
-            <option>2018</option>
-            <option>2017</option>
-            <option>2016</option>
-          </select>
-                </div>
-            </div>
+            <app-select-year></app-select-year>
         </div>
 
 
@@ -96,63 +66,22 @@
     <div class="row">
         <div class="col-3">
 
-            <div class="form-group row ">
-                <label class="col-2 col-form-label col-form-label-sm">Partida: </label>
-                <div class="col-10">
-                    <select class="form-control custom-select" id="exampleFormControlSelect1">
-                <option selected>Seleccione una Partida</option>
-                <option>0101</option>
-                <option>0102</option>
-                <option>0103</option>
-                <option>0104</option>
-                <option>0105</option>
-              </select>
-                </div>
-
-            </div>
+            <app-select-shipment [shipments]="shipments" (change)="changeShipment($event.target.value)"></app-select-shipment>
         </div>
 
 
 
         <div class="col-4 ">
-
-            <div class="form-group row">
-                <label class="col-3 col-form-label col-form-label-sm ">SubPartida: </label>
-                <div class="col-9">
-                    <select class="form-control custom-select" id="exampleFormControlSelect1">
-                <option selected>Seleccione una SubPartida</option>
-                <option>0101</option>
-                <option>0102</option>
-                <option>0103</option>
-                <option>0104</option>
-                <option>0105</option>
-              </select>
-                </div>
-            </div>
-
+            <app-select-subshipment [subshipments]="subshipments" (change)="changesubShipment($event.target.value)"></app-select-subshipment>
         </div>
 
 
 
 
         <div class="col-4">
-
-            <div class="form-group row">
-                <label class="col-3 col-form-label col-form-label-sm ">Fracción:  </label>
-                <div class="col-9">
-                    <select class="form-control custom-select" id="exampleFormControlSelect1">
-                <option selected>Seleccione una Fracción</option>
-                <option>0101</option>
-                <option>0102</option>
-                <option>0103</option>
-                <option>0104</option>
-                <option>0105</option>
-              </select>
-                </div>
-            </div>
-
-
+            <app-select-section [sections]="sections"></app-select-section>
         </div>
+
 
 
 
@@ -163,6 +92,7 @@
             </div>
 
         </div>
+
 
 
 
@@ -290,6 +220,7 @@
                 </table>
             </div>
         </div>
+
 
         <div class=" col-12 text-center">
             <img src="./assets/imgs/g4.PNG" width="450" height="450" class="img-fluid" alt="Responsive image" alt="">

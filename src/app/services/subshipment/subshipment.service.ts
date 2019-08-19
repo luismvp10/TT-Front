@@ -5,17 +5,18 @@ import { environment } from '../../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class MonthService {
+export class SubshipmentService {
 
   constructor(private http: HttpClient) { }
+
   env = environment;
 
-  httpHeaders = new HttpHeaders({
-    'Content-type': 'application/json'
+  HttpHeaders = new HttpHeaders({
+    'Content-type': 'application/json',
   });
 
-  getMonths() {
-    return this.http.get(this.env.URI + '/months/months',
-    { headers: this.httpHeaders});
+  getSubshipments(id: string) {
+    return this.http.get(this.env.URI + '/subshipments/subshipment/' + id,
+    {headers: this.HttpHeaders});
   }
 }

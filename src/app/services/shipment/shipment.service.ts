@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ChapterService {
+export class ShipmentService {
 
   constructor(private http: HttpClient) { }
 
@@ -15,19 +15,8 @@ export class ChapterService {
     'Content-type': 'application/json',
   });
 
-  getChapters() {
-    return this.http.get(this.env.URI + '/chapters/chapters',
-      { headers: this.httpHeaders});
-
+  getShipments(id: string) {
+    return this.http.get(this.env.URI + '/shipments/shipment/' + id,
+    {headers: this.httpHeaders});
   }
 }
-
-
-
-
-
-
-
-
-
-
