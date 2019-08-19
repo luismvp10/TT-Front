@@ -2,6 +2,7 @@ import { from } from 'rxjs';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 //Routes
@@ -35,6 +36,10 @@ import { SelectYearComponent } from './components/shared/year/select-year/select
 import { SelectMonthComponent } from './components/shared/month/select-month/select-month.component';
 import { LoadingComponent } from './components/shared/loading/loading.component';
 import { SelectShipmentComponent } from './components/shared/shipment/select-shipment/select-shipment.component';
+import { SelectSubshipmentComponent } from './components/shared/subshipment/select-subshipment/select-subshipment.component';
+import { SelectSectionComponent } from './components/shared/section/select-section/select-section.component';
+import { ShipmentService } from './services/shipment/shipment.service';
+import { SubshipmentService } from './services/subshipment/subshipment.service';
 
 @NgModule({
   declarations: [
@@ -58,12 +63,16 @@ import { SelectShipmentComponent } from './components/shared/shipment/select-shi
     SelectMonthComponent,
     LoadingComponent,
     SelectShipmentComponent,
+    SelectSubshipmentComponent,
+    SelectSectionComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     AngularFontAwesomeModule,
+    FormsModule,
+    ReactiveFormsModule
      //RouterModule.forRoot( ROUTES, {useHash:true }),
   ],
   providers: [
@@ -71,6 +80,9 @@ import { SelectShipmentComponent } from './components/shared/shipment/select-shi
     ChapterService,
     YearService,
     MonthService,
+    ShipmentService,
+    SubshipmentService,
+
   ],
   bootstrap: [AppComponent]
 })

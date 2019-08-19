@@ -7,18 +7,20 @@ import { ShipmentService } from 'src/app/services/shipment/shipment.service';
   styleUrls: ['./select-shipment.component.css']
 })
 export class SelectShipmentComponent implements OnInit {
-  @Input() id: string;
-  shipments: any[] = [];
+  @Input() shipments: any[];
+
+
 
   constructor(private shipment: ShipmentService) {
 
-      this.shipment.getShipments('75')
-            .subscribe( (data: any) => {
-              this.shipments = data;
-            });
+
    }
 
   ngOnInit() {
+
+
   }
+
+
 
 }

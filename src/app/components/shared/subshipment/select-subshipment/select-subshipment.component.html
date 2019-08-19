@@ -1,0 +1,10 @@
+<div class="form-group row">
+    <label class="col-3 col-form-label col-form-label-sm">SubPartida:</label>
+    <div class="col-9">
+        <select class="form-control custom-select" [disabled]="subshipments.length===0">
+        <option selected>-- Seleccione una SubPartida -- </option>
+        <option *ngFor="let subshipment of subshipments"  data-toggle="tooltip" data-placement="right" title="{{subshipment.name}}">{{ subshipment.id_subShipment }}</option>
+
+      </select>
+    </div>
+</div>
