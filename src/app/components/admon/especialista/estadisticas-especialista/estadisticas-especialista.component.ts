@@ -41,7 +41,7 @@ export class EstadisticasEspecialistaComponent implements OnInit {
     this.subshipments = [];
     this.sections = [];
 
-      console.log("Changed  Chapter");
+    console.log("Changed  Chapter");
       console.log(id_chapter);
       this.chapterID=id_chapter;
 
@@ -68,7 +68,7 @@ export class EstadisticasEspecialistaComponent implements OnInit {
             });
 
 
-  }fs
+  }
 
   changesubShipment(id_subShipment) {
     console.log("Changed  Subshipment");
