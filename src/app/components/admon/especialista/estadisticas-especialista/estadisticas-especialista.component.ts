@@ -1,12 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { SelectChapterComponent } from '../../../shared/chapter/select-chapter/select-chapter.component';
-import { SelectShipmentComponent } from '../../../shared/shipment/select-shipment/select-shipment.component';
 import { ShipmentService } from 'src/app/services/shipment/shipment.service';
-import {FormGroup, FormControl, Validators} from '@angular/forms';
 import { SubshipmentService } from '../../../../services/subshipment/subshipment.service';
 import { SectionService } from '../../../../services/section/section.service';
-
-
+import {FormGroup, FormControl, Validators} from '@angular/forms';
+import  Swal  from 'sweetalert2';
 
 
 @Component({
@@ -18,14 +15,18 @@ export class EstadisticasEspecialistaComponent implements OnInit {
   SelectedChapter: string;
 //@ViewChild('chapter') childOne:SelectChapterComponent;
 //messsage ="Hola prro";
+
   shipments: any[] = [];
   subshipments: any = [];
   sections: any =[]
 
-  id_chapter: number;
-  id_shipment: number;
-  shipmentID: string;
-  searchButton: boolean;
+  chapterID: number;
+  shipmentID: number;
+  subShipmentID: number;
+  sectionID: number;
+  countryID: string;
+  monthID:string;
+  yearID: number;
 
 
   constructor(private shipment: ShipmentService, private subshipment: SubshipmentService, private section: SectionService) {
@@ -34,13 +35,15 @@ export class EstadisticasEspecialistaComponent implements OnInit {
   }
 
   ngOnInit() {
-    //console.log("Aca"+this.childOne.SelectedChapter);
-   // console.log("Here"+this.SelectedChapter);
+
   }
   changeChapter(id_chapter) {
-    console.log("Changed  Chapter");
+    this.subshipments = [];
+    this.sections = [];
+
+      console.log("Changed  Chapter");
       console.log(id_chapter);
-      this.id_chapter=id_chapter;
+      this.chapterID=id_chapter;
 
 
       this.shipment.getShipments(id_chapter)
@@ -48,14 +51,15 @@ export class EstadisticasEspecialistaComponent implements OnInit {
               console.log(data);
               this.shipments = data;
             });
-            //console.log('ID'+this.shipmentID);
+
   }
 
-  /*When Shipment Select is choosen */
+
   changeShipment(id_shipment) {
+    this.sections = [];
     console.log("Changed  Shipment");
       console.log(id_shipment);
-      this.shipment=id_shipment;
+      this.shipmentID=id_shipment;
 
       this.subshipment.getSubshipments(id_shipment)
             .subscribe( (data: any) => {
@@ -64,11 +68,12 @@ export class EstadisticasEspecialistaComponent implements OnInit {
             });
 
 
-  }
+  }fs
 
   changesubShipment(id_subShipment) {
     console.log("Changed  Subshipment");
     console.log(id_subShipment);
+    this.subShipmentID = id_subShipment;
 
     this.section.getSections(id_subShipment)
           .subscribe( (data: any) => {
@@ -76,6 +81,53 @@ export class EstadisticasEspecialistaComponent implements OnInit {
             this.sections = data;
           });
 
+
+
+  }
+
+  changeSection(id_section) {
+    console.log("Changed  Section");
+    console.log(id_section);
+    this.sectionID = id_section;
+  }
+
+
+  changeCountry(id_country) {
+    console.log("Changed  Country");
+    console.log(id_country);
+    this.countryID = id_country;
+  }
+
+  changeMonth(id_month) {
+    console.log("Changed  Month");
+    console.log(id_month);
+    this.monthID = id_month;
+  }
+
+  changeYear(id_year) {
+    console.log("Changed  Year");
+    console.log(id_year);
+    this.yearID = id_year;
+  }
+
+
+  transacciones() {
+  console.log("Información para la búsqueda");
+  console.log("Sección " + this.sectionID);
+  console.log("País " + this.countryID);
+  console.log("Mes " + this.monthID);
+  console.log("Año " + this.yearID);
+
+  }
+
+  showModal() {
+
+    Swal.fire({
+      title: 'Error!',
+      text: 'No se puede prro',
+      type: 'error',
+      confirmButtonText: 'Cool'
+    });
 
 
   }

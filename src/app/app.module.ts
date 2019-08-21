@@ -8,6 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 //Routes
 import { AppRoutingModule } from './app-routing.module';
 
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+
 
 //Components
 import { AppComponent } from './app.component';
@@ -72,7 +74,13 @@ import { SubshipmentService } from './services/subshipment/subshipment.service';
     AppRoutingModule,
     AngularFontAwesomeModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SweetAlert2Module.forRoot({
+      buttonsStyling: false,
+      customClass: 'modal-content',
+      confirmButtonClass: 'btn btn-primary',
+      cancelButtonClass: 'btn'
+      }),
      //RouterModule.forRoot( ROUTES, {useHash:true }),
   ],
   providers: [

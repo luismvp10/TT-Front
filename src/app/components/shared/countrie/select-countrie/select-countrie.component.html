@@ -4,7 +4,7 @@
         <select class="form-control custom-select" id="exampleFormControlSelect1">
 <option selected> -- Seleccione un País --</option>
 <option>Todos</option>
-<option *ngFor="let countrie of countries">{{ countrie.name }}</option>
+<option [value]="countrie.id_country" *ngFor="let countrie of countries">{{ countrie.name }}</option>
 </select>
     </div>
 </div>

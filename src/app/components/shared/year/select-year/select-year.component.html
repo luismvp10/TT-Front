@@ -3,7 +3,7 @@
     <div class="col-10">
         <select class="form-control custom-select" id="exampleFormControlSelect1">
 <option selected>-- Seleccione un Año --</option>
-<option *ngFor="let year of years">{{ year.name }}</option>
+<option [value]="year.id_year" *ngFor="let year of years">{{ year.name }}</option>
 
 </select>
     </div>

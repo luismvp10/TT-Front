@@ -29,31 +29,18 @@
 
 
         <div class="col-4">
-            <app-select-countrie></app-select-countrie>
-            <!-- <div class="form-group row ml-5 ">
-                <label class="col-form-label">País:</label>
-                <div class="col-md-8">
-                    <select class="form-control custom-select" id="exampleFormControlSelect1">
-        <option selected>Seleccione un País</option>
-        <option>Todos</option>
-        <option>México</option>
-        <option>Cánada</option>
-        <option>EUA</option>
-        </select>
-                </div>
-            </div>-->
+            <app-select-countrie (change)="changeCountry($event.target.value)"></app-select-countrie>
+        </div>
+
+
+        <div class="col-4">
+            <app-select-month (change)="changeMonth($event.target.value)"></app-select-month>
 
         </div>
 
 
         <div class="col-4">
-            <app-select-month></app-select-month>
-
-        </div>
-
-
-        <div class="col-4">
-            <app-select-year></app-select-year>
+            <app-select-year (change)="changeYear($event.target.value)"></app-select-year>
         </div>
 
 
@@ -79,7 +66,7 @@
 
 
         <div class="col-4">
-            <app-select-section [sections]="sections"></app-select-section>
+            <app-select-section [sections]="sections" (change)="changeSection($event.target.value)"></app-select-section>
         </div>
 
 
@@ -88,7 +75,7 @@
 
         <div class="col-1 ">
             <div class="form-group">
-                <button type="button" class="btn btn-primary">Buscar</button>
+                <button type="button" (click)="transacciones()" class="btn btn-primary">Buscar</button>
             </div>
 
         </div>
@@ -96,7 +83,7 @@
 
 
 
-        <!--Impresión de tablras-->
+        <!--Impresión de tablas-->
 
         <div class="container">
             <br>
@@ -374,7 +361,7 @@
             <button type="button" class="btn btn-success">Generar Proyección</button>
         </div>
         <div class="col-4">
-            <button type="button" class="btn btn-primary">Generar Reporte</button>
+            <button type="button" (click)="showModal()" class="btn btn-primary">Generar Reporte</button>
         </div>
 
     </div>

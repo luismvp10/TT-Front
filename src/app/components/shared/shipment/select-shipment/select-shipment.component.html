@@ -2,7 +2,7 @@
     <label class="col-2 col-form-label col-form-label-sm">Partida: </label>
     <div class="col-10">
         <select class="form-control custom-select" [disabled]="shipments.length===0">
-  <option selected>Seleccione una Partida</option>
+  <option selected> -- Seleccione una Partida --</option>
   <option *ngFor="let shipment of shipments" data-toggle="tooltip" data-placement="right" title="{{shipment.name}}"> {{ shipment.id_shipment }}</option>
 
 </select>
