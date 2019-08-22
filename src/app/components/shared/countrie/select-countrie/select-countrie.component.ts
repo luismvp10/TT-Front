@@ -10,15 +10,14 @@ import  Swal  from 'sweetalert2';
 })
 export class SelectCountrieComponent implements OnInit {
   countries: any[] = [];
-  loading: boolean;
 
   constructor( private countrie: CountrieService) {
 
-    this.loading = true;
+
     this.countrie.getCountries()
         .subscribe( (data: any) => {
           this.countries = data;
-          this.loading = true;
+
         }, ( errorService ) => {
 
           if ( errorService.status === 0) {

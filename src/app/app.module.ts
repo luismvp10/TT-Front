@@ -42,6 +42,7 @@ import { SelectSubshipmentComponent } from './components/shared/subshipment/sele
 import { SelectSectionComponent } from './components/shared/section/select-section/select-section.component';
 import { ShipmentService } from './services/shipment/shipment.service';
 import { SubshipmentService } from './services/subshipment/subshipment.service';
+import { LoadingSelectComponent } from './components/shared/loading-select/loading-select/loading-select.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { SubshipmentService } from './services/subshipment/subshipment.service';
     SelectShipmentComponent,
     SelectSubshipmentComponent,
     SelectSectionComponent,
+    LoadingSelectComponent,
   ],
   imports: [
     BrowserModule,

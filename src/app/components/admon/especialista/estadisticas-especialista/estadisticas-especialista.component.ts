@@ -28,6 +28,10 @@ export class EstadisticasEspecialistaComponent implements OnInit {
   monthID:string;
   yearID: number;
 
+  loading: boolean
+
+
+
 
   constructor(private shipment: ShipmentService, private subshipment: SubshipmentService, private section: SectionService) {
 
@@ -38,6 +42,7 @@ export class EstadisticasEspecialistaComponent implements OnInit {
 
   }
   changeChapter(id_chapter) {
+
     this.subshipments = [];
     this.sections = [];
 
