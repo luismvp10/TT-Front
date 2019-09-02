@@ -285,7 +285,7 @@ options: {
        /*Suma de valores totales*/
       this.transactions.forEach(element => {
 
-       element.items.forEach(item => {
+       element.transacciones.forEach(item => {
 
        if(item.month == 'Enero'){
          console.log("Entro");

@@ -126,7 +126,7 @@
                     <tbody>
                         <tr *ngFor="let item of transactions">
                             <th scope="row">{{item.country}}</th>
-                            <td *ngFor="let it of item.items">{{it.price | currency }}</td>
+                            <td *ngFor="let it of item.transacciones">{{it.price | currency }}</td>
                         </tr>
                         <tr>
                             <th scope="row" class="text-white bg-primary">Total</th>
