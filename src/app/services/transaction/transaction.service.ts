@@ -15,9 +15,14 @@ export class TransactionService {
     'Content-type': 'application/json'
   });
 
-  getTransactions(params: []) {
+  getTransactions(params: any=[]) {
+   // console.log(params[0]['section']);
+//console.log(this.params);
+   var section=params[0]['section'];
+   var year =params[0]['year'];
+   //console.log("Here"+year);
 
-    return this.http.get(this.env + 'transactions/transactions/',
+    return this.http.get(this.env.URI+ '/transactions/transaction/'+section+'/year/'+year,
     {headers: this.HttpHeaders});
 
   }

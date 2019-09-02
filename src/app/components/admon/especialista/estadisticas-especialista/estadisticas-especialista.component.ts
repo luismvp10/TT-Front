@@ -5,6 +5,8 @@ import { SectionService } from '../../../../services/section/section.service';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import  Swal  from 'sweetalert2';
 import {Chart} from 'chart.js';
+import { TransactionService } from '../../../../services/transaction/transaction.service';
+import { iif } from 'rxjs';
 
 
 @Component({
@@ -14,32 +16,54 @@ import {Chart} from 'chart.js';
 })
 export class EstadisticasEspecialistaComponent implements OnInit {
   title = 'Graphics with Chart.js';
-  LineChart=[];
-  BarChart=[];
-  PieChart=[];
+  LineChart = [];
+  BarChart = [];
+  PieChart = [];
+  params: any = [];
+
+  sumaEneroExportaDolares: number = 0;
+  sumaFebreroExportaDolares: number = 0;
+  sumaMarzoExportaDolares: number = 0;
+  sumaAbrilExportaDolares: number = 0;
+  sumaMayoExportaDolares: number = 0;
+  sumaJunioExportaDolares: number = 0;
+  sumaJulioExportaDolares: number = 0;
+  sumaAgostoExportaDolares: number = 0;
+  sumaSeptiembreExportaDolares: number = 0;
+  sumaOctubreExportaDolares: number = 0;
+  sumaNoviembreExportaDolares: number = 0;
+  sumaDiciembreExportaDolares: number = 0;
+
+
 
   SelectedChapter: string;
 //@ViewChild('chapter') childOne:SelectChapterComponent;
 //messsage ="Hola prro";
 
-  shipments: any[] = [];
+  shipments: any = [];
   subshipments: any = [];
-  sections: any =[]
+  sections: any = [];
+  transactions: any = [];
+  items: any = [];
+
 
   chapterID: number;
   shipmentID: number;
   subShipmentID: number;
   sectionID: number;
   countryID: string;
-  monthID:string;
+  monthID: string;
   yearID: number;
 
-  loading: boolean
+  loading: boolean;
 
 
 
 
-  constructor(private shipment: ShipmentService, private subshipment: SubshipmentService, private section: SectionService) {
+  constructor(private shipment: ShipmentService,
+              private subshipment: SubshipmentService,
+              private section: SectionService,
+              private transaction: TransactionService) {
 
 
   }
@@ -236,11 +260,88 @@ options: {
   transacciones() {
   console.log("Información para la búsqueda");
   console.log("Sección " + this.sectionID);
+  console.log("Subpartida" +this.subShipmentID);
+  console.log("Partida" +this.shipmentID);
+  console.log("Capítulo" +this.chapterID);
   console.log("País " + this.countryID);
   console.log("Mes " + this.monthID);
   console.log("Año " + this.yearID);
 
+  this.params.push({
+      section: this.sectionID,
+      subShipment: this.subShipmentID,
+      shipment: this.shipmentID,
+      chapter: this.chapterID,
+      month: this.monthID,
+      year: this.yearID,
+  });
+  this.transaction.getTransactions(this.params)
+       .subscribe( ( data: any ) => {
+        console.log(data);
+       //console.log(data.cursos.length);
+       this.transactions = data;
+
+
+       /*Suma de valores totales*/
+      this.transactions.forEach(element => {
+
+       element.items.forEach(item => {
+
+       if(item.month == 'Enero'){
+         console.log("Entro");
+         this.sumaEneroExportaDolares += item.price;
+       }else if(item.month == 'Febrero'){
+        this.sumaFebreroExportaDolares += item.price;
+       }else if(item.month == 'Marzo'){
+        this.sumaMarzoExportaDolares += item.price;
+       }else if(item.month == 'Abril'){
+        this.sumaAbrilExportaDolares+= item.price;
+       }else if(item.month == 'Mayo'){
+        this.sumaMayoExportaDolares += item.price;
+       }else if(item.month == 'Junio'){
+        this.sumaJunioExportaDolares += item.price;
+       }else if(item.month == 'Julio'){
+        this.sumaJulioExportaDolares+= item.price;
+       }else if(item.month == 'Agosto'){
+        this.sumaAgostoExportaDolares += item.price;
+       }else if(item.month == 'Septiembre'){
+        this.sumaSeptiembreExportaDolares += item.price;
+       }else if(item.month == 'Octubre'){
+        this.sumaOctubreExportaDolares += item.price;
+       }else if(item.month == 'Noviembre'){
+        this.sumaNoviembreExportaDolares += item.price;
+       }else if(item.month == 'Diciembre'){
+        this.sumaDiciembreExportaDolares += item.price;
+       }
+
+
+      });
+
+
+
+      });
+
+      });
+   //  console.log(this.transactions);
+   ///this.a=  this.json2array(this.transactions);
+
+
+
+   //  a.forEach(element => {
+     //  console.log(element);
+    //  });
+
   }
+
+
+json2array(json){
+    var result = [];
+    var keys = Object.keys(json);
+    keys.forEach(function(key){
+        result.push(json[key]);
+    });
+    return result;
+}
 
   showModal() {
 
