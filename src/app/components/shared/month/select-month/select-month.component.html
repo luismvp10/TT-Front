@@ -3,8 +3,8 @@
     <div class="col-md-8">
         <select class="form-control custom-select" id="exampleFormControlSelect1">
 <option selected> -- Seleccione un Mes --</option>
-<option>Todos</option>
-<option *ngFor="let month of months"> {{ month.name }}</option>
+<option value="0">Todos</option>
+<option [value]="month.id_month" *ngFor="let month of months"> {{ month.name }}</option>
 </select>
     </div>
 </div>

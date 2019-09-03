@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { YearService } from 'src/app/services/year/year.service';
+import  Swal  from 'sweetalert2';
 
 @Component({
   selector: 'app-select-year',
@@ -14,6 +15,24 @@ years: any [] = [];
     this.year.getYears()
         .subscribe( (data: any) => {
           this.years = data;
+        }, ( errorService ) => {
+
+          if ( errorService.status === 0) {
+
+            const Toast = Swal.mixin({
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 3000
+            });
+
+            Toast.fire({
+              type: 'warning',
+              title: 'Error de conexión con el servidor'
+            });
+
+          }
+
         });
 
 

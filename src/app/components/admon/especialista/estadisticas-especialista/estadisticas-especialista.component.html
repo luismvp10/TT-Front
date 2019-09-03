@@ -1,6 +1,5 @@
 <div id="estadisticas" name="estadisticas" class="container-fluid mt-5 estadisticas">
 
-
     <div class="row">
         <div class="col-3">
 
@@ -11,51 +10,33 @@
         <div class="col-1 ">
             <div class="form-group mt-5">
                 <button type="button" class="btn btn-dark">Aranceles y
-          normatividad</button>
+                normatividad</button>
             </div>
         </div>
         <div class="col-2"></div>
-
-
-
-
-
     </div>
+
+
+
 
 
 
     <div class="row">
 
+        <div class="col-4">
+            <app-select-countrie (change)="changeCountry($event.target.value)"></app-select-countrie>
+        </div>
 
 
         <div class="col-4">
-            <app-select-countrie></app-select-countrie>
-            <!-- <div class="form-group row ml-5 ">
-                <label class="col-form-label">País:</label>
-                <div class="col-md-8">
-                    <select class="form-control custom-select" id="exampleFormControlSelect1">
-        <option selected>Seleccione un País</option>
-        <option>Todos</option>
-        <option>México</option>
-        <option>Cánada</option>
-        <option>EUA</option>
-        </select>
-                </div>
-            </div>-->
+            <app-select-month (change)="changeMonth($event.target.value)"></app-select-month>
 
         </div>
 
 
         <div class="col-4">
-            <app-select-month></app-select-month>
-
+            <app-select-year (change)="changeYear($event.target.value)"></app-select-year>
         </div>
-
-
-        <div class="col-4">
-            <app-select-year></app-select-year>
-        </div>
-
 
 
     </div>
@@ -79,41 +60,54 @@
 
 
         <div class="col-4">
-            <app-select-section [sections]="sections"></app-select-section>
+            <app-select-section [sections]="sections" (change)="changeSection($event.target.value)"></app-select-section>
         </div>
-
-
-
 
 
         <div class="col-1 ">
             <div class="form-group">
-                <button type="button" class="btn btn-primary">Buscar</button>
+                <button type="button" (click)="transacciones()" class="btn btn-primary">Buscar</button>
             </div>
+
 
         </div>
 
 
+        <!--Gráficas-->
+
+        <!--
+          <div class="row">
+                <div style="text-align:center">
+                    <h1>
+                        Welcome to {{ title }}!
+                    </h1>
+                    <canvas id="lineChart"></canvas>
+                    <canvas id="barChart"></canvas>
+                    <canvas id="pieChart"></canvas>
+
+                </div>
+
+            </div>-->
 
 
-        <!--Impresión de tablras-->
+        <!--Impresión de tablas-->
 
-        <div class="container">
-            <br>
-            <div class="text-center">
+        <div class="container-fluid">
+
+            <div class="text-center mt-5">
                 <h1 class="title">Exportaciones</h1>
             </div>
 
-            <br><br>
-            <h3>Valor en dólares</h3>
-            <br>
-            <div class="row">
+            <h3 class="mt-5 mb-2">Valor en dólares</h3>
 
 
-                <table class="table table-striped">
-                    <thead>
+
+            <div class="">
+
+                <table class=" table table-hover">
+                    <thead class=" table-primary text-white bg-primary">
                         <tr>
-                            <th scope="col"></th>
+                            <th scope="col">País</th>
                             <th scope="col">Enero</th>
                             <th scope="col">Febrero</th>
                             <th scope="col">Marzo</th>
@@ -123,208 +117,73 @@
                             <th scope="col">Julio</th>
                             <th scope="col">Agosto</th>
                             <th scope="col">Septiembre</th>
-                            <th scope="col"> Octubre</th>
-                            <th scope="col"> Noviembre</th>
+                            <th scope="col">Octubre</th>
+                            <th scope="col">Noviembre</th>
                             <th scope="col">Diciembre</th>
-
-
-
-
-
 
                         </tr>
                     </thead>
                     <tbody>
+                        <tr *ngFor="let item of transactions">
+                            <th scope="row">{{item.country}}</th>
+                            <td *ngFor="let it of item.transacciones">{{it.price | currency }}</td>
+                        </tr>
                         <tr>
-                            <th scope="row">Total</th>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>3</td>
-                            <td>4</td>
-                            <td>5</td>
-                            <td>6</td>
-                            <td>7</td>
-                            <td>8</td>
-                            <td>9</td>
-                            <td>10</td>
-                            <td>11</td>
-                            <td>12</td>
+                            <th scope="row" class="text-white bg-primary">Total</th>
+                            <td class="text-white bg-primary">{{ sumaEneroExportaDolares | currency }}</td>
+                            <td class="text-white bg-primary">{{ sumaFebreroExportaDolares | currency }}</td>
+                            <td class="text-white bg-primary">{{ sumaMarzoExportaDolares | currency }}</td>
+                            <td class="text-white bg-primary">{{ sumaAbrilExportaDolares | currency }}</td>
+                            <td class="text-white bg-primary">{{ sumaMayoExportaDolares | currency }}</td>
+                            <td class="text-white bg-primary">{{ sumaJunioExportaDolares | currency }}</td>
+                            <td class="text-white bg-primary">{{ sumaJulioExportaDolares | currency }}</td>
+                            <td class="text-white bg-primary">{{ sumaAgostoExportaDolares | currency }}</td>
+                            <td class="text-white bg-primary">{{ sumaSeptiembreExportaDolares | currency }}</td>
+                            <td class="text-white bg-primary">{{ sumaOctubreExportaDolares | currency }}</td>
+                            <td class="text-white bg-primary">{{ sumaNoviembreExportaDolares | currency }}</td>
+                            <td class="text-white bg-primary">{{ sumaDiciembreExportaDolares | currency }}</td>
 
                         </tr>
 
 
                     </tbody>
                 </table>
+
+
             </div>
         </div>
 
 
-        <div class=" col-12 text-center">
-            <img src="./assets/imgs/g1.PNG" width="450" height="450" class="img-fluid" alt="Responsive image" alt="">
+        <div class=" col-12 text-center ">
+            <img src="./assets/imgs/g1.PNG " width="450 " height="450 " class="img-fluid " alt="Responsive image " alt=" ">
         </div>
 
 
 
 
-        <div class="container">
-            <br><br>
-            <h3>Volumén</h3>
-            <br>
-            <div class="row">
-
-
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col"></th>
-                            <th scope="col">Enero</th>
-                            <th scope="col">Febrero</th>
-                            <th scope="col">Marzo</th>
-                            <th scope="col">Abril</th>
-                            <th scope="col">Mayo</th>
-                            <th scope="col">Junio</th>
-                            <th scope="col">Julio</th>
-                            <th scope="col">Agosto</th>
-                            <th scope="col">Septiembre</th>
-                            <th scope="col"> Octubre</th>
-                            <th scope="col"> Noviembre</th>
-                            <th scope="col">Diciembre</th>
-
-
-
-
-
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">Total</th>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>3</td>
-                            <td>4</td>
-                            <td>5</td>
-                            <td>6</td>
-                            <td>7</td>
-                            <td>8</td>
-                            <td>9</td>
-                            <td>10</td>
-                            <td>11</td>
-                            <td>12</td>
-
-                        </tr>
-
-
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-
-        <div class=" col-12 text-center">
-            <img src="./assets/imgs/g4.PNG" width="450" height="450" class="img-fluid" alt="Responsive image" alt="">
-        </div>
-
-
-
-
-
-
-
-
-
-
-
-        <div class="container">
-            <br>
-            <div class="text-center">
-                <h1 class="title">Importaciones</h1>
-            </div>
-
-            <br><br>
-            <h3>Valor en dólares</h3>
-            <br>
-            <div class="row">
-
-
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col"></th>
-                            <th scope="col">Enero</th>
-                            <th scope="col">Febrero</th>
-                            <th scope="col">Marzo</th>
-                            <th scope="col">Abril</th>
-                            <th scope="col">Mayo</th>
-                            <th scope="col">Junio</th>
-                            <th scope="col">Julio</th>
-                            <th scope="col">Agosto</th>
-                            <th scope="col">Septiembre</th>
-                            <th scope="col"> Octubre</th>
-                            <th scope="col"> Noviembre</th>
-                            <th scope="col">Diciembre</th>
-
-
-
-
-
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">Total</th>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>3</td>
-                            <td>4</td>
-                            <td>5</td>
-                            <td>6</td>
-                            <td>7</td>
-                            <td>8</td>
-                            <td>9</td>
-                            <td>10</td>
-                            <td>11</td>
-                            <td>12</td>
-
-                        </tr>
-
-
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-
-
-        <div class=" col-12 text-center">
-            <img src="./assets/imgs/g2.PNG" width="450" height="450" class="img-fluid" alt="Responsive image" alt="">
-        </div>
-
-        <div class="container">
+        <div class="container ">
             <br><br>
             <h3>Volumén</h3>
             <br>
-            <div class="row">
+            <div class="row ">
 
 
-                <table class="table table-striped">
+                <table class="table table-striped ">
                     <thead>
                         <tr>
-                            <th scope="col"></th>
-                            <th scope="col">Enero</th>
-                            <th scope="col">Febrero</th>
-                            <th scope="col">Marzo</th>
-                            <th scope="col">Abril</th>
-                            <th scope="col">Mayo</th>
-                            <th scope="col">Junio</th>
-                            <th scope="col">Julio</th>
-                            <th scope="col">Agosto</th>
-                            <th scope="col">Septiembre</th>
-                            <th scope="col"> Octubre</th>
-                            <th scope="col"> Noviembre</th>
-                            <th scope="col">Diciembre</th>
+                            <th scope="col "></th>
+                            <th scope="col ">Enero</th>
+                            <th scope="col ">Febrero</th>
+                            <th scope="col ">Marzo</th>
+                            <th scope="col ">Abril</th>
+                            <th scope="col ">Mayo</th>
+                            <th scope="col ">Junio</th>
+                            <th scope="col ">Julio</th>
+                            <th scope="col ">Agosto</th>
+                            <th scope="col ">Septiembre</th>
+                            <th scope="col "> Octubre</th>
+                            <th scope="col "> Noviembre</th>
+                            <th scope="col ">Diciembre</th>
 
 
 
@@ -335,7 +194,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="row">Total</th>
+                            <th scope="row ">Total</th>
                             <td>1</td>
                             <td>2</td>
                             <td>3</td>
@@ -357,8 +216,144 @@
             </div>
         </div>
 
-        <div class=" col-12 text-center">
-            <img src="./assets/imgs/g3.PNG" width="450" height="450" class="img-fluid" alt="Responsive image" alt="">
+
+        <div class=" col-12 text-center ">
+            <img src="./assets/imgs/g4.PNG " width="450 " height="450 " class="img-fluid " alt="Responsive image " alt=" ">
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+        <div class="container ">
+            <br>
+            <div class="text-center ">
+                <h1 class="title ">Importaciones</h1>
+            </div>
+
+            <br><br>
+            <h3>Valor en dólares</h3>
+            <br>
+            <div class="row ">
+
+
+                <table class="table table-striped ">
+                    <thead>
+                        <tr>
+                            <th scope="col "></th>
+                            <th scope="col ">Enero</th>
+                            <th scope="col ">Febrero</th>
+                            <th scope="col ">Marzo</th>
+                            <th scope="col ">Abril</th>
+                            <th scope="col ">Mayo</th>
+                            <th scope="col ">Junio</th>
+                            <th scope="col ">Julio</th>
+                            <th scope="col ">Agosto</th>
+                            <th scope="col ">Septiembre</th>
+                            <th scope="col "> Octubre</th>
+                            <th scope="col "> Noviembre</th>
+                            <th scope="col ">Diciembre</th>
+
+
+
+
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row ">Total</th>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>5</td>
+                            <td>6</td>
+                            <td>7</td>
+                            <td>8</td>
+                            <td>9</td>
+                            <td>10</td>
+                            <td>11</td>
+                            <td>12</td>
+
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+        <div class=" col-12 text-center ">
+            <img src="./assets/imgs/g2.PNG " width="450 " height="450 " class="img-fluid " alt="Responsive image " alt=" ">
+        </div>
+
+        <div class="container ">
+            <br><br>
+            <h3>Volumén</h3>
+            <br>
+            <div class="row ">
+
+
+                <table class="table table-striped ">
+                    <thead>
+                        <tr>
+                            <th scope="col "></th>
+                            <th scope="col ">Enero</th>
+                            <th scope="col ">Febrero</th>
+                            <th scope="col ">Marzo</th>
+                            <th scope="col ">Abril</th>
+                            <th scope="col ">Mayo</th>
+                            <th scope="col ">Junio</th>
+                            <th scope="col ">Julio</th>
+                            <th scope="col ">Agosto</th>
+                            <th scope="col ">Septiembre</th>
+                            <th scope="col "> Octubre</th>
+                            <th scope="col "> Noviembre</th>
+                            <th scope="col ">Diciembre</th>
+
+
+
+
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row ">Total</th>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>5</td>
+                            <td>6</td>
+                            <td>7</td>
+                            <td>8</td>
+                            <td>9</td>
+                            <td>10</td>
+                            <td>11</td>
+                            <td>12</td>
+
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class=" col-12 text-center ">
+            <img src="./assets/imgs/g3.PNG " width="450 " height="450 " class="img-fluid " alt="Responsive image " alt=" ">
         </div>
 
 
@@ -366,15 +361,18 @@
 
 
     </div>
+
 
     <br><br>
 
-    <div class="row justify-content-end">
-        <div class="col-4">
-            <button type="button" class="btn btn-success">Generar Proyección</button>
+    <div class="row justify-content-end ">
+        <div class="col-4 ">
+            <button type="button " class="btn btn-success ">Generar Proyección</button>
         </div>
-        <div class="col-4">
-            <button type="button" class="btn btn-primary">Generar Reporte</button>
+        <div class="col-4 ">
+            <button type="button " (click)="showModal() " class="btn btn-primary ">Generar Reporte</button>
         </div>
 
     </div>
+
+</div>
