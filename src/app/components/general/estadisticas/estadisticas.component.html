@@ -7,7 +7,7 @@
         </div>
         <div class="col-6 ">
 
-            <app-select-chapter></app-select-chapter>
+            <app-select-chapter (change)="changeChapter($event.target.value)"></app-select-chapter>
 
         </div>
 
@@ -31,7 +31,7 @@
         </div>
 
         <div class="col-4 ">
-            <app-select-year></app-select-year>
+            <app-select-year (change)="changeYear($event.target.value)"></app-select-year>
         </div>
         <div class="col-1"></div>
 
@@ -42,62 +42,27 @@
 
 
     <div class="row">
+
         <div class="col-3">
-
-            <div class="form-group row ">
-                <label class="col-2 col-form-label col-form-label-sm">Partida: </label>
-                <div class="col-10">
-                    <select class="form-control custom-select" id="exampleFormControlSelect1">
-                  <option selected>Seleccione una Partida</option>
-                  <option>0101</option>
-                  <option>0102</option>
-                  <option>0103</option>
-                  <option>0104</option>
-                  <option>0105</option>
-                </select>
-                </div>
-
-            </div>
+            <app-select-shipment  [shipments]="shipments" (change)="changeShipment($event.target.value)"></app-select-shipment>
         </div>
-
-
-
-        <div class="col-4 ">
-
-            <div class="form-group row">
-                <label class="col-3 col-form-label col-form-label-sm ">SubPartida: </label>
-                <div class="col-9">
-                    <select class="form-control custom-select" id="exampleFormControlSelect1">
-                  <option selected>Seleccione una SubPartida</option>
-                  <option>0101</option>
-                  <option>0102</option>
-                  <option>0103</option>
-                  <option>0104</option>
-                  <option>0105</option>
-                </select>
-                </div>
-            </div>
-
-        </div>
-
-
 
 
         <div class="col-4">
+          <app-select-subshipment  [subshipments]="subshipments" (change)="changesubShipment($event.target.value)" ></app-select-subshipment>
+        </div>
 
-            <div class="form-group row">
-                <label class="col-3 col-form-label col-form-label-sm ">Fracción:  </label>
-                <div class="col-9">
-                    <select class="form-control custom-select" id="exampleFormControlSelect1">
-                  <option selected>Seleccione una Fracción</option>
-                  <option>0101</option>
-                  <option>0102</option>
-                  <option>0103</option>
-                  <option>0104</option>
-                  <option>0105</option>
-                </select>
-                </div>
-            </div>
+
+        <div class="col-4">
+          <app-select-section [sections]="sections" (change)="changeSection($event.target.value)"></app-select-section>
+        </div>
+
+
+
+
+      <div class="col-1 ">
+        <button type="button" class="btn btn-primary" (click)="transacciones()">Buscar</button>
+      </div>
 
 
         </div>
@@ -105,12 +70,15 @@
 
 
 
-        <div class="col-1 ">
-            <div class="form-group">
-                <button type="button" class="btn btn-primary">Buscar</button>
-            </div>
 
-        </div>
+
+
+
+
+
+
+
+
 
 
 
