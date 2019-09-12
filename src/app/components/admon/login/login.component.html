@@ -5,25 +5,27 @@
         <div class="row">
             <div class="col-4"></div>
             <div class="col-4 mt-5 login">
-                <form>
+                <form (ngSubmit)="login(forma)" #forma="ngForm" novalidate="">
                     <div class="text-center">
                         <img src="./assets/imgs/sicat.png" class="img-fluid" width="80%" height="80%" alt="Responsive image">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Correo: </label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Correo Electrónico">
-                        <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+                        <input type="email" name="correo" class="form-control" [ngClass]="{'is-invalid': (correo.errors?.required || correo.errors?.pattern)&&correo.touched}" id="exampleInputEmail1" placeholder="Correo Electrónico" [(ngModel)]="usuario.correo" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" #correo="ngModel" required>
+
+                      <div class="invalid-feedback" *ngIf="correo.errors?.required"> Este campo es requerido</div>
+                      <div class="invalid-feedback" *ngIf="correo.errors?.pattern">  No cumple con el formato de un correo electrónico</div>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Contraseña:</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
+                        <input type="password" name="password" class="form-control" [ngClass]="{'is-invalid': (password.errors?.required)&&password.touched}" id="exampleInputPassword1" placeholder="Contraseña" [(ngModel)]="usuario.password" required #password>
                     </div>
                     <div class="form-check text-right mb-3">
                         <input type="checkbox" class="form-check-input " id="exampleCheck1">
                         <label class="form-check-label" for="exampleCheck1">Recordarme</label>
                     </div>
                     <div class="text-right">
-                        <button type="submit" class="btn btn-primary mb-5 ">Iniciar Sesión</button>
+                        <button [disabled]="!forma.valid" type="submit" class="btn btn-primary mb-5 ">Iniciar Sesión</button>
                     </div>
 
                 </form>

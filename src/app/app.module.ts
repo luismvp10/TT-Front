@@ -28,21 +28,23 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { UploadDataComponent } from './components/admon/administrador/upload-data/upload-data.component';
 import { UsersControlComponent } from './components/admon/administrador/users-control/users-control.component';
 import { SelectCountrieComponent } from './components/shared/countrie/select-countrie/select-countrie.component';
-///Services
-import { CountrieService } from './services/countrie/countrie.service';
 import { SelectChapterComponent } from './components/shared/chapter/select-chapter/select-chapter.component';
-import { ChapterService } from './services/chapter/chapter.service';
-import { YearService } from './services/year/year.service';
-import { MonthService } from './services/month/month.service';
 import { SelectYearComponent } from './components/shared/year/select-year/select-year.component';
 import { SelectMonthComponent } from './components/shared/month/select-month/select-month.component';
 import { LoadingComponent } from './components/shared/loading/loading.component';
 import { SelectShipmentComponent } from './components/shared/shipment/select-shipment/select-shipment.component';
 import { SelectSubshipmentComponent } from './components/shared/subshipment/select-subshipment/select-subshipment.component';
 import { SelectSectionComponent } from './components/shared/section/select-section/select-section.component';
+import { LoadingSelectComponent } from './components/shared/loading-select/loading-select/loading-select.component';
+
+///Services
+import { CountrieService } from './services/countrie/countrie.service';
+import { ChapterService } from './services/chapter/chapter.service';
+import { YearService } from './services/year/year.service';
+import { MonthService } from './services/month/month.service';
 import { ShipmentService } from './services/shipment/shipment.service';
 import { SubshipmentService } from './services/subshipment/subshipment.service';
-import { LoadingSelectComponent } from './components/shared/loading-select/loading-select/loading-select.component';
+import {UserService} from "./services/user/user.service";
 
 // pipes
 import { Volumen } from './pipes/volumen.pipe';
@@ -96,6 +98,7 @@ import { Volumen } from './pipes/volumen.pipe';
     MonthService,
     ShipmentService,
     SubshipmentService,
+    UserService
 
   ],
   bootstrap: [AppComponent]
