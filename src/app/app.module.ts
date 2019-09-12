@@ -5,13 +5,13 @@ import { RouterModule, Router } from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
-//Routes
+// Routes
 import { AppRoutingModule } from './app-routing.module';
 
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 
-//Components
+// Components
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { NavbarComponent } from './components/general/navbar/navbar.component';
@@ -44,6 +44,9 @@ import { ShipmentService } from './services/shipment/shipment.service';
 import { SubshipmentService } from './services/subshipment/subshipment.service';
 import { LoadingSelectComponent } from './components/shared/loading-select/loading-select/loading-select.component';
 
+// pipes
+import { Volumen } from './pipes/volumen.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,6 +72,7 @@ import { LoadingSelectComponent } from './components/shared/loading-select/loadi
     SelectSubshipmentComponent,
     SelectSectionComponent,
     LoadingSelectComponent,
+    Volumen,
   ],
   imports: [
     BrowserModule,

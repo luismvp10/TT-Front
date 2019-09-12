@@ -10,7 +10,7 @@
         <div class="col-1 ">
             <div class="form-group mt-5">
                 <button type="button" class="btn btn-dark">Aranceles y
-                normatividad</button>
+                    normatividad</button>
             </div>
         </div>
         <div class="col-2"></div>
@@ -29,10 +29,9 @@
 
 
         <div class="col-4">
-            <app-select-month (change)="changeMonth($event.target.value)"></app-select-month>
+            <app-select-month (change)="changeMonth($event.target.options)"></app-select-month>
 
         </div>
-
 
         <div class="col-4">
             <app-select-year (change)="changeYear($event.target.value)"></app-select-year>
@@ -76,18 +75,18 @@
         <!--Gráficas-->
 
         <!--
-          <div class="row">
-                <div style="text-align:center">
-                    <h1>
-                        Welcome to {{ title }}!
-                    </h1>
-                    <canvas id="lineChart"></canvas>
-                    <canvas id="barChart"></canvas>
-                    <canvas id="pieChart"></canvas>
-
-                </div>
-
-            </div>-->
+              <div class="row">
+                    <div style="text-align:center">
+                        <h1>
+                            Welcome to {{ title }}!
+                        </h1>
+                        <canvas id="lineChart"></canvas>
+                        <canvas id="barChart"></canvas>
+                        <canvas id="pieChart"></canvas>
+    
+                    </div>
+    
+                </div>-->
 
 
         <!--Impresión de tablas-->
@@ -100,7 +99,7 @@
 
             <h3 class="mt-5 mb-2">Valor en dólares</h3>
 
-
+            <br>
 
             <div class="">
 
@@ -108,44 +107,22 @@
                     <thead class=" table-primary text-white bg-primary">
                         <tr>
                             <th scope="col">País</th>
-                            <th scope="col">Enero</th>
-                            <th scope="col">Febrero</th>
-                            <th scope="col">Marzo</th>
-                            <th scope="col">Abril</th>
-                            <th scope="col">Mayo</th>
-                            <th scope="col">Junio</th>
-                            <th scope="col">Julio</th>
-                            <th scope="col">Agosto</th>
-                            <th scope="col">Septiembre</th>
-                            <th scope="col">Octubre</th>
-                            <th scope="col">Noviembre</th>
-                            <th scope="col">Diciembre</th>
-
+                            <ng-container *ngFor="let month of monthArray[0]; let i = index">
+                                <th *ngIf="monthArray[1][i]" scope="col">{{ month }}</th>
+                            </ng-container>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let item of transactions">
-                            <th scope="row">{{item.country}}</th>
-                            <td *ngFor="let it of item.transacciones">{{it.price | currency }}</td>
+                            <th *ngIf="countryhastransaction(item, 2)" scope="row">{{ item.country }}</th>
+                            <td *ngFor="let it of item.exports">{{it.price | currency }}</td>
                         </tr>
-                        <tr>
+                        <tr class="container-fluid">
                             <th scope="row" class="text-white bg-primary">Total</th>
-                            <td class="text-white bg-primary">{{ sumaEneroExportaDolares | currency }}</td>
-                            <td class="text-white bg-primary">{{ sumaFebreroExportaDolares | currency }}</td>
-                            <td class="text-white bg-primary">{{ sumaMarzoExportaDolares | currency }}</td>
-                            <td class="text-white bg-primary">{{ sumaAbrilExportaDolares | currency }}</td>
-                            <td class="text-white bg-primary">{{ sumaMayoExportaDolares | currency }}</td>
-                            <td class="text-white bg-primary">{{ sumaJunioExportaDolares | currency }}</td>
-                            <td class="text-white bg-primary">{{ sumaJulioExportaDolares | currency }}</td>
-                            <td class="text-white bg-primary">{{ sumaAgostoExportaDolares | currency }}</td>
-                            <td class="text-white bg-primary">{{ sumaSeptiembreExportaDolares | currency }}</td>
-                            <td class="text-white bg-primary">{{ sumaOctubreExportaDolares | currency }}</td>
-                            <td class="text-white bg-primary">{{ sumaNoviembreExportaDolares | currency }}</td>
-                            <td class="text-white bg-primary">{{ sumaDiciembreExportaDolares | currency }}</td>
-
+                            <ng-container *ngFor="let tot of totalExporta[0]; let i = index">
+                                <td class="text-white bg-primary" *ngIf="monthArray[1][i]">{{ tot | currency }}</td>
+                            </ng-container>
                         </tr>
-
-
                     </tbody>
                 </table>
 
@@ -161,133 +138,76 @@
 
 
 
-        <div class="container ">
+        <div class="container-fluid">
             <br><br>
-            <h3>Volumén</h3>
+            <h3 class="mt-5 mb-2">Volumen</h3>
             <br>
-            <div class="row ">
-
-
-                <table class="table table-striped ">
-                    <thead>
+            <div class="">
+                <table class=" table table-hover">
+                    <thead class=" table-primary text-white bg-primary">
                         <tr>
-                            <th scope="col "></th>
-                            <th scope="col ">Enero</th>
-                            <th scope="col ">Febrero</th>
-                            <th scope="col ">Marzo</th>
-                            <th scope="col ">Abril</th>
-                            <th scope="col ">Mayo</th>
-                            <th scope="col ">Junio</th>
-                            <th scope="col ">Julio</th>
-                            <th scope="col ">Agosto</th>
-                            <th scope="col ">Septiembre</th>
-                            <th scope="col "> Octubre</th>
-                            <th scope="col "> Noviembre</th>
-                            <th scope="col ">Diciembre</th>
-
-
-
-
-
-
+                            <th scope="col">País</th>
+                            <ng-container *ngFor="let month of monthArray[0]; let i = index">
+                                <th *ngIf="monthArray[1][i]" scope="col">{{ month }}</th>
+                            </ng-container>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row ">Total</th>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>3</td>
-                            <td>4</td>
-                            <td>5</td>
-                            <td>6</td>
-                            <td>7</td>
-                            <td>8</td>
-                            <td>9</td>
-                            <td>10</td>
-                            <td>11</td>
-                            <td>12</td>
-
+                        <tr *ngFor="let item of transactions">
+                            <th *ngIf="countryhastransaction(item, 2)" scope="row">{{ item.country }}</th>
+                            <td *ngFor="let it of item.exports" class="nw">{{it.weight | Volumen:'.2' }}</td>
                         </tr>
-
-
+                        <tr class="container-fluid">
+                            <th scope="row" class="text-white bg-primary">Total</th>
+                            <ng-container *ngFor="let tot of totalExporta[1]; let i = index">
+                                <td class="text-white bg-primary nw" *ngIf="monthArray[1][i]">{{ tot | Volumen:'.2' }}</td>
+                            </ng-container>
+                        </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-
 
         <div class=" col-12 text-center ">
             <img src="./assets/imgs/g4.PNG " width="450 " height="450 " class="img-fluid " alt="Responsive image " alt=" ">
         </div>
 
+        <div class="container-fluid">
 
-
-
-
-
-
-
-
-
-
-        <div class="container ">
-            <br>
-            <div class="text-center ">
-                <h1 class="title ">Importaciones</h1>
+            <div class="text-center mt-5">
+                <h1 class="title">Importaciones</h1>
             </div>
 
-            <br><br>
-            <h3>Valor en dólares</h3>
+            <h3 class="mt-5 mb-2">Valor en dólares</h3>
+
             <br>
-            <div class="row ">
 
+            <div class="">
 
-                <table class="table table-striped ">
-                    <thead>
+                <table class=" table table-hover">
+                    <thead class=" table-primary text-white bg-primary">
                         <tr>
-                            <th scope="col "></th>
-                            <th scope="col ">Enero</th>
-                            <th scope="col ">Febrero</th>
-                            <th scope="col ">Marzo</th>
-                            <th scope="col ">Abril</th>
-                            <th scope="col ">Mayo</th>
-                            <th scope="col ">Junio</th>
-                            <th scope="col ">Julio</th>
-                            <th scope="col ">Agosto</th>
-                            <th scope="col ">Septiembre</th>
-                            <th scope="col "> Octubre</th>
-                            <th scope="col "> Noviembre</th>
-                            <th scope="col ">Diciembre</th>
-
-
-
-
-
-
+                            <th scope="col">País</th>
+                            <ng-container *ngFor="let month of monthArray[0]; let i = index">
+                                <th *ngIf="monthArray[1][i]" scope="col">{{ month }}</th>
+                            </ng-container>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row ">Total</th>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>3</td>
-                            <td>4</td>
-                            <td>5</td>
-                            <td>6</td>
-                            <td>7</td>
-                            <td>8</td>
-                            <td>9</td>
-                            <td>10</td>
-                            <td>11</td>
-                            <td>12</td>
-
+                        <tr *ngFor="let item of transactions">
+                            <th *ngIf="countryhastransaction(item, 1)" scope="row">{{ item.country }}</th>
+                            <td *ngFor="let it of item.imports">{{it.price | currency }}</td>
                         </tr>
-
-
+                        <tr class="container-fluid">
+                            <th scope="row" class="text-white bg-primary">Total</th>
+                            <ng-container *ngFor="let tot of totalImporta[0]; let i = index">
+                                <td class="text-white bg-primary" *ngIf="monthArray[1][i]">{{ tot | currency }}</td>
+                            </ng-container>
+                        </tr>
                     </tbody>
                 </table>
+
+
             </div>
         </div>
 
@@ -297,56 +217,31 @@
             <img src="./assets/imgs/g2.PNG " width="450 " height="450 " class="img-fluid " alt="Responsive image " alt=" ">
         </div>
 
-        <div class="container ">
+        <div class="container-fluid">
             <br><br>
-            <h3>Volumén</h3>
+            <h3>Volumen</h3>
             <br>
-            <div class="row ">
-
-
-                <table class="table table-striped ">
-                    <thead>
+            <div class="">
+                <table class=" table table-hover">
+                    <thead class=" table-primary text-white bg-primary">
                         <tr>
-                            <th scope="col "></th>
-                            <th scope="col ">Enero</th>
-                            <th scope="col ">Febrero</th>
-                            <th scope="col ">Marzo</th>
-                            <th scope="col ">Abril</th>
-                            <th scope="col ">Mayo</th>
-                            <th scope="col ">Junio</th>
-                            <th scope="col ">Julio</th>
-                            <th scope="col ">Agosto</th>
-                            <th scope="col ">Septiembre</th>
-                            <th scope="col "> Octubre</th>
-                            <th scope="col "> Noviembre</th>
-                            <th scope="col ">Diciembre</th>
-
-
-
-
-
-
+                            <th scope="col">País</th>
+                            <ng-container *ngFor="let month of monthArray[0]; let i = index">
+                                <th *ngIf="monthArray[1][i]" scope="col">{{ month }}</th>
+                            </ng-container>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row ">Total</th>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>3</td>
-                            <td>4</td>
-                            <td>5</td>
-                            <td>6</td>
-                            <td>7</td>
-                            <td>8</td>
-                            <td>9</td>
-                            <td>10</td>
-                            <td>11</td>
-                            <td>12</td>
-
+                        <tr *ngFor="let item of transactions">
+                            <th *ngIf="countryhastransaction(item, 1)" scope="row">{{ item.country }}</th>
+                            <td *ngFor="let it of item.imports" class="nw">{{it.weight | Volumen:'.2' }}</td>
                         </tr>
-
-
+                        <tr class="container-fluid">
+                            <th scope="row" class="text-white bg-primary">Total</th>
+                            <ng-container *ngFor="let tot of totalImporta[1]; let i = index">
+                                <td class="text-white bg-primary" *ngIf="monthArray[1][i]">{{ tot | Volumen:'.2' }}</td>
+                            </ng-container>
+                        </tr>
                     </tbody>
                 </table>
             </div>

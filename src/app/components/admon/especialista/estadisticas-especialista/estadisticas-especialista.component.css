@@ -5,3 +5,7 @@
 .estadisticas {
     margin-bottom: 20%;
 }
+
+.nw {
+    white-space: nowrap;
+}

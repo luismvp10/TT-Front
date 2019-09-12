@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MonthService } from '../../../../services/month/month.service';
-import  Swal  from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-select-month',
@@ -18,7 +18,7 @@ export class SelectMonthComponent implements OnInit {
           this.months = data;
         }, ( errorService ) => {
 
-          if( errorService.status === 0) {
+          if ( errorService.status === 0) {
 
             const Toast = Swal.mixin({
               toast: true,

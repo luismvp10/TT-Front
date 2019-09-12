@@ -17,8 +17,8 @@ const routes: Routes = [
 
   {path: 'login', component: LoginComponent},
   {path: '', pathMatch: 'full', redirectTo: 'home'},
-  {path: 'especialist', component:ContenedorEspecialistaComponent},
-  {path: 'admon', component:ContenedorAdminComponent},
+  {path: 'especialist', component: ContenedorEspecialistaComponent},
+  {path: 'admon', component: ContenedorAdminComponent},
   {path: '**', component: PageNotFoundComponent}
 ];
 

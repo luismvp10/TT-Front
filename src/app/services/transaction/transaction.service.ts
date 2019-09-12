@@ -15,15 +15,36 @@ export class TransactionService {
     'Content-type': 'application/json'
   });
 
-  getTransactions(params: any=[]) {
+  getTransactions(params: any= []) {
    // console.log(params[0]['section']);
-//console.log(this.params);
-   var section=params[0]['section'];
-   var year =params[0]['year'];
-   //console.log("Here"+year);
-
-    return this.http.get(this.env.URI+ '/transactions/transaction/'+section+'/year/'+year,
-    {headers: this.HttpHeaders});
-
+// console.log(this.params);
+    const section = params[0]['section'];
+    const year = params[0]['year'];
+    const subShipment = params[0]['subShipment'];
+    const shipment = params[0]['shipment'];
+    const chapter = params[0]['chapter'];
+    const month = params[0]['month'];
+    const country = params[0]['country'];
+    let url = this.env.URI + '/transactions/transaction/';
+    let m = '';
+    if (section !== undefined) {
+      url += section;
+    } else if (subShipment !== undefined) {
+      url += subShipment;
+    } else if (shipment !== undefined) {
+      url += shipment;
+    } else {
+      url += chapter;
+    }
+    if (country !== 'Todos') {
+      url += '/country/' + country;
+    }
+    month.forEach(element => {
+      m += '' + element + ' ';
+    });
+    if (m !== '0 ') {
+      url += '/month/' + m;
+    }
+    return this.http.get(url + '/year/' + year, {headers: this.HttpHeaders});
   }
 }
