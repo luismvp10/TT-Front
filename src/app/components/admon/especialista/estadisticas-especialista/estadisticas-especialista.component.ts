@@ -275,7 +275,7 @@ export class EstadisticasEspecialistaComponent implements OnInit {
     console.log('Partida ' + this.shipmentID);
     console.log('Capítulo ' + this.chapterID);
     console.log('País ' + this.countryID);
-    console.log('Mes ' + this.monthID);
+    console.log('Mes ' + this.months);
     console.log('Año ' + this.yearID);
     this.totalExporta = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
     this.totalImporta = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
