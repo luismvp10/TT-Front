@@ -1,10 +1,9 @@
 <div class="form-group row ml-5 ">
-    <label class="col-form-label">Año:</label>
-    <div class="col-10">
+    <div class="col-12">
+      <label class="col-form-label">Año:</label>
         <select class="form-control custom-select" id="exampleFormControlSelect1">
 <option selected>-- Seleccione un Año --</option>
 <option [value]="year.id_year" *ngFor="let year of years">{{ year.name }}</option>
-
 </select>
     </div>
 </div>

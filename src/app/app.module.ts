@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 
 // Components
@@ -89,6 +90,7 @@ import { Volumen } from './pipes/volumen.pipe';
       confirmButtonClass: 'btn btn-primary',
       cancelButtonClass: 'btn'
       }),
+    NgMultiSelectDropDownModule.forRoot(),
      //RouterModule.forRoot( ROUTES, {useHash:true }),
   ],
   providers: [

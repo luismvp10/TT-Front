@@ -1,9 +1,27 @@
-<div class="form-group row ml-5 ">
-    <label class="col-form-label">Mes:</label>
-    <div class="col-md-8">
-        <select class="form-control custom-select selectpicker " id="exampleFormControlSelect1" multiple>
-            <option value="0">Todos</option>
-            <option [value]="month.id_month" *ngFor="let month of months"> {{ month.name }}</option>
-        </select>
+<div class="form-group ">
+    <div class="col-12">
+      <label class="">Mes:</label>
+      <ng-multiselect-dropdown
+        [placeholder]="'--Seleccione --'"
+        [data]="months"
+        [settings]="dropdownSettings"
+        [(ngModel)]="selectedItems"
+        (onSelect)="onItemSelect($event)"
+        (onSelectAll)="onSelectAll($event)"
+        (onDeSelect)="onItemDeSelect($event)"
+        (onDeSelectAll)="onDeSelectAll($event)"
+          >
+      </ng-multiselect-dropdown>
+<!--      (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)"-->
+<!--        <select class="form-control custom-select selectpicker " id="exampleFormControlSelect1" multiple>-->
+<!--            <option value="0">Todos</option>-->
+<!--            <option [value]="month.id_month" *ngFor="let month of months"> {{ month.name }}</option>-->
+<!--        </select>-->
     </div>
+
+
+
 </div>
+
+
+
