@@ -20,61 +20,18 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Pedro Angel Miranda</td>
-                    <td>pedroangelmiranda@gmail.com</td>
-                    <td>Administrador</td>
-                    <td>
-
-
-                        <div class=" row justify-content-center ">
-                            <div class="d-inline-block actions ">
-                                <!--    <a>
-                                    <img src="./assets/imgs/actions/edit.svg " class="img-fluid " alt=" "></a>-->
-                            </div>
-                            <div class="d-inline-block actions ">
-                                <a>
-                                    <img src="./assets/imgs/actions/delete.svg " class="img-fluid " alt=" "></a>
-                            </div>
-
-                        </div>
-
-
-                    </td>
-                </tr>
-                <tr>
-                    <td>Humberto Alexis Hernández Castillo</td>
-                    <td>humberto.9601@gmail.com</td>
-                    <td>Especialista</td>
+                <tr *ngFor="let user of Users">
+                    <td>{{ user.names }} {{ user.surname }} </td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.user_type }}</td>
                     <td>
                         <div class=" row justify-content-center ">
-                            <div class="d-inline-block actions ">
-                                <!--   <a>
-                                    <img src="./assets/imgs/actions/edit.svg " class="img-fluid " alt=" "></a>-->
-                            </div>
+                            <div class="d-inline-block actions "></div>
                             <div class="d-inline-block actions ">
                                 <a>
-                                    <img src="./assets/imgs/actions/delete.svg " class="img-fluid " alt=" "></a>
+                                    <img src="./assets/imgs/actions/delete.svg " class="img-fluid pointer" alt=" " (click)="deleteUser(user.email)">
+                                </a>
                             </div>
-
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Luis Miguel Valencia Pérez</td>
-                    <td>luismvalenp@gmail.com</td>
-                    <td>Administrador</td>
-                    <td>
-                        <div class=" row justify-content-center ">
-                            <div class="d-inline-block actions ">
-                                <!-- <a>
-                                    <img src="./assets/imgs/actions/edit.svg " class="img-fluid " alt=" "></a>-->
-                            </div>
-                            <div class="d-inline-block actions ">
-                                <a>
-                                    <img src="./assets/imgs/actions/delete.svg " class="img-fluid " alt=" "></a>
-                            </div>
-
                         </div>
                     </td>
                 </tr>
