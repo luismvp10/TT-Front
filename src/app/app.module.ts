@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-
 import { HttpClientModule } from '@angular/common/http';
 // Routes
 import { AppRoutingModule } from './app-routing.module';
@@ -89,7 +88,7 @@ import { Volumen } from './pipes/volumen.pipe';
       confirmButtonClass: 'btn btn-primary',
       cancelButtonClass: 'btn'
       }),
-     //RouterModule.forRoot( ROUTES, {useHash:true }),
+     // RouterModule.forRoot( ROUTES, {useHash:true }),
   ],
   providers: [
     CountrieService,
@@ -98,8 +97,7 @@ import { Volumen } from './pipes/volumen.pipe';
     MonthService,
     ShipmentService,
     SubshipmentService,
-    UserService
-
+    UserService,
   ],
   bootstrap: [AppComponent]
 })
