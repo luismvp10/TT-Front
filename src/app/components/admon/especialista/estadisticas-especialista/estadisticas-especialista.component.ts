@@ -269,6 +269,12 @@ export class EstadisticasEspecialistaComponent implements OnInit {
   }
 
   transacciones() {
+    Swal.fire({
+      allowOutsideClick: false,
+      type: 'info',
+      text: 'Espere por favor...'
+    });
+    Swal.showLoading();
     console.log('Información para la búsqueda');
     console.log('Sección ' + this.sectionID);
     console.log('ubpartida ' + this.subShipmentID);
@@ -290,25 +296,26 @@ export class EstadisticasEspecialistaComponent implements OnInit {
     });
     this.transaction.getTransactions(this.params)
       .subscribe( ( data: any ) => {
-      this.transactions = data;
-      /*Suma de valores totales*/
-      this.transactions.forEach(element => {
-        element.exports.forEach(item => {
-          this.totalExporta[0][item.month - 1] += item.price;
-          this.totalExporta[1][item.month - 1] += item.weight;
+        Swal.close();
+        this.transactions = data;
+        /*Suma de valores totales*/
+        this.transactions.forEach(element => {
+          element.exports.forEach(item => {
+            this.totalExporta[0][item.month - 1] += item.price;
+            this.totalExporta[1][item.month - 1] += item.weight;
+          });
+          element.imports.forEach(item => {
+            this.totalImporta[0][item.month - 1] += item.price;
+            this.totalImporta[1][item.month - 1] += item.weight;
+          });
         });
-        element.imports.forEach(item => {
-          this.totalImporta[0][item.month - 1] += item.price;
-          this.totalImporta[1][item.month - 1] += item.weight;
+        let i = 0;
+        this.tempstatus.forEach(item => {
+          this.monthArray[1][i] = item;
+          i++;
         });
-      });
-      let i = 0;
-      this.tempstatus.forEach(item => {
-        this.monthArray[1][i] = item;
-        i++;
-      });
 
-    });
+      });
     this.params = [];
   //  console.log(this.transactions);
   // this.a=  this.json2array(this.transactions);
