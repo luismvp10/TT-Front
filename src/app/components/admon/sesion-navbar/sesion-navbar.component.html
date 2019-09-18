@@ -16,7 +16,7 @@
               </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="#">Configuración</a>
-                    <a class="dropdown-item" href="#">Cerrar Sesión</a>
+                    <a class="dropdown-item" [routerLink]="['/home']" routerLinkActive="router-link-active" (click)=logout()>Cerrar Sesión</a>
                 </div>
             </li>
         </ul>

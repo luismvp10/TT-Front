@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import {UserService} from "../../../services/user/user.service";
-import  Swal  from 'sweetalert2';
+import {UserService} from '../../../services/user/user.service';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,39 +11,50 @@ import  Swal  from 'sweetalert2';
 })
 export class LoginComponent implements OnInit {
 
-  usuario:Object = {
-    correo:"",
-    password:""
-  }
+  usuario = {
+    correo: '',
+    password: ''
+  };
 
-  constructor(private user: UserService) { }
+  recordarme = false;
+
+  constructor(private user: UserService,
+              private router: Router) { }
 
   ngOnInit() {
+    if ( localStorage.getItem('correo') ) {
+      this.usuario.correo = localStorage.getItem('correo');
+      this.recordarme = true;
+    }
   }
 
-
-  login( forma:NgForm ){
+  login( forma: NgForm ) {
+    Swal.fire({
+      allowOutsideClick: false,
+      type: 'info',
+      text: 'Espere por favor...'
+    });
+    Swal.showLoading();
     this.user.login(this.usuario)
       .subscribe( (data: any) => {
-        Swal.fire({
-          title: 'Bienvenido',
-          type: 'success',
-          showConfirmButton: false,
-          timer: 2000
-        });
-
-
+        Swal.close();
+        if (this.recordarme) {
+          localStorage.setItem('correo', this.usuario.correo);
+        }
+        if (data['userType'] === 'specialist') {
+          this.router.navigateByUrl('/especialist');
+        } else if (data['userType'] === 'administrator') {
+          this.router.navigateByUrl('/admon');
+        }
       }, (errorService) => {
 
-        if( errorService.status === 404){
-          Swal.fire({
-            title: 'Error!',
-            text: 'El correo o contraseña son incorrectos',
-            type: 'error',
-            confirmButtonText: 'Ok'
-          });
-        }
-        if( errorService.status === 0) {
+        Swal.fire({
+          title: 'Error!',
+          text: errorService.error.error,
+          type: 'error',
+          confirmButtonText: 'Ok'
+        });
+        if ( errorService.status === 0) {
 
           const Toast = Swal.mixin({
             toast: true,

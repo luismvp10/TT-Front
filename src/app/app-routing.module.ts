@@ -7,6 +7,10 @@ import { LoginComponent } from './components/admon/login/login.component';
 import { PageNotFoundComponent } from './components/shared/page-not-found/page-not-found.component';
 import { ContenedorEspecialistaComponent } from './components/admon/especialista/contenedor-especialista/contenedor-especialista.component';
 import { ContenedorAdminComponent } from './components/admon/administrador/contenedor-administrador/contenedor-administrador.component';
+import { IsSpecialistGuard } from './guards/is-specialist.guard';
+import { IsAdministratorGuard } from './guards/is-administrator.guard';
+
+
 const routes: Routes = [
   {path: 'home', component: ContenedorComponent,
   children:[
@@ -17,8 +21,8 @@ const routes: Routes = [
 
   {path: 'login', component: LoginComponent},
   {path: '', pathMatch: 'full', redirectTo: 'home'},
-  {path: 'especialist', component: ContenedorEspecialistaComponent},
-  {path: 'admon', component: ContenedorAdminComponent},
+  {path: 'especialist', component: ContenedorEspecialistaComponent, canActivate: [ IsSpecialistGuard ] },
+  {path: 'admon', component: ContenedorAdminComponent, canActivate: [ IsAdministratorGuard ] },
   {path: '**', component: PageNotFoundComponent}
 ];
 
