@@ -67,3 +67,11 @@ body {
 .fadeIn {
     animation-name: fadeIn;
 }
+
+.multiselect-dropdown[_ngcontent-c14] .dropdown-btn[_ngcontent-c14] .selected-item[_ngcontent-c14] {
+
+  background: #3c92ca !important;
+  border: 0px solid #4199e8 !important;
+  margin-bottom: 3px !important;
+  border-radius: 5px !important;
+}

@@ -84,7 +84,7 @@ export class UserService {
 
   getUsers() {
     const getHeader = new HttpHeaders({
-      'Content-type': 'application/json',
+      Accept: 'application/json',
       Authorization: 'Token ' + localStorage.getItem('token')
     });
     return this.http.get(this.env.URI + '/users/user/', {headers: getHeader});
@@ -99,6 +99,21 @@ export class UserService {
     console.log(email);
     payload.append('email', email);
     return this.http.post( this.env.URI + '/users/delete/',
+              payload,
+      {headers: postHeader });
+  }
+
+  register(user) {
+    const postHeader = new HttpHeaders({
+      Accept: 'application/json',
+      Authorization: 'Token ' + localStorage.getItem('token')
+    });
+    const payload = new FormData();
+    payload.append('names', user.name);
+    payload.append('surname', user.surname);
+    payload.append('email', user.email);
+    payload.append('password', user.password);
+    return this.http.post( this.env.URI + '/users/register/',
               payload,
       {headers: postHeader });
   }

@@ -7,7 +7,8 @@ import Swal from 'sweetalert2';
 import {Chart} from 'chart.js';
 import { TransactionService } from '../../../../services/transaction/transaction.service';
 import { iif } from 'rxjs';
-
+import * as $ from 'jquery';
+import {SelectMonthComponent} from '../../../shared/month/select-month/select-month.component';
 
 @Component({
   selector: 'app-estadisticas-especialista',
@@ -20,16 +21,19 @@ export class EstadisticasEspecialistaComponent implements OnInit {
   BarChart = [];
   PieChart = [];
   params: any = [];
+  selectedItems = [];
+
 
   monthArray = [
     ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
     [true, true, true, true, true, true, true, true, true, true, true, true]
   ];
-  tempstatus = [true, true, true, true, true, true, true, true, true, true, true, true];
+  tempstatus = [false, false, false, false, false, false, false, false, false, false, false, false];
   totalExporta = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
   totalImporta = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
   SelectedChapter: string;
   // @ViewChild('chapter') childOne:SelectChapterComponent;
+  @ViewChild('multiSelect') multiSelect: SelectMonthComponent;
   // messsage ="Hola prro";
 
   shipments: any = [];
@@ -49,6 +53,8 @@ export class EstadisticasEspecialistaComponent implements OnInit {
   yearID: number;
   loading: boolean;
 
+
+
   constructor(private shipment: ShipmentService,
               private subshipment: SubshipmentService,
               private section: SectionService,
@@ -58,117 +64,129 @@ export class EstadisticasEspecialistaComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.LineChart = new Chart('lineChart', {
-      type: 'line',
-      data: {
-      labels: [ 'Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-      datasets: [{
-        label: 'Number of Items Sold in Months',
-        data: [9, 7 , 3, 5, 2, 10, 15, 16, 19, 3, 1, 9],
-        fill: false,
-        lineTension: 0.2,
-        borderColor: 'red',
-        borderWidth: 1
-      }]
-      },
-      options: {
-        title: {
-          text: 'Line Chart',
-          display: true
-        },
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
-        }
-      }
-    });
+
+    // $(document).ready(function(){
+    //   $('#basic').multiselect({
+    //     templates: {
+    //       li: '<li><a href="javascript:void(0);"><label class="pl-2"></label></a></li>'
+    //     }
+    //   });
+    // });
+
+
+
+
+    // this.LineChart = new Chart('lineChart', {
+    //   type: 'line',
+    //   data: {
+    //   labels: [ 'Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    //   datasets: [{
+    //     label: 'Number of Items Sold in Months',
+    //     data: [9, 7 , 3, 5, 2, 10, 15, 16, 19, 3, 1, 9],
+    //     fill: false,
+    //     lineTension: 0.2,
+    //     borderColor: 'red',
+    //     borderWidth: 1
+    //   }]
+    //   },
+    //   options: {
+    //     title: {
+    //       text: 'Line Chart',
+    //       display: true
+    //     },
+    //     scales: {
+    //       yAxes: [{
+    //         ticks: {
+    //           beginAtZero: true
+    //         }
+    //       }]
+    //     }
+    //   }
+    // });
 
 // Bar chart:
-    this.BarChart = new Chart('barChart', {
-      type: 'bar',
-      data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-          label: '# of Votes',
-          data: [9, 7, 3, 5, 2, 10],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)'
-          ],
-          borderColor: [
-            'rgba(255,99,132,1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)'
-          ],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        title: {
-          text: 'Bar Chart',
-          display: true
-        },
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-             }
-          }]
-        }
-      }
-    });
+//     this.BarChart = new Chart('barChart', {
+//       type: 'bar',
+//       data: {
+//         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+//         datasets: [{
+//           label: '# of Votes',
+//           data: [9, 7, 3, 5, 2, 10],
+//           backgroundColor: [
+//             'rgba(255, 99, 132, 0.2)',
+//             'rgba(54, 162, 235, 0.2)',
+//             'rgba(255, 206, 86, 0.2)',
+//             'rgba(75, 192, 192, 0.2)',
+//             'rgba(153, 102, 255, 0.2)',
+//             'rgba(255, 159, 64, 0.2)'
+//           ],
+//           borderColor: [
+//             'rgba(255,99,132,1)',
+//             'rgba(54, 162, 235, 1)',
+//             'rgba(255, 206, 86, 1)',
+//             'rgba(75, 192, 192, 1)',
+//             'rgba(153, 102, 255, 1)',
+//             'rgba(255, 159, 64, 1)'
+//           ],
+//           borderWidth: 1
+//         }]
+//       },
+//       options: {
+//         title: {
+//           text: 'Bar Chart',
+//           display: true
+//         },
+//         scales: {
+//           yAxes: [{
+//             ticks: {
+//               beginAtZero: true
+//              }
+//           }]
+//         }
+//       }
+//     });
 
   // pie chart:
-    this.PieChart = new Chart('pieChart', {
-      type: 'pie',
-      data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-          label: '# of Votes',
-          data: [9, 7 , 3, 5, 2, 10],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)'
-          ],
-          borderColor: [
-            'rgba(255,99,132,1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)'
-          ],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        title: {
-          text: 'Bar Chart',
-          display: true
-        },
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
-        }
-      }
-    });
+  //   this.PieChart = new Chart('pieChart', {
+  //     type: 'pie',
+  //     data: {
+  //       labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+  //       datasets: [{
+  //         label: '# of Votes',
+  //         data: [9, 7 , 3, 5, 2, 10],
+  //         backgroundColor: [
+  //           'rgba(255, 99, 132, 0.2)',
+  //           'rgba(54, 162, 235, 0.2)',
+  //           'rgba(255, 206, 86, 0.2)',
+  //           'rgba(75, 192, 192, 0.2)',
+  //           'rgba(153, 102, 255, 0.2)',
+  //           'rgba(255, 159, 64, 0.2)'
+  //         ],
+  //         borderColor: [
+  //           'rgba(255,99,132,1)',
+  //           'rgba(54, 162, 235, 1)',
+  //           'rgba(255, 206, 86, 1)',
+  //           'rgba(75, 192, 192, 1)',
+  //           'rgba(153, 102, 255, 1)',
+  //           'rgba(255, 159, 64, 1)'
+  //         ],
+  //         borderWidth: 1
+  //       }]
+  //     },
+  //     options: {
+  //       title: {
+  //         text: 'Bar Chart',
+  //         display: true
+  //       },
+  //       scales: {
+  //         yAxes: [{
+  //           ticks: {
+  //             beginAtZero: true
+  //           }
+  //         }]
+  //       }
+  //     }
+  //   });
   }
 
   changeChapter(id_chapter) {
@@ -220,37 +238,20 @@ export class EstadisticasEspecialistaComponent implements OnInit {
     this.countryID = id_country;
   }
 
-  changeMonth(id_month) {
+
+  changeMonth(items) {
     this.months = [];
+    this.tempstatus = [false, false, false, false, false, false, false, false, false, false, false, false];
+    // this.months = items;
     console.log('Changed  Month');
-    for (let i = 0, len = id_month.length; i < len; i++) {
-      if (id_month[i].selected) {
-        if (i === 0) {
-          this.setTodos(id_month);
-          break;
-        } else {
-          this.months.push(id_month[i].value);
-          this.tempstatus[i - 1] = true;
-        }
-      } else {
-        this.tempstatus[i - 1] = false;
-      }
+
+    for (let i = 0; i < items.length; i++) {
+     this.months.push(items[i].id_month);
+     this.tempstatus[items[i].id_month - 1] = true;
     }
     console.log(this.months);
   }
 
-  // Selecciona unicamente la opcion de todos
-  setTodos(months) {
-    for (let i = 0, len = months.length; i < len; i++) {
-      if (i === 0) {
-        this.months.push(months[i].value);
-        months[i].selected = true;
-      } else {
-        months[i].selected = false;
-        this.tempstatus[i - 1] = true;
-      }
-    }
-  }
 
   changeYear(id_year) {
     console.log('Changed  Year');
@@ -277,11 +278,11 @@ export class EstadisticasEspecialistaComponent implements OnInit {
     Swal.showLoading();
     console.log('Información para la búsqueda');
     console.log('Sección ' + this.sectionID);
-    console.log('ubpartida ' + this.subShipmentID);
+    console.log('Subpartida ' + this.subShipmentID);
     console.log('Partida ' + this.shipmentID);
     console.log('Capítulo ' + this.chapterID);
     console.log('País ' + this.countryID);
-    console.log('Mes ' + this.monthID);
+    console.log('Mes ' + this.months);
     console.log('Año ' + this.yearID);
     this.totalExporta = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
     this.totalImporta = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
@@ -328,15 +329,6 @@ export class EstadisticasEspecialistaComponent implements OnInit {
 
   }
 
-
-  json2array(json) {
-    var result = [];
-    var keys = Object.keys(json);
-    keys.forEach(function(key) {
-      result.push(json[key]);
-    });
-    return result;
-  }
 
   showModal() {
     Swal.fire({

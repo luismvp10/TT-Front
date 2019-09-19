@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 
 // Components
@@ -43,10 +44,11 @@ import { YearService } from './services/year/year.service';
 import { MonthService } from './services/month/month.service';
 import { ShipmentService } from './services/shipment/shipment.service';
 import { SubshipmentService } from './services/subshipment/subshipment.service';
-import {UserService} from "./services/user/user.service";
+import { UserService } from './services/user/user.service';
 
 // pipes
 import { Volumen } from './pipes/volumen.pipe';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -88,6 +90,7 @@ import { Volumen } from './pipes/volumen.pipe';
       confirmButtonClass: 'btn btn-primary',
       cancelButtonClass: 'btn'
       }),
+    NgMultiSelectDropDownModule.forRoot(),
      // RouterModule.forRoot( ROUTES, {useHash:true }),
   ],
   providers: [

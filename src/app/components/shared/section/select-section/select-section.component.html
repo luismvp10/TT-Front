@@ -1,6 +1,6 @@
 <div class="form-group row">
-    <label class="col-3 col-form-label col-form-label-sm ">Fracción:  </label>
-    <div class="col-9">
+    <div class="col-12">
+      <label class="col-form-label col-form-label-sm ">Fracción:  </label>
         <select class="form-control custom-select" [disabled]="sections.length===0">
     <option selected>-- Seleccione una Fracción --</option>
     <option *ngFor="let section of sections"  data-toggle="tooltip" data-placement="right" title="{{section.name}}">{{ section.id_section }}</option>

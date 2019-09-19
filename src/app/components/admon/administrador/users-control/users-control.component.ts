@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { UserService } from '../../../../services/user/user.service';
 import Swal from 'sweetalert2';
+import { FormBuilder, Validators, FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-users-control',
@@ -10,10 +11,20 @@ import Swal from 'sweetalert2';
 export class UsersControlComponent implements OnInit {
 
   Users: any[] = [];
+  emailpattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+[\.][a-z]{2,3}$';
+  @ViewChild('adduser') adduser: ElementRef;
 
-  constructor(private user: UserService) {
+  constructor(private fb: FormBuilder, private user: UserService) {
     this.getUsers();
   }
+
+
+  userForm = this.fb.group({
+    name: new FormControl('', Validators.required),
+    surname: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.pattern(this.emailpattern)]),
+    password: new FormControl('', Validators.required),
+   });
 
   getUsers() {
     this.Users = [];
@@ -73,8 +84,32 @@ export class UsersControlComponent implements OnInit {
     });
   }
 
-  test(email) {
-    console.log(email);
+  register( ) {
+    this.user.register(this.userForm.value).subscribe(data => {
+      Swal.fire({
+        title: 'El usuario fue agregado exitosamente!',
+        type: 'success',
+        confirmButtonText: 'Ok'
+      }).then(() => {
+        this.adduser.nativeElement.click();
+        this.getUsers();
+        this.resetUserForm();
+        });
+    }, (errorService) => {
+      Swal.fire({
+        title: 'Error!',
+        text: errorService.error.error,
+        type: 'error',
+        confirmButtonText: 'Ok'
+      });
+    });
   }
 
+  get username() {
+    return this.userForm.get('username');
+  }
+
+  resetUserForm() {
+    this.userForm.reset();
+ }
 }

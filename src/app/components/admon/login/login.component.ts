@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
           title: 'Error!',
           text: errorService.error.error,
           type: 'error',
-          confirmButtonText: 'Ok'
+          confirmButtonText: 'Ok',
         });
         if ( errorService.status === 0) {
 
