@@ -53,8 +53,6 @@ export class EstadisticasEspecialistaComponent implements OnInit {
   yearID: number;
   loading: boolean;
 
-
-
   constructor(private shipment: ShipmentService,
               private subshipment: SubshipmentService,
               private section: SectionService,
@@ -241,6 +239,7 @@ export class EstadisticasEspecialistaComponent implements OnInit {
 
   changeMonth(items) {
     this.months = [];
+    this.tempstatus = [false, false, false, false, false, false, false, false, false, false, false, false];
     // this.months = items;
     console.log('Changed  Month');
 

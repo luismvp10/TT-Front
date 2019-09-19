@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { UserService } from '../../../../services/user/user.service';
+import Swal from 'sweetalert2';
+import { FormBuilder, Validators, FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-users-control',
@@ -7,9 +10,106 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsersControlComponent implements OnInit {
 
-  constructor() { }
+  Users: any[] = [];
+  emailpattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+[\.][a-z]{2,3}$';
+  @ViewChild('adduser') adduser: ElementRef;
+
+  constructor(private fb: FormBuilder, private user: UserService) {
+    this.getUsers();
+  }
+
+
+  userForm = this.fb.group({
+    name: new FormControl('', Validators.required),
+    surname: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.pattern(this.emailpattern)]),
+    password: new FormControl('', Validators.required),
+   });
+
+  getUsers() {
+    this.Users = [];
+    this.user.getUsers()
+        .subscribe( (data: any) => {
+          this.Users = data;
+          this.Users.forEach(item => {
+            if (item.user_type === 'specialist') {
+              item.user_type = 'Especialista';
+            } else {
+              item.user_type = 'Administrador';
+            }
+          });
+    }, ( errorService ) => {
+      if ( errorService.status === 0) {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+        Toast.fire({
+          type: 'warning',
+          title: 'Error de conexión con el servidor'
+        });
+      }
+    });
+  }
 
   ngOnInit() {
   }
 
+  deleteUser(email) {
+    Swal.fire({
+      title: 'Está seguro?',
+      text: 'No podra revertir esta acción!',
+      type: 'warning',
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, borrar usuario'
+    }).then((result) => {
+      if (result.value) {
+        this.user.delete(email)
+        .subscribe( ( data: any ) => {
+          if ( data.status ) {
+            Swal.fire({
+              type: 'success',
+              title: 'El usuario ha sido eliminado exitosamente',
+              showConfirmButton: true,
+            });
+            this.getUsers();
+          }
+        });
+      }
+    });
+  }
+
+  register( ) {
+    this.user.register(this.userForm.value).subscribe(data => {
+      Swal.fire({
+        title: 'El usuario fue agregado exitosamente!',
+        type: 'success',
+        confirmButtonText: 'Ok'
+      }).then(() => {
+        this.adduser.nativeElement.click();
+        this.getUsers();
+        this.resetUserForm();
+        });
+    }, (errorService) => {
+      Swal.fire({
+        title: 'Error!',
+        text: errorService.error.error,
+        type: 'error',
+        confirmButtonText: 'Ok'
+      });
+    });
+  }
+
+  get username() {
+    return this.userForm.get('username');
+  }
+
+  resetUserForm() {
+    this.userForm.reset();
+ }
 }
