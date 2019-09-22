@@ -1,3 +1,6 @@
+*{
+  background-color: #FFFFFF;
+}
 label {
     font-size: 1rem;
     padding-right: 0px;
@@ -15,3 +18,12 @@ label {
 .mr-x {
     margin-left: -2.5rem !important;
 }
+
+.container-fluid{
+  background-color: #FFFFFF;
+}
+.btn-primary{
+  background-color: #007bff;
+}
+
+

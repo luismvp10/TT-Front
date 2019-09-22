@@ -1,339 +1,415 @@
-<div id="estadisticas" name="estadisticas" class="container-fluid mt-5 estadisticas">
+<div class="container-fluid mt-5 mb-5">
 
-
-    <div class="row">
-        <div class="col-3">
-
-        </div>
-        <div class="col-6 ">
-
-            <app-select-chapter (change)="changeChapter($event.target.value)"></app-select-chapter>
-
-        </div>
-
-        <div class="col-3"></div>
-
-
-
-
-    </div>
-
-
-
-    <div class="row">
-        <div class="col-5"></div>
-
-        <div class="col-2  ">
-            <div class="form-group ">
-                <button type="button" class="btn btn-dark">Aranceles y
-              normatividad</button>
-            </div>
-        </div>
-
-        <div class="col-4 ">
-            <app-select-year (change)="changeYear($event.target.value)"></app-select-year>
-        </div>
-        <div class="col-1"></div>
-
-
-    </div>
-
-
-
-
-    <div class="row">
-
-        <div class="col-3">
-            <app-select-shipment  [shipments]="shipments" (change)="changeShipment($event.target.value)"></app-select-shipment>
-        </div>
-
-
-        <div class="col-4">
-          <app-select-subshipment  [subshipments]="subshipments" (change)="changesubShipment($event.target.value)" ></app-select-subshipment>
-        </div>
-
-
-        <div class="col-4">
-          <app-select-section [sections]="sections" (change)="changeSection($event.target.value)"></app-select-section>
-        </div>
-
-
-
-
-      <div class="col-1 mt-4">
-        <button type="button" class="btn btn-primary mt-1" (click)="transacciones()">Buscar</button>
-      </div>
-
-
-        </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <!--Impresión de tablras-->
-
+        <!--Selects-->
         <div class="container">
-            <br>
-            <div class="text-center">
-                <h1 class="title">Exportaciones</h1>
-            </div>
-
-            <br><br>
-            <h3>Valor en dólares</h3>
-            <br>
-            <div class="row">
-
-
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col"></th>
-                            <th scope="col">Enero</th>
-                            <th scope="col">Febrero</th>
-                            <th scope="col">Marzo</th>
-                            <th scope="col">Abril</th>
-                            <th scope="col">Mayo</th>
-                            <th scope="col">Junio</th>
-                            <th scope="col">Julio</th>
-                            <th scope="col">Agosto</th>
-                            <th scope="col">Septiembre</th>
-                            <th scope="col"> Octubre</th>
-                            <th scope="col"> Noviembre</th>
-                            <th scope="col">Diciembre</th>
+          <div class="row">
 
+                    <div class="col-7 ">
+                        <app-select-chapter (change)="changeChapter($event.target.value)"></app-select-chapter>
+                    </div>
 
+                    <div class="col-4 mt-5">
+                                            <app-select-year (change)="changeYear($event.target.value)"></app-select-year>
+                    </div>
 
+            <div class="col-1"></div>
 
+          </div>
 
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">Total</th>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
+<!--              <div class="row">-->
+<!--                  <div class="col-5"></div>-->
 
-                        </tr>
+<!--                  <div class="col-2  ">-->
+<!--                      <div class="form-group ">-->
+<!--                          <button type="button" class="btn  btn-outline-dark">Aranceles y-->
+<!--                        normatividad</button>-->
+<!--                      </div>-->
+<!--                  </div>-->
 
+<!--                  <div class="col-4 ">-->
+<!--                      <app-select-year (change)="changeYear($event.target.value)"></app-select-year>-->
+<!--                  </div>-->
 
-                    </tbody>
-                </table>
-            </div>
-        </div>
+<!--                  <div class="col-1"></div>-->
 
 
+<!--              </div>-->
 
 
-        <div class="container">
-            <br><br>
-            <h3>Volumén</h3>
-            <br>
-            <div class="row">
 
 
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col"></th>
-                            <th scope="col">Enero</th>
-                            <th scope="col">Febrero</th>
-                            <th scope="col">Marzo</th>
-                            <th scope="col">Abril</th>
-                            <th scope="col">Mayo</th>
-                            <th scope="col">Junio</th>
-                            <th scope="col">Julio</th>
-                            <th scope="col">Agosto</th>
-                            <th scope="col">Septiembre</th>
-                            <th scope="col"> Octubre</th>
-                            <th scope="col"> Noviembre</th>
-                            <th scope="col">Diciembre</th>
 
 
+              <div class="row">
 
+                  <div class="col-3">
+                      <app-select-shipment  [shipments]="shipments" (change)="changeShipment($event.target.value)"></app-select-shipment>
+                  </div>
 
 
+                  <div class="col-4">
+                    <app-select-subshipment  [subshipments]="subshipments" (change)="changesubShipment($event.target.value)" ></app-select-subshipment>
+                  </div>
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">Total</th>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
 
-                        </tr>
+                  <div class="col-4">
+                    <app-select-section [sections]="sections" (change)="changeSection($event.target.value)"></app-select-section>
+                  </div>
 
 
-                    </tbody>
-                </table>
-            </div>
-        </div>
 
 
+                <div class="col-1 mt-4">
+                  <button type="button" class="btn btn-primary mt-1" (click)="transacciones()">Buscar</button>
+                </div>
 
 
+                  </div>
 
 
 
 
 
 
+        </div><!--Selects-->
 
 
+          <!--Tablas de Transacciones-->
+<!--        <div class="container-fluid mt-5">-->
 
-        <div class="container">
-            <br>
-            <div class="text-center">
-                <h1 class="title">Importaciones</h1>
-            </div>
+<!--                      <div class="text-center">-->
+<!--                          <h1 class="title">Exportaciones</h1>-->
+<!--                      </div>-->
 
-            <br><br>
-            <h3>Valor en dólares</h3>
-            <br>
-            <div class="row">
+<!--                      <br><br>-->
+<!--                      <h3>Valor en dólares</h3>-->
+<!--                      <br>-->
 
+<!--                          <table class="table table-striped">-->
+<!--                              <thead>-->
+<!--                                  <tr>-->
+<!--                                      <th scope="col"></th>-->
+<!--                                      <th scope="col">Enero</th>-->
+<!--                                      <th scope="col">Febrero</th>-->
+<!--                                      <th scope="col">Marzo</th>-->
+<!--                                      <th scope="col">Abril</th>-->
+<!--                                      <th scope="col">Mayo</th>-->
+<!--                                      <th scope="col">Junio</th>-->
+<!--                                      <th scope="col">Julio</th>-->
+<!--                                      <th scope="col">Agosto</th>-->
+<!--                                      <th scope="col">Septiembre</th>-->
+<!--                                      <th scope="col"> Octubre</th>-->
+<!--                                      <th scope="col"> Noviembre</th>-->
+<!--                                      <th scope="col">Diciembre</th>-->
 
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col"></th>
-                            <th scope="col">Enero</th>
-                            <th scope="col">Febrero</th>
-                            <th scope="col">Marzo</th>
-                            <th scope="col">Abril</th>
-                            <th scope="col">Mayo</th>
-                            <th scope="col">Junio</th>
-                            <th scope="col">Julio</th>
-                            <th scope="col">Agosto</th>
-                            <th scope="col">Septiembre</th>
-                            <th scope="col"> Octubre</th>
-                            <th scope="col"> Noviembre</th>
-                            <th scope="col">Diciembre</th>
 
 
 
 
 
+<!--                                  </tr>-->
+<!--                              </thead>-->
+<!--                              <tbody>-->
+<!--                                  <tr>-->
+<!--                                      <th scope="row">Total</th>-->
+<!--                                      <td>0</td>-->
+<!--                                      <td>0</td>-->
+<!--                                      <td>0</td>-->
+<!--                                      <td>0</td>-->
+<!--                                      <td>0</td>-->
+<!--                                      <td>0</td>-->
+<!--                                      <td>0</td>-->
+<!--                                      <td>0</td>-->
+<!--                                      <td>0</td>-->
+<!--                                      <td>0</td>-->
+<!--                                      <td>0</td>-->
+<!--                                      <td>0</td>-->
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">Total</th>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
+<!--                                  </tr>-->
 
-                        </tr>
 
+<!--                              </tbody>-->
+<!--                          </table>-->
 
-                    </tbody>
-                </table>
-            </div>
-        </div>
 
 
+<!--        </div>-->
 
 
-        <div class="container">
-            <br><br>
-            <h3>Volumén</h3>
-            <br>
-            <div class="row">
 
 
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col"></th>
-                            <th scope="col">Enero</th>
-                            <th scope="col">Febrero</th>
-                            <th scope="col">Marzo</th>
-                            <th scope="col">Abril</th>
-                            <th scope="col">Mayo</th>
-                            <th scope="col">Junio</th>
-                            <th scope="col">Julio</th>
-                            <th scope="col">Agosto</th>
-                            <th scope="col">Septiembre</th>
-                            <th scope="col"> Octubre</th>
-                            <th scope="col"> Noviembre</th>
-                            <th scope="col">Diciembre</th>
 
 
+</div>
 
 
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">Total</th>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
 
-                        </tr>
 
 
-                    </tbody>
-                </table>
-            </div>
-        </div>
 
 
 
 
 
 
-    </div>
+
+
+
+
+<!--        &lt;!&ndash;Impresión de tablras&ndash;&gt;-->
+
+<!--        <div class="container">-->
+<!--            <br>-->
+<!--            <div class="text-center">-->
+<!--                <h1 class="title">Exportaciones</h1>-->
+<!--            </div>-->
+
+<!--            <br><br>-->
+<!--            <h3>Valor en dólares</h3>-->
+<!--            <br>-->
+<!--            <div class="row">-->
+
+
+<!--                <table class="table table-striped">-->
+<!--                    <thead>-->
+<!--                        <tr>-->
+<!--                            <th scope="col"></th>-->
+<!--                            <th scope="col">Enero</th>-->
+<!--                            <th scope="col">Febrero</th>-->
+<!--                            <th scope="col">Marzo</th>-->
+<!--                            <th scope="col">Abril</th>-->
+<!--                            <th scope="col">Mayo</th>-->
+<!--                            <th scope="col">Junio</th>-->
+<!--                            <th scope="col">Julio</th>-->
+<!--                            <th scope="col">Agosto</th>-->
+<!--                            <th scope="col">Septiembre</th>-->
+<!--                            <th scope="col"> Octubre</th>-->
+<!--                            <th scope="col"> Noviembre</th>-->
+<!--                            <th scope="col">Diciembre</th>-->
+
+
+
+
+
+
+<!--                        </tr>-->
+<!--                    </thead>-->
+<!--                    <tbody>-->
+<!--                        <tr>-->
+<!--                            <th scope="row">Total</th>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+
+<!--                        </tr>-->
+
+
+<!--                    </tbody>-->
+<!--                </table>-->
+<!--            </div>-->
+<!--        </div>-->
+
+
+
+
+<!--        <div class="container">-->
+<!--            <br><br>-->
+<!--            <h3>Volumén</h3>-->
+<!--            <br>-->
+<!--            <div class="row">-->
+
+
+<!--                <table class="table table-striped">-->
+<!--                    <thead>-->
+<!--                        <tr>-->
+<!--                            <th scope="col"></th>-->
+<!--                            <th scope="col">Enero</th>-->
+<!--                            <th scope="col">Febrero</th>-->
+<!--                            <th scope="col">Marzo</th>-->
+<!--                            <th scope="col">Abril</th>-->
+<!--                            <th scope="col">Mayo</th>-->
+<!--                            <th scope="col">Junio</th>-->
+<!--                            <th scope="col">Julio</th>-->
+<!--                            <th scope="col">Agosto</th>-->
+<!--                            <th scope="col">Septiembre</th>-->
+<!--                            <th scope="col"> Octubre</th>-->
+<!--                            <th scope="col"> Noviembre</th>-->
+<!--                            <th scope="col">Diciembre</th>-->
+
+
+
+
+
+
+<!--                        </tr>-->
+<!--                    </thead>-->
+<!--                    <tbody>-->
+<!--                        <tr>-->
+<!--                            <th scope="row">Total</th>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+
+<!--                        </tr>-->
+
+
+<!--                    </tbody>-->
+<!--                </table>-->
+<!--            </div>-->
+<!--        </div>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--        <div class="container">-->
+<!--            <br>-->
+<!--            <div class="text-center">-->
+<!--                <h1 class="title">Importaciones</h1>-->
+<!--            </div>-->
+
+<!--            <br><br>-->
+<!--            <h3>Valor en dólares</h3>-->
+<!--            <br>-->
+<!--            <div class="row">-->
+
+
+<!--                <table class="table table-striped">-->
+<!--                    <thead>-->
+<!--                        <tr>-->
+<!--                            <th scope="col"></th>-->
+<!--                            <th scope="col">Enero</th>-->
+<!--                            <th scope="col">Febrero</th>-->
+<!--                            <th scope="col">Marzo</th>-->
+<!--                            <th scope="col">Abril</th>-->
+<!--                            <th scope="col">Mayo</th>-->
+<!--                            <th scope="col">Junio</th>-->
+<!--                            <th scope="col">Julio</th>-->
+<!--                            <th scope="col">Agosto</th>-->
+<!--                            <th scope="col">Septiembre</th>-->
+<!--                            <th scope="col"> Octubre</th>-->
+<!--                            <th scope="col"> Noviembre</th>-->
+<!--                            <th scope="col">Diciembre</th>-->
+
+
+
+
+
+
+<!--                        </tr>-->
+<!--                    </thead>-->
+<!--                    <tbody>-->
+<!--                        <tr>-->
+<!--                            <th scope="row">Total</th>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+
+<!--                        </tr>-->
+
+
+<!--                    </tbody>-->
+<!--                </table>-->
+<!--            </div>-->
+<!--        </div>-->
+
+
+
+
+<!--        <div class="container">-->
+<!--            <br><br>-->
+<!--            <h3>Volumén</h3>-->
+<!--            <br>-->
+<!--            <div class="row">-->
+
+
+<!--                <table class="table table-striped">-->
+<!--                    <thead>-->
+<!--                        <tr>-->
+<!--                            <th scope="col"></th>-->
+<!--                            <th scope="col">Enero</th>-->
+<!--                            <th scope="col">Febrero</th>-->
+<!--                            <th scope="col">Marzo</th>-->
+<!--                            <th scope="col">Abril</th>-->
+<!--                            <th scope="col">Mayo</th>-->
+<!--                            <th scope="col">Junio</th>-->
+<!--                            <th scope="col">Julio</th>-->
+<!--                            <th scope="col">Agosto</th>-->
+<!--                            <th scope="col">Septiembre</th>-->
+<!--                            <th scope="col"> Octubre</th>-->
+<!--                            <th scope="col"> Noviembre</th>-->
+<!--                            <th scope="col">Diciembre</th>-->
+
+
+
+
+
+<!--                        </tr>-->
+<!--                    </thead>-->
+<!--                    <tbody>-->
+<!--                        <tr>-->
+<!--                            <th scope="row">Total</th>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+<!--                            <td>0</td>-->
+
+<!--                        </tr>-->
+
+
+<!--                    </tbody>-->
+<!--                </table>-->
+<!--            </div>-->
+<!--        </div>-->
+
+
+
+
+
+
+<!--    </div>-->
