@@ -42,7 +42,14 @@
   border-top-left-radius: .25rem;
   border-top-right-radius: .25rem;
 }
-@media only screen and (max-width: 479px) and (min-width: 320px) {}
+
+
+@media only screen and (max-width: 479px) and (min-width: 320px) {
+  .nav-tabs {
+    width: 100%;
+    margin-left: 0%;
+  }
+}
 @media only screen and (max-width: 567px) and (min-width: 480px) {}
 @media only screen and (max-width: 599px) and (min-width: 568px) {}
 @media only screen and (max-width: 767px) and (min-width: 600px) {}
@@ -56,14 +63,12 @@
 @media only screen and (min-width: 1680px) {}
 @media only screen and (min-width: 1920px) {
   .nav-tabs {
-    border-bottom: 1px solid #3c92ca;
     width: 65%;
     margin-left: 17%;
   }
 }
 @media only screen and (min-width: 2520px) {
   .nav-tabs {
-    border-bottom: 1px solid #3c92ca;
     width: 48%;
     margin-left: 25%;
   }
