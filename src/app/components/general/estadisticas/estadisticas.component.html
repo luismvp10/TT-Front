@@ -1,7 +1,8 @@
 <div class="container-fluid mt-5 mb-5">
-
+  <app-loading *ngIf="loading"></app-loading>
         <!--Selects-->
         <div class="container">
+
           <div class="row">
 
                     <div class="col-xs-12 col-md-7 col-lg-7">
@@ -81,16 +82,18 @@
 
 
           <!--Tablas de Transacciones-->
-        <div class="container-fluid mt-5">
+        <div class="container-fluid mt-5 mb-5">
 
-                      <div class="text-center">
-                          <h1 class="title">Exportaciones</h1>
+                      <div class="text-center mt-5">
+                          <h1 class="title" *ngIf="transactions.length>0">Exportaciones</h1>
                       </div>
-
+          <app-not-exists-results *ngIf="datosExporta === 0 && transactions.length > 0"></app-not-exists-results>
                       <br><br>
-                      <h3>Valor en dólares</h3>
+                      <h3 *ngIf="datosExporta>0 && transactions.length>0">Valor en dólares</h3>
                       <br>
-              <div class="table-responsive">
+
+
+              <div class="table-responsive" *ngIf="datosExporta>0 && transactions.length>0">
                           <table class="table  table-hover">
                               <thead class="table-primary text-white bg-primary">
                                   <tr>
@@ -126,10 +129,10 @@
 
           <div class="container-fluid">
               <br><br>
-              <h3>Volumén</h3>
+              <h3 *ngIf="datosExporta>0 && transactions.length>0">Volumén</h3>
               <br>
               <div class="row">
-                <div class="table-responsive">
+                <div class="table-responsive" *ngIf=" datosExporta>0 && transactions.length>0">
                   <table class="table table-striped">
                       <thead class="table-primary text-white bg-primary">
                           <tr>
@@ -161,20 +164,21 @@
           </div>
 
 
-
+<!--Importaciones-->
 
           <div class="container-fluid mt-5">
               <br>
-              <div class="text-center">
+              <div class="text-center" *ngIf="transactions.length>0">
                   <h1 class="title">Importaciones</h1>
               </div>
-
+            <app-not-exists-results *ngIf="datosImporta === 0 && transactions.length > 0"></app-not-exists-results>
               <br><br>
-              <h3>Valor en dólares</h3>
+              <h3 *ngIf="datosImporta>0 && transactions.length>0">Valor en dólares</h3>
               <br>
+
               <div class="row">
 
-                <div class="table-responsive">
+                <div class="table-responsive" *ngIf="datosImporta > 0 && transactions.length > 0">
                   <table class="table table-striped">
                       <thead class="table-primary text-white bg-primary">
                       <tr>
@@ -211,11 +215,11 @@
 
           <div class="container-fluid mb-5">
               <br><br>
-              <h3>Volumén</h3>
+              <h3 *ngIf=" datosImporta>0 && transactions.length>0">Volumén</h3>
               <br>
               <div class="row">
 
-                <div class="table-responsive">
+                <div class="table-responsive" *ngIf="datosImporta > 0 && transactions.length > 0">
                   <table class="table table-striped">
                       <thead class="table-primary text-white bg-primary">
                           <tr>
@@ -244,7 +248,6 @@
 
               </div>
           </div>
-
 
 
 

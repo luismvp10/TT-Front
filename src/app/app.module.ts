@@ -48,6 +48,7 @@ import { UserService } from './services/user/user.service';
 
 // pipes
 import { Volumen } from './pipes/volumen.pipe';
+import { NotExistsResultsComponent } from './components/shared/resultados/not-exists-results/not-exists-results.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { Volumen } from './pipes/volumen.pipe';
     SelectSectionComponent,
     LoadingSelectComponent,
     Volumen,
+    NotExistsResultsComponent,
   ],
   imports: [
     BrowserModule,

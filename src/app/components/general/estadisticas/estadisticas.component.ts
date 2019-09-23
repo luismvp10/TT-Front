@@ -23,6 +23,10 @@ export class EstadisticasComponent implements OnInit {
   monthID: string;
   yearID: number;
 
+  loading: boolean = false;
+  datosImporta: number = 0;
+  datosExporta: number = 0;
+
   monthArray = [
     ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
     [true, true, true, true, true, true, true, true, true, true, true, true]
@@ -110,6 +114,8 @@ export class EstadisticasComponent implements OnInit {
     return true;
   }
   transacciones(){
+    this.datosExporta=0;
+    this.datosImporta=0;
     this.tempstatus = [true, true, true, true, true, true, true, true, true, true, true, true];
     console.log("Información para la búsqueda");
     console.log("Sección " + this.sectionID);
@@ -138,6 +144,10 @@ export class EstadisticasComponent implements OnInit {
 
         /*Suma de valores totales*/
         this.transactions.forEach(element => {
+
+          this.datosImporta = this.datosImporta + element.imports.length;
+          this.datosExporta = this.datosExporta + element.exports.length;
+
           element.exports.forEach(item => {
             this.totalExporta[0][item.month - 1] += item.price;
             this.totalExporta[1][item.month - 1] += item.weight;
@@ -146,14 +156,9 @@ export class EstadisticasComponent implements OnInit {
             this.totalImporta[0][item.month - 1] += item.price;
             this.totalImporta[1][item.month - 1] += item.weight;
           });
+
+
         });
-
-        // let i = 0;
-        // this.tempstatus.forEach(item => {
-        //   this.monthArray[1][i] = item;
-        //   i++;
-        // });
-
 
 
       });
