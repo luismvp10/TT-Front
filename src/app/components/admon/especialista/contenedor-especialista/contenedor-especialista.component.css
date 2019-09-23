@@ -1,32 +1,75 @@
 * {
-    font-family: Brandon Regular;
-    margin-bottom: 0px;
+  font-family: Brandon Regular;
+  margin-bottom: 0px;
+  background-color: #FFFFFF;
+}
+.container-fluid{
+  background-color: #FFFFFF;
+  padding-top: 4%;
 }
 
 .estadisticas {
-    width: 100%;
+  width: 100%;
 }
 
 .nav-link:hover {
-    background-color: #8a0b0b;
-    color: #FFF;
+  background-color: #8a0b0b;
+  color: #FFF;
 }
 
 .nav-tabs>.active>a,
 .nav-tabs>.active>a:hover,
 .nav-tabs>.active>a:focus {
-    border-color: #3c92ca;
-    border-bottom-color: transparent;
-    color: #FFF;
+  border-color: #3c92ca;
+  border-bottom-color: transparent;
+  color: #FFF;
 }
 
 .nav-tabs {
-    border-bottom: 1px solid #3c92ca;
+  border-bottom: 1px solid #3c92ca;
+  width: 88%;
+  margin-left: 7%;
 }
 
 .nav-tabs .nav-item.show .nav-link,
 .nav-tabs .nav-link.active {
-    border-color: #3c92ca #3c92ca #3c92ca;
-    background-color: #3c92ca;
-    color: aliceblue;
+  border-color: #3c92ca #3c92ca #3c92ca;
+  background-color: #3c92ca;
+  color: aliceblue;
+}
+.nav-tabs .nav-link {
+  border: 1px solid #3c92ca;
+  border-top-left-radius: .25rem;
+  border-top-right-radius: .25rem;
+}
+
+
+@media only screen and (max-width: 479px) and (min-width: 320px) {
+  .nav-tabs {
+    width: 100%;
+    margin-left: 0%;
+  }
+}
+@media only screen and (max-width: 567px) and (min-width: 480px) {}
+@media only screen and (max-width: 599px) and (min-width: 568px) {}
+@media only screen and (max-width: 767px) and (min-width: 600px) {}
+@media only screen and (max-width: 799px) and (min-width: 768px) {}
+@media only screen and (max-width: 991px) and (min-width: 800px) {}
+@media only screen and (min-width: 1024px) {}
+@media only screen and (min-width: 1200px) {}
+@media only screen and (min-width: 1366px) {}
+@media only screen and (min-width: 1440px) {}
+@media only screen and (min-width: 1540px) {}
+@media only screen and (min-width: 1680px) {}
+@media only screen and (min-width: 1920px) {
+  .nav-tabs {
+    width: 65%;
+    margin-left: 17%;
+  }
+}
+@media only screen and (min-width: 2520px) {
+  .nav-tabs {
+    width: 48%;
+    margin-left: 25%;
+  }
 }

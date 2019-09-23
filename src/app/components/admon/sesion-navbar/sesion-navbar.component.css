@@ -1,35 +1,86 @@
-.navbar-nav {
-    margin-left: 65%;
-}
-
 * {
-    font-family: Brandon Regular;
+  font-family: Brandon Regular;
 }
-
+a:hover{
+  text-decoration: none;
+}
+.text-nav:hover{
+  text-decoration: none;
+  color: #8a0b0b;
+}
 .text-nav {
-    color: #8a0b0b !important;
-    font-size: 1.8rem;
-    font-family: NexaBold;
-}
-
-.size-nav {
-    height: 80px;
-    background-color: #ebebeb;
+  color: #8a0b0b;
+  font-size: 1.8rem;
+  font-family: NexaBold;
 }
 
 .bg-light {
-    background-color: #e7e7e7 !important;
+  background-color: #eaedf1 !important;
 }
 
 .system-title {
-    color: #8a0b0b;
-    font-size: 1.2rem;
-    margin-left: 8%;
-    font-weight: bolder;
+  color: #8a0b0b;
+  font-size: 1.2rem;
+  margin-left: 2%;
+  font-weight: bolder;
+}
+.logo-nav{
+  margin-bottom: -5%;
+  margin-top: -17%;
 }
 
-.text-nav {
-    color: #8a0b0b;
-    font-size: 1.8rem;
-    font-family: NexaBold;
+@media only screen and (max-width: 400px) and (min-width: 478px) {
+  .login-back {
+    position: absolute;
+    height: 125%;
+    width: 100%;
+    background-color: #069;
+  }
+
+  .login {
+    width: 80%;
+    margin-left: 10%;
+    margin-bottom: 20%;
+  }
+
 }
+
+
+
+@media only screen and (max-width: 479px) and (min-width: 320px) {
+  .system-title{
+    display: none;
+  }
+  .logo-nav{
+    display: none;
+  }
+}
+@media only screen and (max-width: 567px) and (min-width: 480px) {
+  .system-title{
+    display: none;
+  }
+  .logo-nav{
+    margin-top: 0%;
+  }
+}
+@media only screen and (max-width: 599px) and (min-width: 568px) {
+  .system-title{
+    display: none;
+  }
+  .logo-nav{
+    margin-top: 0%;
+  }
+
+}
+@media only screen and (max-width: 767px) and (min-width: 600px) {}
+@media only screen and (max-width: 799px) and (min-width: 768px) {}
+@media only screen and (max-width: 991px) and (min-width: 800px) {}
+@media only screen and (min-width: 1024px) {}
+@media only screen and (min-width: 1200px) {}
+@media only screen and (min-width: 1366px) {}
+@media only screen and (min-width: 1440px) {}
+@media only screen and (min-width: 1540px) {}
+@media only screen and (min-width: 1680px) {}
+@media only screen and (min-width: 1920px) {}
+@media only screen and (min-width: 2520px) {}
+

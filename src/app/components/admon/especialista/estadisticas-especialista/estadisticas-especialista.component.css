@@ -1,11 +1,3 @@
-.title {
-    color: #3c92ca;
-}
-
-.estadisticas {
-    margin-bottom: 20%;
-}
-
-.nw {
-    white-space: nowrap;
+.bg-primary{
+  background-color: #3c92ca !important;
 }

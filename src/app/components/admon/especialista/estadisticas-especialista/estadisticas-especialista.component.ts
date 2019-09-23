@@ -23,7 +23,7 @@ export class EstadisticasEspecialistaComponent implements OnInit {
   params: any = [];
   selectedItems = [];
 
-
+ loading:boolean = false;
   monthArray = [
     ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
     [true, true, true, true, true, true, true, true, true, true, true, true]
@@ -51,7 +51,8 @@ export class EstadisticasEspecialistaComponent implements OnInit {
   countryID: string;
   monthID: string;
   yearID: number;
-  loading: boolean;
+  datosImporta: number = 0;
+  datosExporta: number = 0;
 
   constructor(private shipment: ShipmentService,
               private subshipment: SubshipmentService,
@@ -268,6 +269,9 @@ export class EstadisticasEspecialistaComponent implements OnInit {
   }
 
   transacciones() {
+
+    this.datosExporta=0;
+    this.datosImporta=0;
     Swal.fire({
       allowOutsideClick: false,
       type: 'info',
@@ -281,6 +285,7 @@ export class EstadisticasEspecialistaComponent implements OnInit {
     console.log('Capítulo ' + this.chapterID);
     console.log('País ' + this.countryID);
     console.log('Mes ' + this.months);
+    console.log(this.months);
     console.log('Año ' + this.yearID);
     this.totalExporta = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
     this.totalImporta = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
@@ -297,16 +302,25 @@ export class EstadisticasEspecialistaComponent implements OnInit {
       .subscribe( ( data: any ) => {
         Swal.close();
         this.transactions = data;
+
         /*Suma de valores totales*/
         this.transactions.forEach(element => {
+
+          this.datosExporta = this.datosExporta + element.exports.length;
+          this.datosImporta = this.datosImporta + element.imports.length;
+
+
           element.exports.forEach(item => {
             this.totalExporta[0][item.month - 1] += item.price;
             this.totalExporta[1][item.month - 1] += item.weight;
           });
+
           element.imports.forEach(item => {
             this.totalImporta[0][item.month - 1] += item.price;
             this.totalImporta[1][item.month - 1] += item.weight;
           });
+
+
         });
         let i = 0;
         this.tempstatus.forEach(item => {
@@ -315,15 +329,8 @@ export class EstadisticasEspecialistaComponent implements OnInit {
         });
 
       });
+
     this.params = [];
-  //  console.log(this.transactions);
-  // this.a=  this.json2array(this.transactions);
-
-
-
-  //  a.forEach(element => {
-     //  console.log(element);
-    //  });
 
   }
 
