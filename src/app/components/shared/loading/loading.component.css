@@ -1,26 +1,27 @@
 body {
     height: 500px;
 }
+.loader-content{
+  position: absolute;
+  margin-left: 45%;
+  margin-top: 10%;
+}
 
 .loader {
+
     border: 16px solid #f3f3f3;
     border-radius: 50%;
     border-top: 16px solid #3498db;
     width: 120px;
-    margin-top: 7%;
     height: 120px;
-    margin-left: 47%;
+    /*margin-left: 47%;*/
     -webkit-animation: spin 2s linear infinite;
     /* Safari */
     animation: spin 2s linear infinite;
 }
 
-.row {
-    margin-right: 0px;
-}
-
-.col {
-    margin-bottom: 100%;
+.text-loading{
+  color:  #3c92ca;
 }
 
 

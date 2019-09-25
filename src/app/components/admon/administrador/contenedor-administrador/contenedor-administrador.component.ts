@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contenedor-administrador.component.css']
 })
 export class ContenedorAdminComponent implements OnInit {
-
+loading:boolean = false;
   constructor() { }
 
   ngOnInit() {
+    this.loading = true;
+    setTimeout(() => {
+      this.loading = false;
+    },2000);
   }
 
 }

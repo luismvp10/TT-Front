@@ -1,7 +1,8 @@
 <!--Nav bar-->
-<app-navbar></app-navbar>
+<app-navbar *ngIf="!loading"></app-navbar>
+<app-loading *ngIf="loading"></app-loading>
 
-<div class="container-fluid">
+<div class="container-fluid" *ngIf="!loading">
 
         <!--TABS-->
         <div class="container-fluid">
@@ -38,4 +39,4 @@
   <!--TABS-->
 </div>
 <!--Footer-->
-<app-footer></app-footer>
+<app-footer *ngIf="!loading"></app-footer>

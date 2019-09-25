@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contenedor-especialista.component.css']
 })
 export class ContenedorEspecialistaComponent implements OnInit {
-
+  loading:boolean = false;
   constructor() { }
 
   ngOnInit() {
+    this.loading = true;
+    setTimeout(() => {
+      this.loading = false;
+    },2000);
+
   }
 
 }
