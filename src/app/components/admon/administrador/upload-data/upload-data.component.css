@@ -1,3 +1,48 @@
 .upload {
     width: 20px;
 }
+
+.main-container {
+    margin-top: 40px;
+}
+
+
+/* Drop Zone */
+
+.drop-zone {
+    border: dotted 3px lightgray;
+    opacity: 0.5;
+    color: #666;
+    text-align: center;
+    height: 200px;
+}
+
+.file-over {
+    border: dotted 3px dodgerblue;
+}
+
+.table {
+    margin-top: 30px;
+}
+
+.text-green {
+    color: green
+}
+
+.loadingCenter {
+    text-align: center
+}
+
+.my-custom-scrollbar {
+    position: relative;
+    height: 500px;
+    overflow: auto;
+}
+
+.table-wrapper-scroll-y {
+    display: block;
+}
+
+.bg-guinda {
+    background-color: #3c92ca;
+}
