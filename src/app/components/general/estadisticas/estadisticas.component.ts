@@ -3,6 +3,7 @@ import {ShipmentService} from '../../../services/shipment/shipment.service';
 import {SubshipmentService} from '../../../services/subshipment/subshipment.service';
 import {SectionService} from '../../../services/section/section.service';
 import {TransactionService} from '../../../services/transaction/transaction.service';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-estadisticas',
@@ -114,6 +115,28 @@ export class EstadisticasComponent implements OnInit {
     return true;
   }
   transacciones(){
+
+    if(this.chapterID === undefined){
+
+      Swal.fire(
+        'No ha seleccionado valores',
+        'Seleccione un Capítulo ',
+        'warning'
+      );
+      return false;
+    }
+    
+
+    if(this.yearID ===undefined){
+
+      Swal.fire(
+        'No ha seleccionado valores',
+        'Seleccione un Año',
+        'warning'
+      );
+      return false;
+    }
+
     this.datosExporta=0;
     this.datosImporta=0;
     this.tempstatus = [true, true, true, true, true, true, true, true, true, true, true, true];
