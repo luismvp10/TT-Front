@@ -45,10 +45,13 @@ import { MonthService } from './services/month/month.service';
 import { ShipmentService } from './services/shipment/shipment.service';
 import { SubshipmentService } from './services/subshipment/subshipment.service';
 import { UserService } from './services/user/user.service';
+import { UploadService } from './services/upload/upload.service';
+
 
 // pipes
 import { Volumen } from './pipes/volumen.pipe';
 import { NotExistsResultsComponent } from './components/shared/resultados/not-exists-results/not-exists-results.component';
+import { NgDropFilesDirective } from './directives/ng-drop-files.directive';
 
 @NgModule({
   declarations: [
@@ -77,6 +80,7 @@ import { NotExistsResultsComponent } from './components/shared/resultados/not-ex
     LoadingSelectComponent,
     Volumen,
     NotExistsResultsComponent,
+    NgDropFilesDirective,
   ],
   imports: [
     BrowserModule,
@@ -102,6 +106,7 @@ import { NotExistsResultsComponent } from './components/shared/resultados/not-ex
     ShipmentService,
     SubshipmentService,
     UserService,
+    UploadService,
   ],
   bootstrap: [AppComponent]
 })

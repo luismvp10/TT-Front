@@ -29,12 +29,6 @@ export class LoginComponent implements OnInit {
   }
 
   login( forma: NgForm ) {
-    Swal.fire({
-      allowOutsideClick: false,
-      type: 'info',
-      text: 'Espere por favor...'
-    });
-    Swal.showLoading();
     this.user.login(this.usuario)
       .subscribe( (data: any) => {
         Swal.close();
