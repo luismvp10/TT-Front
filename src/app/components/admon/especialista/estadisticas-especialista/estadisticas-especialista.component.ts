@@ -5,6 +5,7 @@ import { SectionService } from '../../../../services/section/section.service';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import Swal from 'sweetalert2';
 import {Chart} from 'chart.js';
+import 'chartjs-plugin-zoom';
 import { TransactionService } from '../../../../services/transaction/transaction.service';
 import {empty, iif} from 'rxjs';
 import * as $ from 'jquery';
@@ -354,46 +355,98 @@ export class EstadisticasEspecialistaComponent implements OnInit {
 
 
     this.graficaExportaDolares = new Chart('graficaExportaDolares', {
-      type: 'line',
+      type: 'bar',
       data: {
         labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         datasets: this.datosExportaDolares,
       },
       options: {
+        responsive: true,
         title: {
           text: 'Exportaciones - valores en dólares',
           display: true
         },
         scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
+
+          yAxes: [
+            {
+              scaleLabel: {
+                display: true,
+                labelString: "value"
+              }
             }
-          }]
-        }
+          ]
+        },
+        plugins: {
+          zoom: {
+            pan: {
+              enabled: true,
+              mode: 'x'
+            },
+            zoom: {
+              enabled: true,
+              mode: 'x'
+            }
+          }
+        },
+
+
       }
+
+
+
     });
 
     /*Volumen exporta*/
     this.graficaExportaVolumen = new Chart('graficaExportaVolumen', {
-      type: 'line',
+      type: 'bar',
       data: {
         labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         datasets: this.datosExportaVolumen,
       },
       options: {
+        responsive: true,
         title: {
           text: 'Exportaciones - volumen',
           display: true
         },
         scales: {
+          xAxes: [
+            {
+              ticks: {
+                maxRotation: 0
+              }
+            }
+          ],
           yAxes: [{
             ticks: {
               beginAtZero: true
             }
           }]
+        },
+
+
+
+      },
+      plugins: {
+        zoom: {
+          pan: {
+            enabled: true,
+            mode: 'xy',
+            speed: 10,
+            threshold: 10
+          },
+          zoom: {
+            enabled: true,
+            drag: false,
+            mode: 'xy',
+            limits: {
+              max: 10,
+              min: 0.5
+            }
+          },
         }
-      }
+      },
     });
 
 
