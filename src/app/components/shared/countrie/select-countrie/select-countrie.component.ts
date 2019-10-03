@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CountrieService } from '../../../../services/countrie/countrie.service';
-import  Swal  from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-select-countrie',
@@ -9,35 +9,8 @@ import  Swal  from 'sweetalert2';
   styleUrls: ['./select-countrie.component.css']
 })
 export class SelectCountrieComponent implements OnInit {
-  countries: any[] = [];
-
-  constructor( private countrie: CountrieService) {
-
-
-    this.countrie.getCountries()
-        .subscribe( (data: any) => {
-          this.countries = data;
-
-        }, ( errorService ) => {
-
-          if ( errorService.status === 0) {
-
-            const Toast = Swal.mixin({
-              toast: true,
-              position: 'top-end',
-              showConfirmButton: false,
-              timer: 3000
-            });
-
-            Toast.fire({
-              type: 'warning',
-              title: 'Error de conexión con el servidor'
-            });
-
-          }
-
-        });
-
+  @Input() countries: any[];
+  constructor() {
   }
 
   ngOnInit() {

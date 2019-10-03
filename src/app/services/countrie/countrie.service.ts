@@ -17,8 +17,18 @@ export class CountrieService {
 
 
   getCountries() {
-   return this.http.get(this.env.URI + '/countries/countries',
+    return this.http.get(this.env.URI + '/countries/countries',
     { headers: this.httpHeaders });
 
+  }
+
+  getCountriesByOperation(operation, year) {
+    if ( year !== undefined) {
+      return this.http.get(this.env.URI + '/countries/country/' + operation + '/year/' + year,
+    { headers: this.httpHeaders });
+    } else {
+      return this.http.get(this.env.URI + '/countries/country/' + operation,
+      { headers: this.httpHeaders });
+    }
   }
 }

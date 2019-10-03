@@ -9,6 +9,7 @@ import { TransactionService } from '../../../../services/transaction/transaction
 import { iif } from 'rxjs';
 import * as $ from 'jquery';
 import {SelectMonthComponent} from '../../../shared/month/select-month/select-month.component';
+import { CountrieService } from '../../../../services/countrie/countrie.service';
 
 @Component({
   selector: 'app-estadisticas-especialista',
@@ -41,9 +42,7 @@ export class EstadisticasEspecialistaComponent implements OnInit {
   sections: any = [];
   transactions: any = [];
   items: any = [];
-
   months = [];
-
   chapterID: number;
   shipmentID: number;
   subShipmentID: number;
@@ -53,11 +52,13 @@ export class EstadisticasEspecialistaComponent implements OnInit {
   yearID: number;
   datosImporta: number = 0;
   datosExporta: number = 0;
-
+  countries: any = [];
+  operation: any;
   constructor(private shipment: ShipmentService,
               private subshipment: SubshipmentService,
               private section: SectionService,
-              private transaction: TransactionService) {
+              private transaction: TransactionService,
+              private country: CountrieService) {
 
 
   }
@@ -191,6 +192,9 @@ export class EstadisticasEspecialistaComponent implements OnInit {
   changeChapter(id_chapter) {
     this.subshipments = [];
     this.sections = [];
+    this.shipmentID = undefined ;
+    this.subShipmentID = undefined ;
+    this.sectionID = undefined ;
     console.log('Changed  Chapter');
     console.log(id_chapter);
     this.chapterID = id_chapter;
@@ -199,10 +203,17 @@ export class EstadisticasEspecialistaComponent implements OnInit {
         console.log(data);
         this.shipments = data;
     });
+    this.operation = id_chapter;
+    this.country.getCountriesByOperation(this.operation, this.yearID).subscribe(
+      (data: any) => {
+        this.countries = data;
+    });
   }
 
   changeShipment(id_shipment) {
     this.sections = [];
+    this.subShipmentID = undefined ;
+    this.sectionID = undefined ;
     console.log('Changed  Shipment');
     console.log(id_shipment);
     this.shipmentID = id_shipment;
@@ -211,9 +222,15 @@ export class EstadisticasEspecialistaComponent implements OnInit {
         console.log(data);
         this.subshipments = data;
       });
+    this.operation = id_shipment;
+    this.country.getCountriesByOperation(this.operation, this.yearID).subscribe(
+      (data: any) => {
+        this.countries = data;
+    });
   }
 
   changesubShipment(id_subShipment) {
+    this.sectionID = undefined ;
     console.log('Changed  Subshipment');
     console.log(id_subShipment);
     this.subShipmentID = id_subShipment;
@@ -222,12 +239,22 @@ export class EstadisticasEspecialistaComponent implements OnInit {
         console.log(data);
         this.sections = data;
       });
+    this.operation = id_subShipment;
+    this.country.getCountriesByOperation(this.operation, this.yearID).subscribe(
+      (data: any) => {
+        this.countries = data;
+    });
   }
 
   changeSection(id_section) {
     console.log('Changed  Section');
     console.log(id_section);
     this.sectionID = id_section;
+    this.operation = id_section;
+    this.country.getCountriesByOperation(this.operation, this.yearID).subscribe(
+      (data: any) => {
+        this.countries = data;
+    });
   }
 
 
@@ -256,6 +283,12 @@ export class EstadisticasEspecialistaComponent implements OnInit {
     console.log('Changed  Year');
     console.log(id_year);
     this.yearID = id_year;
+    if (this.operation !== undefined) {
+      this.country.getCountriesByOperation(this.operation, this.yearID).subscribe(
+        (data: any) => {
+          this.countries = data;
+      });
+    }
   }
 
   // Verifica que un pais tenga transacciones en los campos imports y exports

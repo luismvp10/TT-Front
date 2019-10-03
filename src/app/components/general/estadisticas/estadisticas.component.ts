@@ -3,6 +3,7 @@ import {ShipmentService} from '../../../services/shipment/shipment.service';
 import {SubshipmentService} from '../../../services/subshipment/subshipment.service';
 import {SectionService} from '../../../services/section/section.service';
 import {TransactionService} from '../../../services/transaction/transaction.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-estadisticas',
@@ -116,6 +117,12 @@ export class EstadisticasComponent implements OnInit {
   transacciones(){
     this.datosExporta=0;
     this.datosImporta=0;
+    Swal.fire({
+      allowOutsideClick: false,
+      type: 'info',
+      text: 'Espere por favor...'
+    });
+    Swal.showLoading();
     this.tempstatus = [true, true, true, true, true, true, true, true, true, true, true, true];
     console.log("Información para la búsqueda");
     console.log("Sección " + this.sectionID);
@@ -141,7 +148,7 @@ export class EstadisticasComponent implements OnInit {
     this.transaction.getTransactions(this.params)
       .subscribe( ( data: any) => {
         this.transactions = data;
-
+        Swal.close();
         /*Suma de valores totales*/
         this.transactions.forEach(element => {
 

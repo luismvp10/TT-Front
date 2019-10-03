@@ -16,7 +16,10 @@ label {
     margin-left: -2.5rem !important;
 }
 
-.bg-primary{
-  background-color: #3c92ca !important;
+.bg-primary {
+    background-color: #3c92ca !important;
 }
 
+.nw {
+    white-space: nowrap;
+}
