@@ -76,3 +76,14 @@ body {
   margin-bottom: 3px !important;
   border-radius: 5px !important;
 }
+
+
+.multiselect-dropdown[_ngcontent-c15]{
+  width: 109% !important;
+  margin-left: -4% !important;
+  position: relative;
+  font-size: inherit;
+  font-family: inherit;
+  margin-bottom: -2%;
+}
+

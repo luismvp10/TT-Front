@@ -1,3 +1,6 @@
 *{
   background-color: #FFFFFF;
 }
+select.form-control[multiple], select.form-control[size]{
+  height: 207px;
+}
