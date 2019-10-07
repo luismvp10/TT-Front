@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  loading:boolean = false;
   usuario = {
     correo: '',
     password: ''
@@ -22,6 +22,12 @@ export class LoginComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
+
+    this.loading = true;
+    setTimeout(() => {
+      this.loading = false;
+    },2000);
+
     if ( localStorage.getItem('correo') ) {
       this.usuario.correo = localStorage.getItem('correo');
       this.recordarme = true;

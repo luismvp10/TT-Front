@@ -115,6 +115,28 @@ export class EstadisticasComponent implements OnInit {
     return true;
   }
   transacciones(){
+
+    if(this.chapterID === undefined){
+
+      Swal.fire(
+        'No ha seleccionado valores',
+        'Seleccione un Capítulo ',
+        'warning'
+      );
+      return false;
+    }
+    
+
+    if(this.yearID ===undefined){
+
+      Swal.fire(
+        'No ha seleccionado valores',
+        'Seleccione un Año',
+        'warning'
+      );
+      return false;
+    }
+
     this.datosExporta=0;
     this.datosImporta=0;
     Swal.fire({

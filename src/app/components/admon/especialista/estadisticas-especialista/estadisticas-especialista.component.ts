@@ -5,8 +5,9 @@ import { SectionService } from '../../../../services/section/section.service';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import Swal from 'sweetalert2';
 import {Chart} from 'chart.js';
+import 'chartjs-plugin-zoom';
 import { TransactionService } from '../../../../services/transaction/transaction.service';
-import { iif } from 'rxjs';
+import {empty, iif} from 'rxjs';
 import * as $ from 'jquery';
 import {SelectMonthComponent} from '../../../shared/month/select-month/select-month.component';
 import { CountrieService } from '../../../../services/countrie/countrie.service';
@@ -17,10 +18,16 @@ import { CountrieService } from '../../../../services/countrie/countrie.service'
   styleUrls: ['./estadisticas-especialista.component.css']
 })
 export class EstadisticasEspecialistaComponent implements OnInit {
-  title = 'Graphics with Chart.js';
-  LineChart = [];
-  BarChart = [];
-  PieChart = [];
+  graficaExportaDolares = [];
+  graficaExportaVolumen = [];
+  graficaImportaDolares = [];
+  graficaImportaVolumen = [];
+
+
+  datosExportaDolares = [];
+  datosExportaVolumen = [];
+  datosImportaDolares = [];
+  datosImportaVolumen = [];
   params: any = [];
   selectedItems = [];
 
@@ -54,6 +61,10 @@ export class EstadisticasEspecialistaComponent implements OnInit {
   datosExporta: number = 0;
   countries: any = [];
   operation: any;
+
+
+
+
   constructor(private shipment: ShipmentService,
               private subshipment: SubshipmentService,
               private section: SectionService,
@@ -63,130 +74,12 @@ export class EstadisticasEspecialistaComponent implements OnInit {
 
   }
 
+
   ngOnInit() {
 
-    // $(document).ready(function(){
-    //   $('#basic').multiselect({
-    //     templates: {
-    //       li: '<li><a href="javascript:void(0);"><label class="pl-2"></label></a></li>'
-    //     }
-    //   });
-    // });
 
 
 
-
-    // this.LineChart = new Chart('lineChart', {
-    //   type: 'line',
-    //   data: {
-    //   labels: [ 'Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-    //   datasets: [{
-    //     label: 'Number of Items Sold in Months',
-    //     data: [9, 7 , 3, 5, 2, 10, 15, 16, 19, 3, 1, 9],
-    //     fill: false,
-    //     lineTension: 0.2,
-    //     borderColor: 'red',
-    //     borderWidth: 1
-    //   }]
-    //   },
-    //   options: {
-    //     title: {
-    //       text: 'Line Chart',
-    //       display: true
-    //     },
-    //     scales: {
-    //       yAxes: [{
-    //         ticks: {
-    //           beginAtZero: true
-    //         }
-    //       }]
-    //     }
-    //   }
-    // });
-
-// Bar chart:
-//     this.BarChart = new Chart('barChart', {
-//       type: 'bar',
-//       data: {
-//         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-//         datasets: [{
-//           label: '# of Votes',
-//           data: [9, 7, 3, 5, 2, 10],
-//           backgroundColor: [
-//             'rgba(255, 99, 132, 0.2)',
-//             'rgba(54, 162, 235, 0.2)',
-//             'rgba(255, 206, 86, 0.2)',
-//             'rgba(75, 192, 192, 0.2)',
-//             'rgba(153, 102, 255, 0.2)',
-//             'rgba(255, 159, 64, 0.2)'
-//           ],
-//           borderColor: [
-//             'rgba(255,99,132,1)',
-//             'rgba(54, 162, 235, 1)',
-//             'rgba(255, 206, 86, 1)',
-//             'rgba(75, 192, 192, 1)',
-//             'rgba(153, 102, 255, 1)',
-//             'rgba(255, 159, 64, 1)'
-//           ],
-//           borderWidth: 1
-//         }]
-//       },
-//       options: {
-//         title: {
-//           text: 'Bar Chart',
-//           display: true
-//         },
-//         scales: {
-//           yAxes: [{
-//             ticks: {
-//               beginAtZero: true
-//              }
-//           }]
-//         }
-//       }
-//     });
-
-  // pie chart:
-  //   this.PieChart = new Chart('pieChart', {
-  //     type: 'pie',
-  //     data: {
-  //       labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-  //       datasets: [{
-  //         label: '# of Votes',
-  //         data: [9, 7 , 3, 5, 2, 10],
-  //         backgroundColor: [
-  //           'rgba(255, 99, 132, 0.2)',
-  //           'rgba(54, 162, 235, 0.2)',
-  //           'rgba(255, 206, 86, 0.2)',
-  //           'rgba(75, 192, 192, 0.2)',
-  //           'rgba(153, 102, 255, 0.2)',
-  //           'rgba(255, 159, 64, 0.2)'
-  //         ],
-  //         borderColor: [
-  //           'rgba(255,99,132,1)',
-  //           'rgba(54, 162, 235, 1)',
-  //           'rgba(255, 206, 86, 1)',
-  //           'rgba(75, 192, 192, 1)',
-  //           'rgba(153, 102, 255, 1)',
-  //           'rgba(255, 159, 64, 1)'
-  //         ],
-  //         borderWidth: 1
-  //       }]
-  //     },
-  //     options: {
-  //       title: {
-  //         text: 'Bar Chart',
-  //         display: true
-  //       },
-  //       scales: {
-  //         yAxes: [{
-  //           ticks: {
-  //             beginAtZero: true
-  //           }
-  //         }]
-  //       }
-  //     }
-  //   });
   }
 
   changeChapter(id_chapter) {
@@ -302,6 +195,52 @@ export class EstadisticasEspecialistaComponent implements OnInit {
   }
 
   transacciones() {
+  if(this.chapterID === undefined){
+
+    Swal.fire(
+      'No ha seleccionado valores',
+      'Seleccione un Capítulo ',
+      'warning'
+    );
+    return false;
+  }
+
+  if(this.months.length === 0){
+
+    Swal.fire(
+      'No ha seleccionado valores',
+      'Seleccione un Mes',
+      'warning'
+    );
+    return false;
+  }
+
+
+
+    if(this.yearID ===undefined){
+
+      Swal.fire(
+        'No ha seleccionado valores',
+        'Seleccione un Año',
+        'warning'
+      );
+      return false;
+    }
+
+    if(this.countryID===undefined){
+
+      Swal.fire(
+        'No ha seleccionado valores',
+        'Seleccione un País',
+        'warning'
+      );
+      return false;
+    }
+
+
+
+
+
 
     this.datosExporta=0;
     this.datosImporta=0;
@@ -322,6 +261,16 @@ export class EstadisticasEspecialistaComponent implements OnInit {
     console.log('Año ' + this.yearID);
     this.totalExporta = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
     this.totalImporta = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
+    this.graficaExportaDolares = [];
+    this.graficaExportaVolumen = [];
+    this.graficaImportaDolares = [];
+    this.graficaImportaVolumen = [];
+
+
+    this.datosExportaDolares = [];
+    this.datosExportaVolumen = [];
+    this.datosImportaDolares = [];
+    this.datosImportaVolumen = [];
     this.params.push({
       section: this.sectionID,
       subShipment: this.subShipmentID,
@@ -335,6 +284,8 @@ export class EstadisticasEspecialistaComponent implements OnInit {
       .subscribe( ( data: any ) => {
         Swal.close();
         this.transactions = data;
+
+        this.graficas(this.transactions);
 
         /*Suma de valores totales*/
         this.transactions.forEach(element => {
@@ -375,5 +326,216 @@ export class EstadisticasEspecialistaComponent implements OnInit {
       type: 'error',
       confirmButtonText: 'Cool'
     });
+  }
+
+  graficas(transactions) {
+    // console.log(this.getRandomColor());
+    transactions.forEach(element => {
+ const auxExportaDolares = [];
+ const auxExportaVolumen = [];
+ const  auxImportaDolares = [];
+ const  auxImportaVolumen = [];
+
+      element.exports.forEach(item => {
+       auxExportaDolares.push(item.price);
+       auxExportaVolumen.push(item.weight);
+      });
+
+      element.imports.forEach(item => {
+        auxImportaDolares.push(item.price);
+        auxImportaVolumen.push(item.weight);
+      });
+
+      this.datosExportaDolares.push({
+          label:  element.country,
+          data: auxExportaDolares,
+          fill: false,
+          lineTension: 0.5,
+          borderColor: this.getRandomColor(),
+          borderWidth: 1
+      });
+
+      this.datosExportaVolumen.push({
+        label:  element.country,
+        data: auxExportaVolumen,
+        fill: false,
+        lineTension: 0.5,
+        borderColor: this.getRandomColor(),
+        borderWidth: 1
+      });
+
+
+
+      this.datosImportaDolares.push({
+        label:  element.country,
+        data: auxImportaDolares,
+        fill: false,
+        lineTension: 0.5,
+        borderColor: this.getRandomColor(),
+        borderWidth: 1
+      });
+
+      this.datosImportaVolumen.push({
+        label:  element.country,
+        data: auxImportaVolumen,
+        fill: false,
+        lineTension: 0.5,
+        borderColor: this.getRandomColor(),
+        borderWidth: 1
+      });
+
+    });
+
+
+
+    this.graficaExportaDolares = new Chart('graficaExportaDolares', {
+      type: 'bar',
+      data: {
+        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        datasets: this.datosExportaDolares,
+      },
+      options: {
+        responsive: true,
+        title: {
+          text: 'Exportaciones - valores en dólares',
+          display: true
+        },
+        scales: {
+
+          yAxes: [
+            {
+              scaleLabel: {
+                display: true,
+                labelString: "value"
+              }
+            }
+          ]
+        },
+        plugins: {
+          zoom: {
+            pan: {
+              enabled: true,
+              mode: 'x'
+            },
+            zoom: {
+              enabled: true,
+              mode: 'x'
+            }
+          }
+        },
+
+
+      }
+
+
+
+    });
+
+    /*Volumen exporta*/
+    this.graficaExportaVolumen = new Chart('graficaExportaVolumen', {
+      type: 'bar',
+      data: {
+        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        datasets: this.datosExportaVolumen,
+      },
+      options: {
+        responsive: true,
+        title: {
+          text: 'Exportaciones - volumen',
+          display: true
+        },
+        scales: {
+          xAxes: [
+            {
+              ticks: {
+                maxRotation: 0
+              }
+            }
+          ],
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        },
+
+
+
+      },
+      plugins: {
+        zoom: {
+          pan: {
+            enabled: true,
+            mode: 'xy',
+            speed: 10,
+            threshold: 10
+          },
+          zoom: {
+            enabled: true,
+            drag: false,
+            mode: 'xy',
+            limits: {
+              max: 10,
+              min: 0.5
+            }
+          },
+        }
+      },
+    });
+
+
+    /*Importaciones*/
+    this.graficaImportaDolares = new Chart('graficaImportaDolares', {
+      type: 'line',
+      data: {
+        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        datasets: this.datosImportaDolares,
+      },
+      options: {
+        title: {
+          text: 'Importaciones - valores en dólares',
+          display: true
+        },
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+    });
+
+    /*Volumen importa*/
+    this.graficaImportaVolumen = new Chart('graficaImportaVolumen', {
+      type: 'line',
+      data: {
+        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        datasets: this.datosImportaVolumen,
+      },
+      options: {
+        title: {
+          text: 'Importaciones - volumen',
+          display: true
+        },
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+    });
+
+  }
+
+ getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
   }
 }
