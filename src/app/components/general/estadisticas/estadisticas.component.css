@@ -19,4 +19,6 @@ label {
 .bg-primary{
   background-color: #3c92ca !important;
 }
-
+hr{
+  border-top: 1px solid #3c92ca;
+}

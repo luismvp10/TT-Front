@@ -302,6 +302,8 @@ export class EstadisticasEspecialistaComponent implements OnInit {
  const  auxImportaDolares = [];
  const  auxImportaVolumen = [];
 
+ const colorBack = this.getRandomColor();
+
       element.exports.forEach(item => {
        auxExportaDolares.push(item.price);
        auxExportaVolumen.push(item.weight);
@@ -317,7 +319,8 @@ export class EstadisticasEspecialistaComponent implements OnInit {
           data: auxExportaDolares,
           fill: false,
           lineTension: 0.5,
-          borderColor: this.getRandomColor(),
+          borderColor: colorBack,
+          backgroundColor: colorBack,
           borderWidth: 1
       });
 
@@ -326,7 +329,8 @@ export class EstadisticasEspecialistaComponent implements OnInit {
         data: auxExportaVolumen,
         fill: false,
         lineTension: 0.5,
-        borderColor: this.getRandomColor(),
+        borderColor: colorBack,
+        backgroundColor: colorBack,
         borderWidth: 1
       });
 
@@ -337,7 +341,8 @@ export class EstadisticasEspecialistaComponent implements OnInit {
         data: auxImportaDolares,
         fill: false,
         lineTension: 0.5,
-        borderColor: this.getRandomColor(),
+        borderColor: colorBack,
+        backgroundColor: colorBack,
         borderWidth: 1
       });
 
@@ -346,7 +351,8 @@ export class EstadisticasEspecialistaComponent implements OnInit {
         data: auxImportaVolumen,
         fill: false,
         lineTension: 0.5,
-        borderColor: this.getRandomColor(),
+        borderColor: colorBack,
+        backgroundColor: colorBack,
         borderWidth: 1
       });
 
@@ -368,14 +374,21 @@ export class EstadisticasEspecialistaComponent implements OnInit {
         },
         scales: {
 
-          yAxes: [
+          xAxes: [
             {
-              scaleLabel: {
-                display: true,
-                labelString: "value"
-              }
+              ticks: {
+                maxRotation: 0
+              },
+              stacked: true
+
             }
-          ]
+          ],
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            },
+            stacked: true
+          }]
         },
         plugins: {
           zoom: {
@@ -415,13 +428,16 @@ export class EstadisticasEspecialistaComponent implements OnInit {
             {
               ticks: {
                 maxRotation: 0
-              }
+              },
+              stacked: true
+
             }
           ],
           yAxes: [{
             ticks: {
               beginAtZero: true
-            }
+            },
+            stacked: true
           }]
         },
 

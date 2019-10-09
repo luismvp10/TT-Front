@@ -54,7 +54,6 @@
 
 
 
-
 <!--            </div>-->
 
           </div><!--Selects-->
@@ -94,6 +93,7 @@
                                           <ng-container *ngFor="let month of monthArray[0]; let i = index">
                                               <th *ngIf="monthArray[1][i]" scope="col">{{ month }}</th>
                                           </ng-container>
+                                        <th scope="col">Total x País</th>
                                       </tr>
                                   </thead>
                                   <tbody>
@@ -102,10 +102,13 @@
                                           <td *ngFor="let it of item.exports">{{it.price | currency }}</td>
                                       </tr>
                                       <tr class="container-fluid">
-                                          <th scope="row" class="text-white bg-primary">Total</th>
+                                          <th scope="row" class="text-white bg-primary">Total Mensual</th>
                                           <ng-container *ngFor="let tot of totalExporta[0]; let i = index">
                                               <td class="text-white bg-primary" *ngIf="monthArray[1][i]">{{ tot | currency }}</td>
                                           </ng-container>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row" class="text-white bg-primary">Total</th>
                                       </tr>
                                   </tbody>
                               </table>
@@ -135,6 +138,7 @@
                                                 <ng-container *ngFor="let month of monthArray[0]; let i = index">
                                                     <th *ngIf="monthArray[1][i]" scope="col">{{ month }}</th>
                                                 </ng-container>
+                                              <th scope="col">Total x País</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -143,10 +147,13 @@
                                                 <td *ngFor="let it of item.exports" class="nw">{{it.weight | Volumen:'.2' }}</td>
                                             </tr>
                                             <tr class="container-fluid">
-                                                <th scope="row" class="text-white bg-primary">Total</th>
+                                                <th scope="row" class="text-white bg-primary">Total Mensual</th>
                                                 <ng-container *ngFor="let tot of totalExporta[1]; let i = index">
                                                     <td class="text-white bg-primary nw" *ngIf="monthArray[1][i]">{{ tot | Volumen:'.2' }}</td>
                                                 </ng-container>
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" class="text-white bg-primary">Total</th>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -182,6 +189,7 @@
                                                 <ng-container *ngFor="let month of monthArray[0]; let i = index">
                                                     <th *ngIf="monthArray[1][i]" scope="col">{{ month }}</th>
                                                 </ng-container>
+                                              <th scope="col">Total x País</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -190,11 +198,15 @@
                                                 <td *ngFor="let it of item.imports">{{it.price | currency }}</td>
                                             </tr>
                                             <tr class="container-fluid">
-                                                <th scope="row" class="text-white bg-primary">Total</th>
+                                                <th scope="row" class="text-white bg-primary">Total Mensual</th>
                                                 <ng-container *ngFor="let tot of totalImporta[0]; let i = index">
                                                     <td class="text-white bg-primary" *ngIf="monthArray[1][i]">{{ tot | currency }}</td>
                                                 </ng-container>
                                             </tr>
+                                            <tr>
+                                              <th scope="row" class="text-white bg-primary">Total</th>
+                                            </tr>
+
                                         </tbody>
                                     </table>
 
@@ -224,6 +236,7 @@
                                                 <ng-container *ngFor="let month of monthArray[0]; let i = index">
                                                     <th *ngIf="monthArray[1][i]" scope="col">{{ month }}</th>
                                                 </ng-container>
+                                              <th scope="col">Total x País</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -232,10 +245,13 @@
                                                 <td *ngFor="let it of item.imports" class="nw">{{it.weight | Volumen:'.2' }}</td>
                                             </tr>
                                             <tr class="container-fluid">
-                                                <th scope="row" class="text-white bg-primary">Total</th>
+                                                <th scope="row" class="text-white bg-primary">Total Mensual</th>
                                                 <ng-container *ngFor="let tot of totalImporta[1]; let i = index">
                                                     <td class="text-white bg-primary" *ngIf="monthArray[1][i]">{{ tot | Volumen:'.2' }}</td>
                                                 </ng-container>
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" class="text-white bg-primary">Total</th>
                                             </tr>
                                         </tbody>
                                     </table>
