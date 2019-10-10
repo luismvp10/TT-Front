@@ -10,6 +10,15 @@
     color: #3c92ca;
 }
 
+.loadingCenter {
+    text-align: center
+}
+
+.column {
+    float: left;
+    width: 50%;
+}
+
 
 /*.graficas{*/
 

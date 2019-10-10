@@ -48,4 +48,12 @@ export class TransactionService {
     }
     return this.http.get(url + '/year/' + year, {headers: this.HttpHeaders});
   }
+
+  getPrediction(country, operation, kind) {
+    let url = this.env.URI  + '/transactions/prediction/operation/' + operation;
+    if (country !== 'Todos') {
+      url += '/country/' + country;
+    }
+    return this.http.get(url + '/kind/' + kind , { responseType: 'blob' });
+  }
 }

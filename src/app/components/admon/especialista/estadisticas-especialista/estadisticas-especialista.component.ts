@@ -31,7 +31,7 @@ export class EstadisticasEspecialistaComponent implements OnInit {
   params: any = [];
   selectedItems = [];
 
- loading:boolean = false;
+ loading = false;
   monthArray = [
     ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
     [true, true, true, true, true, true, true, true, true, true, true, true]
@@ -61,8 +61,16 @@ export class EstadisticasEspecialistaComponent implements OnInit {
   datosExporta: number = 0;
   countries: any = [];
   operation: any;
-
-
+  predCountry: string;
+  exportImage: any;
+  importImage: any;
+  estatusPrediction = {
+    import: false,
+    export: false,
+    nullexport: false,
+    nullimport: false,
+    error: false
+  };
 
 
   constructor(private shipment: ShipmentService,
@@ -194,8 +202,64 @@ export class EstadisticasEspecialistaComponent implements OnInit {
       return true;
   }
 
+createImageFromBlob(image: Blob, kind) {
+   const reader = new FileReader();
+   reader.addEventListener('load', () => {
+      if ( kind === 1) {
+        this.importImage = reader.result;
+      } else {
+        this.exportImage = reader.result;
+      }
+   }, false);
+
+   if (image) {
+      reader.readAsDataURL(image);
+   }
+   if ( kind === 1) {
+     this.estatusPrediction.import = true;
+   } else {
+    this.estatusPrediction.export = true;
+   }
+}
+
+  predecir(type) {
+    console.log(this.predCountry);
+    if (this.predCountry === undefined || this.predCountry === '-- Seleccione un País --') {
+      this.estatusPrediction.error = true;
+      return;
+    }
+    this.estatusPrediction.error = false;
+    if (type === 1) {
+      this.estatusPrediction.import = false;
+      this.estatusPrediction.nullimport = false;
+    } else {
+      this.estatusPrediction.export = false;
+      this.estatusPrediction.nullexport = false;
+    }
+    this.transaction.getPrediction(this.predCountry, this.operation, type).subscribe(data => {
+      this.createImageFromBlob(data, type);
+      if (type === 2) {
+        this.predecir(1);
+      }
+    }, error => {
+      if (type === 1) {
+        this.estatusPrediction.nullimport = true;
+      } else {
+        this.estatusPrediction.nullexport = true;
+      }
+    });
+  }
+
+  resetEstatus() {
+    this.estatusPrediction.export = false;
+    this.estatusPrediction.import = false;
+    this.estatusPrediction.nullexport = false;
+    this.estatusPrediction.nullimport = false;
+    this.estatusPrediction.error = false;
+  }
+
   transacciones() {
-  if(this.chapterID === undefined){
+  if (this.chapterID === undefined) {
 
     Swal.fire(
       'No ha seleccionado valores',
@@ -205,7 +269,7 @@ export class EstadisticasEspecialistaComponent implements OnInit {
     return false;
   }
 
-  if(this.months.length === 0){
+  if(this.months.length === 0) {
 
     Swal.fire(
       'No ha seleccionado valores',
@@ -217,104 +281,97 @@ export class EstadisticasEspecialistaComponent implements OnInit {
 
 
 
-    if(this.yearID ===undefined){
+  if (this.yearID === undefined || this.yearID === -1) {
+    Swal.fire(
+      'No ha seleccionado valores',
+      'Seleccione un Año',
+      'warning'
+    );
+    return false;
+  }
 
-      Swal.fire(
-        'No ha seleccionado valores',
-        'Seleccione un Año',
-        'warning'
-      );
-      return false;
-    }
+  if (this.countryID === undefined || this.countryID === '-1') {
 
-    if(this.countryID===undefined){
-
-      Swal.fire(
-        'No ha seleccionado valores',
-        'Seleccione un País',
-        'warning'
-      );
-      return false;
-    }
-
-
-
-
-
-
-    this.datosExporta=0;
-    this.datosImporta=0;
-    Swal.fire({
-      allowOutsideClick: false,
-      type: 'info',
-      text: 'Espere por favor...'
-    });
-    Swal.showLoading();
-    console.log('Información para la búsqueda');
-    console.log('Sección ' + this.sectionID);
-    console.log('Subpartida ' + this.subShipmentID);
-    console.log('Partida ' + this.shipmentID);
-    console.log('Capítulo ' + this.chapterID);
-    console.log('País ' + this.countryID);
-    console.log('Mes ' + this.months);
-    console.log(this.months);
-    console.log('Año ' + this.yearID);
-    this.totalExporta = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
-    this.totalImporta = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
-    this.graficaExportaDolares = [];
-    this.graficaExportaVolumen = [];
-    this.graficaImportaDolares = [];
-    this.graficaImportaVolumen = [];
+    Swal.fire(
+      'No ha seleccionado valores',
+      'Seleccione un País',
+      'warning'
+    );
+    return false;
+  }
+  this.datosExporta = 0;
+  this.datosImporta = 0;
+  Swal.fire({
+    allowOutsideClick: false,
+    type: 'info',
+    text: 'Espere por favor...'
+  });
+  Swal.showLoading();
+  console.log('Información para la búsqueda');
+  console.log('Sección ' + this.sectionID);
+  console.log('Subpartida ' + this.subShipmentID);
+  console.log('Partida ' + this.shipmentID);
+  console.log('Capítulo ' + this.chapterID);
+  console.log('País ' + this.countryID);
+  console.log('Mes ' + this.months);
+  console.log(this.months);
+  console.log('Año ' + this.yearID);
+  this.totalExporta = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
+  this.totalImporta = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
+  this.graficaExportaDolares = [];
+  this.graficaExportaVolumen = [];
+  this.graficaImportaDolares = [];
+  this.graficaImportaVolumen = [];
 
 
-    this.datosExportaDolares = [];
-    this.datosExportaVolumen = [];
-    this.datosImportaDolares = [];
-    this.datosImportaVolumen = [];
-    this.params.push({
-      section: this.sectionID,
-      subShipment: this.subShipmentID,
-      shipment: this.shipmentID,
-      chapter: this.chapterID,
-      month: this.months,
-      year: this.yearID,
-      country: this.countryID
-    });
-    this.transaction.getTransactions(this.params)
-      .subscribe( ( data: any ) => {
-        Swal.close();
-        this.transactions = data;
+  this.datosExportaDolares = [];
+  this.datosExportaVolumen = [];
+  this.datosImportaDolares = [];
+  this.datosImportaVolumen = [];
+  this.params.push({
+    section: this.sectionID,
+    subShipment: this.subShipmentID,
+    shipment: this.shipmentID,
+    chapter: this.chapterID,
+    month: this.months,
+    year: this.yearID,
+    country: this.countryID
+  });
+  this.transaction.getTransactions(this.params)
+    .subscribe( ( data: any ) => {
+      Swal.close();
+      this.transactions = data;
 
-        this.graficas(this.transactions);
+      this.graficas(this.transactions);
 
-        /*Suma de valores totales*/
-        this.transactions.forEach(element => {
+      /*Suma de valores totales*/
+      this.transactions.forEach(element => {
 
-          this.datosExporta = this.datosExporta + element.exports.length;
-          this.datosImporta = this.datosImporta + element.imports.length;
-
-
-          element.exports.forEach(item => {
-            this.totalExporta[0][item.month - 1] += item.price;
-            this.totalExporta[1][item.month - 1] += item.weight;
-          });
-
-          element.imports.forEach(item => {
-            this.totalImporta[0][item.month - 1] += item.price;
-            this.totalImporta[1][item.month - 1] += item.weight;
-          });
+        this.datosExporta = this.datosExporta + element.exports.length;
+        this.datosImporta = this.datosImporta + element.imports.length;
 
 
+        element.exports.forEach(item => {
+          this.totalExporta[0][item.month - 1] += item.price;
+          this.totalExporta[1][item.month - 1] += item.weight;
         });
-        let i = 0;
-        this.tempstatus.forEach(item => {
-          this.monthArray[1][i] = item;
-          i++;
+
+        element.imports.forEach(item => {
+          this.totalImporta[0][item.month - 1] += item.price;
+          this.totalImporta[1][item.month - 1] += item.weight;
         });
+
 
       });
+      let i = 0;
+      this.tempstatus.forEach(item => {
+        this.monthArray[1][i] = item;
+        i++;
+      });
 
-    this.params = [];
+    });
+
+  this.params = [];
 
   }
 
@@ -331,10 +388,10 @@ export class EstadisticasEspecialistaComponent implements OnInit {
   graficas(transactions) {
     // console.log(this.getRandomColor());
     transactions.forEach(element => {
- const auxExportaDolares = [];
- const auxExportaVolumen = [];
- const  auxImportaDolares = [];
- const  auxImportaVolumen = [];
+     const auxExportaDolares = [];
+     const auxExportaVolumen = [];
+     const  auxImportaDolares = [];
+     const  auxImportaVolumen = [];
 
       element.exports.forEach(item => {
        auxExportaDolares.push(item.price);
@@ -531,9 +588,9 @@ export class EstadisticasEspecialistaComponent implements OnInit {
   }
 
  getRandomColor() {
-    var letters = '0123456789ABCDEF'.split('');
-    var color = '#';
-    for (var i = 0; i < 6; i++ ) {
+    const letters = '0123456789ABCDEF'.split('');
+    let color = '#';
+    for ( let i = 0; i < 6; i++ ) {
       color += letters[Math.floor(Math.random() * 16)];
     }
     return color;

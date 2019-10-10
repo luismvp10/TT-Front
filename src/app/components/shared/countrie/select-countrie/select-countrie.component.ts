@@ -10,7 +10,9 @@ import Swal from 'sweetalert2';
 })
 export class SelectCountrieComponent implements OnInit {
   @Input() countries: any[];
+  @Input() isCorrect: boolean;
   constructor() {
+    this.isCorrect = false;
   }
 
   ngOnInit() {

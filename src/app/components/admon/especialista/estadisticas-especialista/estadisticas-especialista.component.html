@@ -47,6 +47,46 @@
 
     </div>
     <!--Selects-->
+    <div class="row" *ngIf="transactions.length>0">
+        <div class="column loadingCenter">
+            <button type="button" class="btn btn-primary mt-1" data-toggle="modal" data-target="#prediction">Generar Predicción</button>
+        </div>
+        <div class="column loadingCenter">
+            <button type="button" class="btn btn-primary mt-1">Generar Reporte</button>
+        </div>
+    </div>
+
+    <div class="modal fade bd-example-modal-lg" id="prediction" tabindex="-1" role="dialog" aria-hidden="true" #prediction>
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addusertittle">Generar una predicción</h5>
+                </div>
+                <div class="modal-body">
+                    <app-select-countrie [countries]="countries" [isCorrect]="estatusPrediction.error" (change)="predCountry = $event.target.value"></app-select-countrie>
+                    <div *ngIf="estatusPrediction.error" class=" custom-control invalid-feedback">
+                        Este campo es requerido
+                        <br><br>
+                    </div>
+                    <button type="button" class="btn btn-primary" (click)="predecir(2)">Generar</button>
+                    <div class="text-center mt-5">
+                        <h1 class="title" *ngIf="estatusPrediction.export||estatusPrediction.import">Exportaciones</h1>
+                    </div>
+                    <img [src]="exportImage" alt="Place image title" *ngIf="estatusPrediction.export" style="width:100%;">
+                    <app-not-exists-results *ngIf="estatusPrediction.nullexport"></app-not-exists-results>
+                    <div class="text-center mt-5">
+                        <h1 class="title" *ngIf="estatusPrediction.export||estatusPrediction.import">Importaciones</h1>
+                    </div>
+                    <img [src]="importImage" alt="Place image title" *ngIf="estatusPrediction.import" style="width:100%;">
+                    <app-not-exists-results *ngIf="estatusPrediction.nullimport"></app-not-exists-results>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#prediction" (click)="resetEstatus()">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <div class="row">
         <div class="text-center">
