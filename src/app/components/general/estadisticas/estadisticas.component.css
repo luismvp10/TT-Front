@@ -23,3 +23,6 @@ label {
 .nw {
     white-space: nowrap;
 }
+hr{
+  border-top: 3px solid #3c92ca;
+}

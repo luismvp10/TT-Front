@@ -42,7 +42,6 @@ export class EstadisticasEspecialistaComponent implements OnInit {
   SelectedChapter: string;
   // @ViewChild('chapter') childOne:SelectChapterComponent;
   @ViewChild('multiSelect') multiSelect: SelectMonthComponent;
-  // messsage ="Hola prro";
 
   shipments: any = [];
   subshipments: any = [];
@@ -393,6 +392,8 @@ createImageFromBlob(image: Blob, kind) {
      const  auxImportaDolares = [];
      const  auxImportaVolumen = [];
 
+     const colorBackground = this.getRandomColor();
+
       element.exports.forEach(item => {
        auxExportaDolares.push(item.price);
        auxExportaVolumen.push(item.weight);
@@ -408,7 +409,8 @@ createImageFromBlob(image: Blob, kind) {
           data: auxExportaDolares,
           fill: false,
           lineTension: 0.5,
-          borderColor: this.getRandomColor(),
+          borderColor: colorBackground,
+          backgroundColor: colorBackground,
           borderWidth: 1
       });
 
@@ -417,7 +419,8 @@ createImageFromBlob(image: Blob, kind) {
         data: auxExportaVolumen,
         fill: false,
         lineTension: 0.5,
-        borderColor: this.getRandomColor(),
+        borderColor: colorBackground,
+        backgroundColor: colorBackground,
         borderWidth: 1
       });
 
@@ -428,7 +431,8 @@ createImageFromBlob(image: Blob, kind) {
         data: auxImportaDolares,
         fill: false,
         lineTension: 0.5,
-        borderColor: this.getRandomColor(),
+        borderColor: colorBackground,
+        backgroundColor: colorBackground,
         borderWidth: 1
       });
 
@@ -437,7 +441,8 @@ createImageFromBlob(image: Blob, kind) {
         data: auxImportaVolumen,
         fill: false,
         lineTension: 0.5,
-        borderColor: this.getRandomColor(),
+        borderColor: colorBackground,
+        backgroundColor: colorBackground,
         borderWidth: 1
       });
 
@@ -459,14 +464,21 @@ createImageFromBlob(image: Blob, kind) {
         },
         scales: {
 
-          yAxes: [
+          xAxes: [
             {
-              scaleLabel: {
-                display: true,
-                labelString: "value"
-              }
+              ticks: {
+                maxRotation: 0
+              },
+              stacked: true
+
             }
-          ]
+          ],
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            },
+            stacked: true
+          }]
         },
         plugins: {
           zoom: {
@@ -506,13 +518,16 @@ createImageFromBlob(image: Blob, kind) {
             {
               ticks: {
                 maxRotation: 0
-              }
+              },
+              stacked: true
+
             }
           ],
           yAxes: [{
             ticks: {
               beginAtZero: true
-            }
+            },
+            stacked: true
           }]
         },
 
@@ -543,7 +558,7 @@ createImageFromBlob(image: Blob, kind) {
 
     /*Importaciones*/
     this.graficaImportaDolares = new Chart('graficaImportaDolares', {
-      type: 'line',
+      type: 'bar',
       data: {
         labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         datasets: this.datosImportaDolares,
@@ -554,10 +569,20 @@ createImageFromBlob(image: Blob, kind) {
           display: true
         },
         scales: {
+          xAxes: [
+            {
+              ticks: {
+                maxRotation: 0
+              },
+              stacked: true
+
+            }
+          ],
           yAxes: [{
             ticks: {
               beginAtZero: true
-            }
+            },
+            stacked: true
           }]
         }
       }
@@ -565,7 +590,7 @@ createImageFromBlob(image: Blob, kind) {
 
     /*Volumen importa*/
     this.graficaImportaVolumen = new Chart('graficaImportaVolumen', {
-      type: 'line',
+      type: 'bar',
       data: {
         labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         datasets: this.datosImportaVolumen,
@@ -576,10 +601,20 @@ createImageFromBlob(image: Blob, kind) {
           display: true
         },
         scales: {
+          xAxes: [
+            {
+              ticks: {
+                maxRotation: 0
+              },
+              stacked: true
+
+            }
+          ],
           yAxes: [{
             ticks: {
               beginAtZero: true
-            }
+            },
+            stacked: true
           }]
         }
       }

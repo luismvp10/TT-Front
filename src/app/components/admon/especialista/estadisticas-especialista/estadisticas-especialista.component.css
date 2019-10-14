@@ -18,7 +18,9 @@
     float: left;
     width: 50%;
 }
-
+hr{
+  border-top: 3px solid #3c92ca;
+}
 
 /*.graficas{*/
 
