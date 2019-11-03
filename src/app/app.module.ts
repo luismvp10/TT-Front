@@ -9,7 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-
+import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 
 // Components
 import { AppComponent } from './app.component';
@@ -36,6 +36,8 @@ import { SelectShipmentComponent } from './components/shared/shipment/select-shi
 import { SelectSubshipmentComponent } from './components/shared/subshipment/select-subshipment/select-subshipment.component';
 import { SelectSectionComponent } from './components/shared/section/select-section/select-section.component';
 import { LoadingSelectComponent } from './components/shared/loading-select/loading-select/loading-select.component';
+
+
 
 ///Services
 import { CountrieService } from './services/countrie/countrie.service';
@@ -96,6 +98,7 @@ import { NgDropFilesDirective } from './directives/ng-drop-files.directive';
       cancelButtonClass: 'btn'
       }),
     NgMultiSelectDropDownModule.forRoot(),
+    AutocompleteLibModule,
      // RouterModule.forRoot( ROUTES, {useHash:true }),
   ],
   providers: [
