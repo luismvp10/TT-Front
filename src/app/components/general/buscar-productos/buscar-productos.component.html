@@ -12,7 +12,8 @@
               (inputFocused)='onFocused($event)'
               [itemTemplate]="itemTemplate"
               [notFoundTemplate]="notFoundTemplate"
-              placeHolder="Ingrese el producto a buscar...">
+              placeHolder="Ingrese el producto a buscar..."
+              notFoundText="Sin Resultados">
             </ng-autocomplete>
 
             <ng-template #itemTemplate let-item>
