@@ -10,9 +10,9 @@
             </div>
 
             <div class="col-xs-12 col-md-3 col-lg-3">
-              <app-select-shipment [shipments]="shipments" (change)="changeShipment($event.target.value)"></app-select-shipment>
-              <app-select-subshipment [subshipments]="subshipments" (change)="changesubShipment($event.target.value)"></app-select-subshipment>
-              <app-select-section [sections]="sections" (change)="changeSection($event.target.value)"></app-select-section>
+                <app-select-shipment [shipments]="shipments" (change)="changeShipment($event.target.value)"></app-select-shipment>
+                <app-select-subshipment [subshipments]="subshipments" (change)="changesubShipment($event.target.value)"></app-select-subshipment>
+                <app-select-section [sections]="sections" (change)="changeSection($event.target.value)"></app-select-section>
             </div>
 
             <div class="col-xs-12 col-md-3 col-lg-3">
@@ -48,7 +48,7 @@
 
         </div>
 
-      <hr>
+        <hr>
 
     </div>
     <!--Selects-->
@@ -57,7 +57,7 @@
             <button type="button" class="btn btn-success mt-1" data-toggle="modal" data-target="#prediction">Generar Predicción</button>
         </div>
         <div class="column loadingCenter">
-            <button type="button" class="btn btn-warning mt-1">Generar Reporte</button>
+            <button type="button" class="btn btn-warning mt-1" (click)="generateReport()">Generar Reporte</button>
         </div>
     </div>
 
@@ -137,11 +137,11 @@
             </div>
         </div>
 
-      <div class="container-fluid">
-        <div class="text-center">
-          <canvas id="graficaExportaDolares" class="graficas" width="1200" height="600"></canvas>
+        <div class="container-fluid">
+            <div class="text-center">
+                <canvas id="graficaExportaDolares" class="graficas" width="1200" height="600"></canvas>
+            </div>
         </div>
-      </div>
 
 
     </div>
@@ -178,11 +178,11 @@
             </div>
         </div>
 
-      <div class="container-fluid">
-        <div class="text-center">
-          <canvas id="graficaExportaVolumen" class="graficas" width="1200" height="600"></canvas>
+        <div class="container-fluid">
+            <div class="text-center">
+                <canvas id="graficaExportaVolumen" class="graficas" width="1200" height="600"></canvas>
+            </div>
         </div>
-      </div>
 
     </div>
 
@@ -225,11 +225,11 @@
             </div>
         </div>
 
-      <div class="container-fluid">
-        <div class="text-center">
-          <canvas id="graficaImportaDolares" class="graficas" width="1200" height="600"></canvas>
+        <div class="container-fluid">
+            <div class="text-center">
+                <canvas id="graficaImportaDolares" class="graficas" width="1200" height="600"></canvas>
+            </div>
         </div>
-      </div>
 
 
 
@@ -270,11 +270,11 @@
         </div>
 
 
-      <div class="container-fluid">
-        <div class="text-center">
-          <canvas id="graficaImportaVolumen" class="graficas" width="1200" height="600"></canvas>
+        <div class="container-fluid">
+            <div class="text-center">
+                <canvas id="graficaImportaVolumen" class="graficas" width="1200" height="600"></canvas>
+            </div>
         </div>
-      </div>
 
     </div>
 

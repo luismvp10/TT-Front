@@ -11,7 +11,7 @@ import {empty, iif} from 'rxjs';
 import * as $ from 'jquery';
 import {SelectMonthComponent} from '../../../shared/month/select-month/select-month.component';
 import { CountrieService } from '../../../../services/countrie/countrie.service';
-
+import { saveAs } from 'file-saver';
 @Component({
   selector: 'app-estadisticas-especialista',
   templateUrl: './estadisticas-especialista.component.html',
@@ -23,7 +23,6 @@ export class EstadisticasEspecialistaComponent implements OnInit {
   graficaImportaDolares = [];
   graficaImportaVolumen = [];
 
-
   datosExportaDolares = [];
   datosExportaVolumen = [];
   datosImportaDolares = [];
@@ -33,16 +32,16 @@ export class EstadisticasEspecialistaComponent implements OnInit {
 
  loading = false;
   monthArray = [
-    ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-    [true, true, true, true, true, true, true, true, true, true, true, true]
+    ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre', 'Total'],
+    [true, true, true, true, true, true, true, true, true, true, true, true, true]
   ];
   tempstatus = [false, false, false, false, false, false, false, false, false, false, false, false];
-  totalExporta = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
-  totalImporta = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
+  totalExporta = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
+  totalImporta = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
   SelectedChapter: string;
   // @ViewChild('chapter') childOne:SelectChapterComponent;
   @ViewChild('multiSelect') multiSelect: SelectMonthComponent;
-
+  
   shipments: any = [];
   subshipments: any = [];
   sections: any = [];
@@ -315,8 +314,8 @@ createImageFromBlob(image: Blob, kind) {
   console.log('Mes ' + this.months);
   console.log(this.months);
   console.log('Año ' + this.yearID);
-  this.totalExporta = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
-  this.totalImporta = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
+  this.totalExporta = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
+  this.totalImporta = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
   this.graficaExportaDolares = [];
   this.graficaExportaVolumen = [];
   this.graficaImportaDolares = [];
@@ -345,10 +344,16 @@ createImageFromBlob(image: Blob, kind) {
 
       /*Suma de valores totales*/
       this.transactions.forEach(element => {
-
-        this.datosExporta = this.datosExporta + element.exports.length;
-        this.datosImporta = this.datosImporta + element.imports.length;
-
+        if (element.exports.length === 13) {
+          this.datosExporta = this.datosExporta + 12;
+        } else {
+          this.datosExporta = this.datosExporta + element.exports.length;
+        }
+        if (element.imports.length === 13) {
+          this.datosImporta = this.datosImporta + 12;
+        } else {
+          this.datosImporta = this.datosImporta + element.imports.length;
+        }
 
         element.exports.forEach(item => {
           this.totalExporta[0][item.month - 1] += item.price;
@@ -387,23 +392,27 @@ createImageFromBlob(image: Blob, kind) {
   graficas(transactions) {
     // console.log(this.getRandomColor());
     transactions.forEach(element => {
-     const auxExportaDolares = [];
-     const auxExportaVolumen = [];
-     const  auxImportaDolares = [];
-     const  auxImportaVolumen = [];
-
-     const colorBackground = this.getRandomColor();
-
+      const auxExportaDolares = [];
+      const auxExportaVolumen = [];
+      const  auxImportaDolares = [];
+      const  auxImportaVolumen = [];
+      const colorBackground = this.getRandomColor();
       element.exports.forEach(item => {
-       auxExportaDolares.push(item.price);
-       auxExportaVolumen.push(item.weight);
+        auxExportaDolares.push(item.price);
+        auxExportaVolumen.push(item.weight);
       });
-
+      if ( element.exports.length === 13 ) {
+        auxExportaDolares.pop();
+        auxExportaVolumen.pop();
+      }
       element.imports.forEach(item => {
         auxImportaDolares.push(item.price);
         auxImportaVolumen.push(item.weight);
       });
-
+      if ( element.imports.length === 13 ) {
+        auxImportaDolares.pop();
+        auxImportaVolumen.pop();
+      }
       this.datosExportaDolares.push({
           label:  element.country,
           data: auxExportaDolares,
@@ -630,4 +639,24 @@ createImageFromBlob(image: Blob, kind) {
     }
     return color;
   }
+
+  generateReport() {
+    this.params.push({
+      section: this.sectionID,
+      subShipment: this.subShipmentID,
+      shipment: this.shipmentID,
+      chapter: this.chapterID,
+      month: this.months,
+      year: this.yearID,
+      country: this.countryID
+    });
+    this.transaction.getReport(this.params).subscribe((data: any) => {
+      const mediaType = 'application/pdf';
+      const blob = new Blob([data], { type: mediaType });
+      saveAs(blob, this.operation + '_' + this.yearID + '.pdf');
+    });
+    this.params = [];
+  }
 }
+
+
