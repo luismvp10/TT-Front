@@ -12,6 +12,7 @@ import * as $ from 'jquery';
 import {SelectMonthComponent} from '../../../shared/month/select-month/select-month.component';
 import { CountrieService } from '../../../../services/countrie/countrie.service';
 import { saveAs } from 'file-saver';
+import { UserService } from '../../../../services/user/user.service';
 @Component({
   selector: 'app-estadisticas-especialista',
   templateUrl: './estadisticas-especialista.component.html',
@@ -75,7 +76,8 @@ export class EstadisticasEspecialistaComponent implements OnInit {
               private subshipment: SubshipmentService,
               private section: SectionService,
               private transaction: TransactionService,
-              private country: CountrieService) {
+              private country: CountrieService,
+              private user: UserService) {
 
 
   }
