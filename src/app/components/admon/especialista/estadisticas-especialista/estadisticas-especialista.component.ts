@@ -28,6 +28,16 @@ export class EstadisticasEspecialistaComponent implements OnInit {
   datosExportaVolumen = [];
   datosImportaDolares = [];
   datosImportaVolumen = [];
+
+
+  /*Datos totales*/
+  totalExportaDolares = 0;
+  totalExportaWeight = 0;
+
+  totalImportaDolares = 0;
+  totalImportaWeight = 0;
+
+
   params: any = [];
   selectedItems = [];
 
@@ -300,6 +310,10 @@ createImageFromBlob(image: Blob, kind) {
   }
   this.datosExporta = 0;
   this.datosImporta = 0;
+    this.totalExportaDolares = 0;
+    this.totalExportaWeight = 0;
+    this.totalImportaDolares = 0;
+    this.totalImportaWeight = 0;
   Swal.fire({
     allowOutsideClick: false,
     type: 'info',
@@ -351,11 +365,16 @@ createImageFromBlob(image: Blob, kind) {
 
 
         element.exports.forEach(item => {
+          this.totalExportaDolares += item.price;
+          this.totalExportaWeight += item.weight;
+
           this.totalExporta[0][item.month - 1] += item.price;
           this.totalExporta[1][item.month - 1] += item.weight;
         });
 
         element.imports.forEach(item => {
+          this.totalImportaDolares += item.price;
+          this.totalImportaWeight += item.weight;
           this.totalImporta[0][item.month - 1] += item.price;
           this.totalImporta[1][item.month - 1] += item.weight;
         });
@@ -374,15 +393,6 @@ createImageFromBlob(image: Blob, kind) {
 
   }
 
-
-  showModal() {
-    Swal.fire({
-      title: 'Error!',
-      text: 'No se puede prro',
-      type: 'error',
-      confirmButtonText: 'Cool'
-    });
-  }
 
   graficas(transactions) {
     // console.log(this.getRandomColor());
