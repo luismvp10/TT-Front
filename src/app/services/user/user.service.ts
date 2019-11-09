@@ -40,7 +40,7 @@ export class UserService {
               payload,
       {headers: this.httpHeaders }).pipe(
         map( resp => {
-          this.guardarToken(resp['token'], resp['userType']);
+          this.guardarToken(resp['token'], resp['userType'], usuario['correo']);
           return resp;
         })
       );
@@ -63,9 +63,10 @@ export class UserService {
     localStorage.removeItem('userType');
   }
 
-  guardarToken(idToken: string, userType: string) {
+  guardarToken(idToken: string, userType: string, username: string) {
     localStorage.setItem('token', idToken);
     localStorage.setItem('userType', userType);
+    localStorage.setItem('username', username);
   }
 
   esEspecialista(): boolean {
@@ -114,6 +115,20 @@ export class UserService {
     payload.append('email', user.email);
     payload.append('password', user.password);
     return this.http.post( this.env.URI + '/users/register/',
+              payload,
+      {headers: postHeader });
+  }
+
+  modify(name, surname, password) {
+    const postHeader = new HttpHeaders({
+      Accept: 'application/json'
+    });
+    const payload = new FormData();
+    payload.append('names', name);
+    payload.append('surname', surname);
+    payload.append('email', localStorage.getItem('username'));
+    payload.append('password', password);
+    return this.http.post( this.env.URI + '/users/modify/',
               payload,
       {headers: postHeader });
   }

@@ -16,6 +16,11 @@ export class TransactionService {
     'Content-type': 'application/json'
   });
 
+  pdfHeaders = new HttpHeaders({
+    'Content-type': 'application/pdf',
+    Accept: '*/*'
+  });
+
   getTransactions(params: any= []) {
    // console.log(params[0]['section']);
 // console.log(this.params);
@@ -55,5 +60,36 @@ export class TransactionService {
       url += '/country/' + country;
     }
     return this.http.get(url + '/kind/' + kind , { responseType: 'blob' });
+  }
+
+  getReport(params: any= []) {
+    const section = params[0]['section'];
+    const year = params[0]['year'];
+    const subShipment = params[0]['subShipment'];
+    const shipment = params[0]['shipment'];
+    const chapter = params[0]['chapter'];
+    const month = params[0]['month'];
+    const country = params[0]['country'];
+    let url = this.env.URI + '/transactions/report/';
+    let m = '';
+    if (section !== undefined) {
+      url += section;
+    } else if (subShipment !== undefined) {
+      url += subShipment;
+    } else if (shipment !== undefined) {
+      url += shipment;
+    } else {
+      url += chapter;
+    }
+    if (country !== 'Todos') {
+      url += '/country/' + country;
+    }
+    month.forEach(element => {
+      m += '' + element + ' ';
+    });
+    if (m !== '0 ') {
+      url += '/month/' + m;
+    }
+    return this.http.get(url + '/year/' + year, { responseType: 'blob' });
   }
 }
