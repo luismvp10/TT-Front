@@ -13,6 +13,8 @@ import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 
 // Components
 import { AppComponent } from './app.component';
+import { RecoverComponent } from './components/admon/recover/recover.component';
+import { EmailComponent } from './components/admon/email/email.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { NavbarComponent } from './components/general/navbar/navbar.component';
 import { SesionNavbarComponent } from './components/admon/sesion-navbar/sesion-navbar.component';
@@ -83,6 +85,8 @@ import { NgDropFilesDirective } from './directives/ng-drop-files.directive';
     Volumen,
     NotExistsResultsComponent,
     NgDropFilesDirective,
+    RecoverComponent,
+    EmailComponent,
   ],
   imports: [
     BrowserModule,

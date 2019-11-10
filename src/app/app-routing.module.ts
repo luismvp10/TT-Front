@@ -9,6 +9,8 @@ import { ContenedorEspecialistaComponent } from './components/admon/especialista
 import { ContenedorAdminComponent } from './components/admon/administrador/contenedor-administrador/contenedor-administrador.component';
 import { IsSpecialistGuard } from './guards/is-specialist.guard';
 import { IsAdministratorGuard } from './guards/is-administrator.guard';
+import { RecoverComponent } from './components/admon/recover/recover.component';
+import { EmailComponent } from './components/admon/email/email.component';
 
 
 const routes: Routes = [
@@ -20,6 +22,8 @@ const routes: Routes = [
   },
 
   {path: 'login', component: LoginComponent},
+  {path: 'send_email', component: EmailComponent},
+  {path: 'recover/:u', component: RecoverComponent},
   {path: '', pathMatch: 'full', redirectTo: 'home'},
   {path: 'especialist', component: ContenedorEspecialistaComponent, canActivate: [ IsSpecialistGuard ] },
   {path: 'admon', component: ContenedorAdminComponent, canActivate: [ IsAdministratorGuard ] },
