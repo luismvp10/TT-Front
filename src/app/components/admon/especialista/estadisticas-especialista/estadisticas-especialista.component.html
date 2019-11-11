@@ -127,15 +127,15 @@
                             <td *ngFor="let it of item.exports">{{it.price | currency }}</td>
                         </tr>
                         <tr class="container-fluid">
-                            <th scope="row" class="text-white bg-primary">Total</th>
+                            <th scope="row" class="text-white bg-primary">Totales</th>
                             <ng-container *ngFor="let tot of totalExporta[0]; let i = index">
                                 <td class="text-white bg-primary" *ngIf="monthArray[1][i]">{{ tot | currency }}</td>
                             </ng-container>
                         </tr>
-                        <tr>
-                          <th>Exportación Total en Dólares:</th>
-                          <th>{{totalExportaDolares | currency}}</th>
-                        </tr>
+<!--                        <tr>-->
+<!--                          <th>Exportación Total en Dólares:</th>-->
+<!--                          <th>{{totalExportaDolares | currency}}</th>-->
+<!--                        </tr>-->
                     </tbody>
                 </table>
             </div>
@@ -172,15 +172,15 @@
                             <td *ngFor="let it of item.exports" class="nw">{{it.weight | Volumen:'.2' }}</td>
                         </tr>
                         <tr class="container-fluid">
-                            <th scope="row" class="text-white bg-primary">Total</th>
+                            <th scope="row" class="text-white bg-primary">Totales</th>
                             <ng-container *ngFor="let tot of totalExporta[1]; let i = index">
                                 <td class="text-white bg-primary nw" *ngIf="monthArray[1][i]">{{ tot | Volumen:'.2' }}</td>
                             </ng-container>
                         </tr>
-                        <tr>
-                          <th>Exportación Total en Volumen:</th>
-                          <th>{{totalExportaWeight | Volumen:'.2'}}</th>
-                        </tr>
+<!--                        <tr>-->
+<!--                          <th>Exportación Total en Volumen:</th>-->
+<!--                          <th>{{totalExportaWeight | Volumen:'.2'}}</th>-->
+<!--                        </tr>-->
                     </tbody>
                 </table>
             </div>
@@ -222,15 +222,15 @@
                             <td *ngFor="let it of item.imports">{{it.price | currency }}</td>
                         </tr>
                         <tr class="container-fluid">
-                            <th scope="row" class="text-white bg-primary">Total</th>
+                            <th scope="row" class="text-white bg-primary">Totales</th>
                             <ng-container *ngFor="let tot of totalImporta[0]; let i = index">
                                 <td class="text-white bg-primary" *ngIf="monthArray[1][i]">{{ tot | currency }}</td>
                             </ng-container>
                         </tr>
-                        <tr>
-                          <th>Importación Total en Dólares:</th>
-                          <th>{{totalImportaDolares | currency}}</th>
-                        </tr>
+<!--                        <tr>-->
+<!--                          <th>Importación Total en Dólares:</th>-->
+<!--                          <th>{{totalImportaDolares | currency}}</th>-->
+<!--                        </tr>-->
                     </tbody>
                 </table>
 
@@ -270,15 +270,15 @@
                             <td *ngFor="let it of item.imports" class="nw">{{it.weight | Volumen:'.2' }}</td>
                         </tr>
                         <tr class="container-fluid">
-                            <th scope="row" class="text-white bg-primary">Total</th>
+                            <th scope="row" class="text-white bg-primary">Totales</th>
                             <ng-container *ngFor="let tot of totalImporta[1]; let i = index">
                                 <td class="text-white bg-primary" *ngIf="monthArray[1][i]">{{ tot | Volumen:'.2' }}</td>
                             </ng-container>
                         </tr>
-                    <tr>
-                      <th>Importación Total en Volumen:</th>
-                      <th>{{totalImportaWeight | Volumen:'.2'}}</th>
-                    </tr>
+<!--                    <tr>-->
+<!--                      <th>Importación Total en Volumen:</th>-->
+<!--                      <th>{{totalImportaWeight | Volumen:'.2'}}</th>-->
+<!--                    </tr>-->
                     </tbody>
                 </table>
 

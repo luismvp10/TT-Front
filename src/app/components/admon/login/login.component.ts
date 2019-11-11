@@ -41,6 +41,14 @@ export class LoginComponent implements OnInit {
         if (this.recordarme) {
           localStorage.setItem('correo', this.usuario.correo);
         }
+        console.log(data);
+        Swal.fire({
+          position: 'top-end',
+          type: 'success',
+          title: 'Bienvenido ' +data['name']+ '',
+          showConfirmButton: false,
+          timer: 1500
+        })
         if (data['userType'] === 'specialist') {
           this.router.navigateByUrl('/especialist');
         } else if (data['userType'] === 'administrator') {

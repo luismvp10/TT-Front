@@ -2,14 +2,16 @@
     font-family: Brandon Regular;
 }
 
-
+.text-color{
+  color: #069;
+}
 
 .login-back {
     position: absolute;
     height: 100%;
     width: 100%;
     overflow: auto;
-    background-color: #069;
+    background-color: #555;
 }
 
 .login {
@@ -22,7 +24,7 @@
     position: absolute;
     height: 125%;
     width: 100%;
-    background-color: #069;
+    background-color: #555;
   }
 
   .login {
@@ -41,7 +43,7 @@
     position: absolute;
     height: 125%;
     width: 100%;
-    background-color: #069;
+    background-color: #555;
   }
 
 
@@ -58,7 +60,7 @@
     position: absolute;
     height: 125%;
     width: 100%;
-    background-color: #069;
+    background-color: #555;
   }
 
   .login {

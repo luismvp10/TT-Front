@@ -35,12 +35,12 @@ export class UserService {
     payload.append('username', usuario['correo']);
     payload.append('password', usuario['password']);
     // console.log("Aca vamos ",usuario["correo"]);
-    console.log(payload);
+    // console.log(payload);
     return this.http.post( this.env.URI + '/users/login/',
               payload,
       {headers: this.httpHeaders }).pipe(
         map( resp => {
-          this.guardarToken(resp['token'], resp['userType'], usuario['correo']);
+          this.guardarToken(resp['token'], resp['userType'], usuario['correo'], resp['name'], resp['surname']);
           return resp;
         })
       );
@@ -61,13 +61,17 @@ export class UserService {
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('userType');
-    localStorage.removeItem('username');
+    localStorage.removeItem('correo');
+    localStorage.removeItem('nombre');
+    localStorage.removeItem('apellidos');
   }
 
-  guardarToken(idToken: string, userType: string, username: string) {
+  guardarToken(idToken: string, userType: string, correo: string, name: string, surname: string) {
     localStorage.setItem('token', idToken);
     localStorage.setItem('userType', userType);
-    localStorage.setItem('username', username);
+    localStorage.setItem('correo', correo);
+    localStorage.setItem('nombre', name);
+    localStorage.setItem('apellidos', surname);
   }
 
   esEspecialista(): boolean {
