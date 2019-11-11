@@ -61,6 +61,7 @@ export class UserService {
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('userType');
+    localStorage.removeItem('username');
   }
 
   guardarToken(idToken: string, userType: string, username: string) {
@@ -133,5 +134,38 @@ export class UserService {
       {headers: postHeader });
   }
 
+sendEmail(email) {
+  const postHeader = new HttpHeaders({
+    Accept: 'application/json'
+  });
+  const payload = new FormData();
+  payload.append('email', email);
+  return this.http.post( this.env.URI + '/users/email/',
+            payload,
+    {headers: postHeader });
+}
+
+recoverPassword(email, password) {
+  const postHeader = new HttpHeaders({
+    Accept: 'application/json'
+  });
+  const payload = new FormData();
+  payload.append('email', email);
+  payload.append('password', password);
+  return this.http.post( this.env.URI + '/users/recover/',
+            payload,
+    {headers: postHeader });
+}
+
+allow_to_recover(email) {
+  const postHeader = new HttpHeaders({
+    Accept: 'application/json'
+  });
+  const payload = new FormData();
+  payload.append('email', email);
+  return this.http.post( this.env.URI + '/users/is_allow/',
+            payload,
+    {headers: postHeader });
+}
 }
 
