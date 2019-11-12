@@ -54,7 +54,7 @@
     <!--Selects-->
     <div class="row" *ngIf="transactions.length>0">
         <div class="column loadingCenter">
-            <button type="button" class="btn btn-success mt-1" data-toggle="modal" data-target="#prediction">Generar Predicción</button>
+            <button type="button" class="btn btn-success mt-1" data-toggle="modal" (click)="isAll()" data-target="#prediction">Generar Predicción</button>
         </div>
         <div class="column loadingCenter">
             <button type="button" class="btn btn-warning mt-1" (click)="generateReport()">Generar Reporte</button>
@@ -67,13 +67,16 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="addusertittle">Generar una predicción</h5>
                 </div>
+
                 <div class="modal-body">
-                    <app-select-countrie [countries]="countries" [isCorrect]="estatusPrediction.error" (change)="predCountry = $event.target.value"></app-select-countrie>
-                    <div *ngIf="estatusPrediction.error" class=" custom-control invalid-feedback">
-                        Este campo es requerido
-                        <br><br>
-                    </div>
-                    <button type="button" class="btn btn-primary" (click)="predecir(2)">Generar</button>
+                    <ng-container *ngIf="show">
+                        <app-select-countrie [countries]="countries" [isCorrect]="estatusPrediction.error" (change)="predCountry = $event.target.value"></app-select-countrie>
+                        <div *ngIf="estatusPrediction.error" class=" custom-control invalid-feedback">
+                            Este campo es requerido
+                            <br><br>
+                        </div>
+                    </ng-container>
+                    <button type="button" class="btn btn-primary" (click)="predecir(2)" *ngIf="show">Generar</button>
                     <div class="text-center mt-5">
                         <h1 class="title" *ngIf="estatusPrediction.export||estatusPrediction.import">Exportaciones</h1>
                     </div>

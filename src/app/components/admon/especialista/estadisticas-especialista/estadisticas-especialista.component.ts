@@ -30,6 +30,7 @@ export class EstadisticasEspecialistaComponent implements OnInit {
   datosImportaVolumen = [];
   params: any = [];
   selectedItems = [];
+  show = true;
 
  loading = false;
   monthArray = [
@@ -222,8 +223,17 @@ createImageFromBlob(image: Blob, kind) {
    }
 }
 
+  isAll() {
+    if (this.countryID !== 'Todos') {
+      this.show = false;
+      this.predCountry = this.countryID;
+      this.predecir(2);
+    } else {
+      this.show = true;
+    }
+  }
+
   predecir(type) {
-    console.log(this.predCountry);
     if (this.predCountry === undefined || this.predCountry === '-- Seleccione un País --') {
       this.estatusPrediction.error = true;
       return;
@@ -242,6 +252,9 @@ createImageFromBlob(image: Blob, kind) {
         this.predecir(1);
       }
     }, error => {
+      if (type === 2) {
+        this.predecir(1);
+      }
       if (type === 1) {
         this.estatusPrediction.nullimport = true;
       } else {
