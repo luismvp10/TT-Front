@@ -335,8 +335,6 @@ createImageFromBlob(image: Blob, kind) {
   this.graficaExportaVolumen = [];
   this.graficaImportaDolares = [];
   this.graficaImportaVolumen = [];
-
-
   this.datosExportaDolares = [];
   this.datosExportaVolumen = [];
   this.datosImportaDolares = [];
@@ -405,6 +403,18 @@ createImageFromBlob(image: Blob, kind) {
   }
 
   graficas(transactions) {
+    document.getElementById('divgraficaExportaDolares').innerHTML = '&nbsp;';
+    document.getElementById('divgraficaExportaDolares').innerHTML =
+    '<canvas id="graficaExportaDolares" class="graficas" width="1200" height="600"></canvas>';
+    document.getElementById('divgraficaExportaVolumen').innerHTML = '&nbsp;';
+    document.getElementById('divgraficaExportaVolumen').innerHTML =
+    '<canvas id="graficaExportaVolumen" class="graficas" width="1200" height="600"></canvas>';
+    document.getElementById('divgraficaImportaDolares').innerHTML = '&nbsp;';
+    document.getElementById('divgraficaImportaDolares').innerHTML =
+    '<canvas id="graficaImportaDolares" class="graficas" width="1200" height="600"></canvas>';
+    document.getElementById('divgraficaImportaVolumen').innerHTML = '&nbsp;';
+    document.getElementById('divgraficaImportaVolumen').innerHTML =
+    '<canvas id="graficaImportaVolumen" class="graficas" width="1200" height="600"></canvas>';
     // console.log(this.getRandomColor());
     transactions.forEach(element => {
       const auxExportaDolares = [];
@@ -428,6 +438,7 @@ createImageFromBlob(image: Blob, kind) {
         auxImportaDolares.pop();
         auxImportaVolumen.pop();
       }
+      console.log(auxExportaDolares);
       this.datosExportaDolares.push({
           label:  element.country,
           data: auxExportaDolares,
@@ -643,7 +654,6 @@ createImageFromBlob(image: Blob, kind) {
         }
       }
     });
-
   }
 
  getRandomColor() {
