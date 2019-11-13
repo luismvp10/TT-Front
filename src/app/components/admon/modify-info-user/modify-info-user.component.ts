@@ -35,8 +35,8 @@ export class ModifyInfoUserComponent implements OnInit {
       this.noIgual.bind(this.userForm)
     ]);
 
-    this.userForm.controls['name'].value = this.nombre;
-    this.userForm.controls['surname'].value = this.apellidos;
+    this.userForm.controls['name'].setValue(this.nombre);
+    this.userForm.controls['surname'].setValue(this.apellidos);
 
 
   }
