@@ -58,6 +58,7 @@ import { NotExistsResultsComponent } from './components/shared/resultados/not-ex
 import { NgDropFilesDirective } from './directives/ng-drop-files.directive';
 import { ModifyInfoUserComponent } from './components/admon/modify-info-user/modify-info-user.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

@@ -131,7 +131,7 @@ export class UserService {
     const payload = new FormData();
     payload.append('names', name);
     payload.append('surname', surname);
-    payload.append('email', localStorage.getItem('username'));
+    payload.append('email', localStorage.getItem('correo'));
     payload.append('password', password);
     return this.http.post( this.env.URI + '/users/modify/',
               payload,
