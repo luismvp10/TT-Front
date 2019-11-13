@@ -29,13 +29,13 @@ export class EstadisticasComponent implements OnInit {
   datosExporta: number = 0;
 
   monthArray = [
-    ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-    [true, true, true, true, true, true, true, true, true, true, true, true]
+    ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre','Total'],
+    [true, true, true, true, true, true, true, true, true, true, true, true, true]
   ];
-  tempstatus = [false, false, false, false, false, false, false, false, false, false, false, false];
+  tempstatus = [false, false, false, false, false, false, false, false, false, false, false, false, false];
   months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-  totalExporta = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
-  totalImporta = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
+  totalExporta = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0]];
+  totalImporta = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0]];
 
   params: any = [];
 
@@ -125,7 +125,7 @@ export class EstadisticasComponent implements OnInit {
       );
       return false;
     }
-    
+
 
     if(this.yearID ===undefined){
 
@@ -145,7 +145,7 @@ export class EstadisticasComponent implements OnInit {
       text: 'Espere por favor...'
     });
     Swal.showLoading();
-    this.tempstatus = [true, true, true, true, true, true, true, true, true, true, true, true];
+    this.tempstatus = [true, true, true, true, true, true, true, true, true, true, true, true, true];
     console.log("Información para la búsqueda");
     console.log("Sección " + this.sectionID);
     console.log("Subpartida " +this.subShipmentID);
@@ -153,8 +153,8 @@ export class EstadisticasComponent implements OnInit {
     console.log("Capítulo " +this.chapterID);
     console.log("Año " + this.yearID);
 
-    this.totalExporta = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
-    this.totalImporta = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
+    this.totalExporta = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0]];
+    this.totalImporta = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0]];
 
     this.params.push({
       section: this.sectionID,
