@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { UserService } from '../../../../services/user/user.service';
 import Swal from 'sweetalert2';
 import { FormBuilder, Validators, FormControl, ReactiveFormsModule } from '@angular/forms';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-users-control',
@@ -13,9 +14,14 @@ export class UsersControlComponent implements OnInit {
   Users: any[] = [];
   emailpattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+[\.][a-z]{2,3}$';
   @ViewChild('adduser') adduser: ElementRef;
+  ValidaPass = false;
 
   constructor(private fb: FormBuilder, private user: UserService) {
     this.getUsers();
+    this.userForm.controls['password2'].setValidators([
+      Validators.required,
+      this.noIgual.bind(this.userForm)
+    ]);
   }
 
 
@@ -24,7 +30,25 @@ export class UsersControlComponent implements OnInit {
     surname: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.pattern(this.emailpattern)]),
     password: new FormControl('', Validators.required),
+    password2: new FormControl( )
    });
+
+
+  noIgual(control: FormControl ): { [s:string]:boolean } {
+console.log(this);
+    let forma:any = this;
+
+    if( control.value !== forma.controls['password'].value ) {
+      console.log(control.value);
+      this.ValidaPass = true;
+      return {
+        noiguales:true
+      }
+    }
+    this.ValidaPass = false;
+    return null;
+  }
+
 
   getUsers() {
     this.Users = [];
@@ -56,6 +80,8 @@ export class UsersControlComponent implements OnInit {
 
   ngOnInit() {
   }
+
+
 
   deleteUser(email) {
     Swal.fire({
@@ -112,4 +138,6 @@ export class UsersControlComponent implements OnInit {
   resetUserForm() {
     this.userForm.reset();
  }
+
+
 }

@@ -56,6 +56,7 @@ import { UploadService } from './services/upload/upload.service';
 import { Volumen } from './pipes/volumen.pipe';
 import { NotExistsResultsComponent } from './components/shared/resultados/not-exists-results/not-exists-results.component';
 import { NgDropFilesDirective } from './directives/ng-drop-files.directive';
+import { ModifyInfoUserComponent } from './components/admon/modify-info-user/modify-info-user.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +88,7 @@ import { NgDropFilesDirective } from './directives/ng-drop-files.directive';
     NgDropFilesDirective,
     RecoverComponent,
     EmailComponent,
+    ModifyInfoUserComponent,
   ],
   imports: [
     BrowserModule,

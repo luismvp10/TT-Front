@@ -45,6 +45,17 @@
                                 Este campo es requerido
                             </div>
                         </div>
+
+                      <div class="form-group">
+                        <label for="passwordConfirm">Confirme Contraseña</label>
+                        <input type="password" class="form-control" placeholder="Repita Contraseña" formControlName="password2" [ngClass]="{'is-invalid': userForm.controls['password2'].hasError('required')&&userForm.controls['password2'].touched}">
+                        <div class="invalid-feedback" *ngIf="userForm.controls['password2'].hasError('required')">
+                          Este campo es requerido
+                        </div>
+                        <div class="invalid-feedback" *ngIf="userForm.controls['password2'].hasError('noiguales')">
+                          Las contraseñas no son iguales
+                        </div>
+                      </div>
                     </form>
                 </div>
                 <div class="modal-footer">
