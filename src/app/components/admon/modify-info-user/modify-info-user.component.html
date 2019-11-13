@@ -1,0 +1,52 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mb-5">
+      <h5 class="text-color">Usuario: <span class="text-dark ml-3"> {{ correo }}</span>  </h5>
+    </div>
+
+    <div class="modal-body">
+      <form [formGroup]="userForm" id="ngForm" novalidate="">
+        <div class="form-group">
+          <label for="names">Nombres</label>
+          <input type="text" class="form-control" id="names" formControlName="name" placeholder="Nombres" [ngClass]="{'is-invalid': userForm.controls['name'].hasError('required')&&userForm.controls['name'].touched}">
+          <div class="invalid-feedback" *ngIf="userForm.controls['name'].hasError('required')">
+            Este campo es requerido
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="surname">Apellidos</label>
+          <input type="text" class="form-control" id="surname" placeholder="Apellidos" formControlName="surname" [ngClass]="{'is-invalid': userForm.controls['surname'].hasError('required')&&userForm.controls['surname'].touched}">
+          <div class="invalid-feedback" *ngIf="userForm.controls['surname'].hasError('required')">
+            Este campo es requerido
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input type="password" class="form-control" placeholder="Contraseña" formControlName="password" [ngClass]="{'is-invalid': userForm.controls['password'].hasError('required')&&userForm.controls['password'].touched}">
+          <div class="invalid-feedback" *ngIf="userForm.controls['password'].hasError('required')">
+            Este campo es requerido
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="passwordConfirm">Confirme Contraseña</label>
+          <input type="password" class="form-control" placeholder="Repita Contraseña" formControlName="password2" [ngClass]="{'is-invalid': userForm.controls['password2'].hasError('required')&&userForm.controls['password2'].touched}">
+          <div class="invalid-feedback" *ngIf="userForm.controls['password2'].hasError('required')">
+            Este campo es requerido
+          </div>
+          <div class="invalid-feedback" *ngIf="userForm.controls['password2'].hasError('noiguales')">
+            Las contraseñas no son iguales
+          </div>
+        </div>
+      </form>
+      <div class="modal-footer">
+<!--        <button type="button" class="btn btn-secondary btn-danger" data-dismiss="modal">Cancelar</button>-->
+        <button type="button" class="btn btn-primary" (click)="modifyInfoUser()" [disabled]="userForm.invalid">Actualizar usuario</button>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>
